@@ -5,6 +5,7 @@
 */
 
 include { FASTQC                 } from '../modules/nf-core/fastqc/main'
+include { ASSEMBLYSCAN           } from '../modules/nf-core/assemblyscan/main'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
 include { paramsSummaryMap       } from 'plugin/nf-validation'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
@@ -30,11 +31,11 @@ workflow PAIRALIGN {
     //
     // MODULE: Run FastQC
     //
-    FASTQC (
+    ASSEMBLYSCAN (
         ch_samplesheet
     )
-    ch_multiqc_files = ch_multiqc_files.mix(FASTQC.out.zip.collect{it[1]})
-    ch_versions = ch_versions.mix(FASTQC.out.versions.first())
+    ch_multiqc_files = ch_multiqc_files.mix(ASSEMBLYSCAN.out.json.collect{it[1]})
+    ch_versions = ch_versions.mix(ASSEMBLYSCAN.out.versions.first())
 
     //
     // Collate and save software versions
