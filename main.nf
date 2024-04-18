@@ -47,6 +47,7 @@ workflow NFCORE_PAIRALIGN {
 
     take:
     samplesheet // channel: samplesheet read in from --input
+    target_genome // channel: genome file read in from --target
 
     main:
 
@@ -54,7 +55,8 @@ workflow NFCORE_PAIRALIGN {
     // WORKFLOW: Run pipeline
     //
     PAIRALIGN (
-        samplesheet
+        samplesheet,
+        target_genome
     )
 
     emit:
@@ -84,11 +86,18 @@ workflow {
         params.input
     )
 
+    channel
+        .value( params.target )
+        .map { filename -> file(filename, checkIfExists: true) }
+        .map { file_obj -> [ [id:'target'], file_obj] }
+        .set { ch_target }
+
     //
     // WORKFLOW: Run main workflow
     //
     NFCORE_PAIRALIGN (
-        PIPELINE_INITIALISATION.out.samplesheet
+        PIPELINE_INITIALISATION.out.samplesheet,
+        ch_target
     )
 
     //

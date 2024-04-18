@@ -20,7 +20,8 @@ include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_pair
 workflow PAIRALIGN {
 
     take:
-    ch_samplesheet // channel: samplesheet read in from --input
+    ch_samplesheet  // channel: samplesheet read in from --input
+    ch_targetgenome // channel: genome file read in from --target
 
     main:
 
