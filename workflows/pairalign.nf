@@ -5,6 +5,7 @@
 */
 
 include { ASSEMBLYSCAN           } from '../modules/nf-core/assemblyscan/main'
+include { LAST_LASTDB                 } from '../modules/nf-core/last/lastdb/main'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
 include { paramsSummaryMap       } from 'plugin/nf-validation'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
@@ -27,6 +28,13 @@ workflow PAIRALIGN {
 
     ch_versions = Channel.empty()
     ch_multiqc_files = Channel.empty()
+
+    //
+    // MODULE: lastdb
+    //
+    LAST_LASTDB (
+        ch_targetgenome
+    )
 
     //
     // MODULE: assembly-scan 
