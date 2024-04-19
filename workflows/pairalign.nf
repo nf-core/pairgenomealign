@@ -4,8 +4,8 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { FASTQC                 } from '../modules/nf-core/fastqc/main'
 include { ASSEMBLYSCAN           } from '../modules/nf-core/assemblyscan/main'
+include { LAST_LASTDB                 } from '../modules/nf-core/last/lastdb/main'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
 include { paramsSummaryMap       } from 'plugin/nf-validation'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
@@ -21,7 +21,8 @@ include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_pair
 workflow PAIRALIGN {
 
     take:
-    ch_samplesheet // channel: samplesheet read in from --input
+    ch_samplesheet  // channel: samplesheet read in from --input
+    ch_targetgenome // channel: genome file read in from --target
 
     main:
 
@@ -29,7 +30,14 @@ workflow PAIRALIGN {
     ch_multiqc_files = Channel.empty()
 
     //
-    // MODULE: Run FastQC
+    // MODULE: lastdb
+    //
+    LAST_LASTDB (
+        ch_targetgenome
+    )
+
+    //
+    // MODULE: assembly-scan 
     //
     ASSEMBLYSCAN (
         ch_samplesheet
