@@ -89,7 +89,7 @@ workflow {
     channel
         .value( params.target )
         .map { filename -> file(filename, checkIfExists: true) }
-        .map { file_obj -> [ [id:'target'], file_obj] }
+        .map { file_obj -> [ [id:params.targetName], file_obj] }
         .set { ch_target }
 
     //
