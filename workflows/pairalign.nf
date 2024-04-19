@@ -5,8 +5,9 @@
 */
 
 include { ASSEMBLYSCAN           } from '../modules/nf-core/assemblyscan/main'
-include { LAST_LASTDB                 } from '../modules/nf-core/last/lastdb/main'
-include { LAST_TRAIN                 } from '../modules/nf-core/last/train/main'
+include { LAST_LASTAL            } from '../modules/nf-core/last/lastal/main'
+include { LAST_LASTDB            } from '../modules/nf-core/last/lastdb/main'
+include { LAST_TRAIN             } from '../modules/nf-core/last/train/main'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
 include { paramsSummaryMap       } from 'plugin/nf-validation'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
@@ -50,7 +51,15 @@ workflow PAIRALIGN {
     //
     LAST_TRAIN (
          ch_samplesheet,
-         LAST_LASTDB.out.index
+         LAST_LASTDB.out.index.map { row -> row[1] }  // Remove metadata map
+    )
+
+    //
+    // MODULE: lastal
+    //
+    LAST_LASTAL (
+        ch_samplesheet.join(LAST_TRAIN.out.param_file),
+        LAST_LASTDB.out.index.map { row -> row[1] }  // Remove metadata map
     )
 
     // Collate and save software versions
