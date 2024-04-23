@@ -7,6 +7,7 @@
 include { ASSEMBLYSCAN           } from '../modules/nf-core/assemblyscan/main'
 include { LAST_LASTDB                 } from '../modules/nf-core/last/lastdb/main'
 include { LAST_TRAIN                 } from '../modules/nf-core/last/train/main'
+include { LAST_LASTAL                 } from '../modules/nf-core/last/lastal/main'
 include { LAST_DOTPLOT                 } from '../modules/nf-core/last/dotplot/main'
 include { LAST_SPLIT                 } from '../modules/nf-core/last/split/main'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
@@ -53,6 +54,13 @@ workflow PAIRALIGN {
     LAST_TRAIN (
          ch_samplesheet,
          LAST_LASTDB.out.index
+    )
+
+    // MODULE: lastal
+    //
+    LAST_LASTAL (
+        ch_samplesheet.join(LAST_TRAIN.out.param_file),
+        LAST_LASTDB.out.index.map { row -> row[1] }  // Remove metadata map
     )
 
     // MODULE: last_dotplot
