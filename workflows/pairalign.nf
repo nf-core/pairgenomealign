@@ -7,6 +7,8 @@
 include { ASSEMBLYSCAN           } from '../modules/nf-core/assemblyscan/main'
 include { LAST_LASTDB                 } from '../modules/nf-core/last/lastdb/main'
 include { LAST_TRAIN                 } from '../modules/nf-core/last/train/main'
+include { LAST_DOTPLOT                 } from '../modules/nf-core/last/dotplot/main'
+include { LAST_SPLIT                 } from '../modules/nf-core/last/split/main'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
 include { paramsSummaryMap       } from 'plugin/nf-validation'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
@@ -53,6 +55,18 @@ workflow PAIRALIGN {
          LAST_LASTDB.out.index
     )
 
+    // MODULE: last_dotplot
+    //
+    LAST_DOTPLOT (
+         LAST_LASTAL.out.maf
+    )
+ 
+    // MODULE: last_split
+    //
+    LAST_SPLIT (
+         LAST_LASTAL.out.maf
+    )
+     
     // Collate and save software versions
     //
     softwareVersionsToYAML(ch_versions)
