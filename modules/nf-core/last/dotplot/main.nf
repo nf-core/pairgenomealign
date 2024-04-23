@@ -8,7 +8,7 @@ process LAST_DOTPLOT {
         'biocontainers/last:1453--h5b5514e_0' }"
 
     input:
-    path(maf)
+    tuple val(meta), path(maf)
     val(format)
 
     output:

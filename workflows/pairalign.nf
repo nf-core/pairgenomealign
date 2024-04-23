@@ -66,7 +66,8 @@ workflow PAIRALIGN {
     // MODULE: last_dotplot
     //
     LAST_DOTPLOT (
-         LAST_LASTAL.out.maf
+         LAST_LASTAL.out.maf,
+         'png'
     )
  
     // MODULE: last_split
