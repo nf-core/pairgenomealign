@@ -17,7 +17,7 @@
                 "type": "string",
                 "format": "file-path",
                 "exists": true,
-                "pattern": "^\\S+\\.f(ast)?a\\.gz$",
+                "pattern": "^\\S+\\.f(ast)?a(\\.gz)?$",
                 "errorMessage": "Fasta file for genomes must be provided, cannot contain spaces and must have extension '.fa.gz' or '.fasta.gz'"
             }
         },
