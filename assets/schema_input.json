@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "$id": "https://raw.githubusercontent.com/nf-core/pairalign/master/assets/schema_input.json",
-    "title": "nf-core/pairalign pipeline - params.input schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/pairgenomealign/master/assets/schema_input.json",
+    "title": "nf-core/pairgenomealign pipeline - params.input schema",
     "description": "Schema for the file provided with params.input",
     "type": "array",
     "items": {

@@ -1,11 +1,11 @@
 #!/usr/bin/env nextflow
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    nf-core/pairalign
+    nf-core/pairgenomealign
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Github : https://github.com/nf-core/pairalign
-    Website: https://nf-co.re/pairalign
-    Slack  : https://nfcore.slack.com/channels/pairalign
+    Github : https://github.com/nf-core/pairgenomealign
+    Website: https://nf-co.re/pairgenomealign
+    Slack  : https://nfcore.slack.com/channels/pairgenomealign
 ----------------------------------------------------------------------------------------
 */
 
@@ -17,11 +17,11 @@ nextflow.enable.dsl = 2
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { PAIRALIGN  } from './workflows/pairalign'
-include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_pairalign_pipeline'
-include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_pairalign_pipeline'
+include { PAIRGENOMEALIGN  } from './workflows/pairgenomealign'
+include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_pairgenomealign_pipeline'
+include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_pairgenomealign_pipeline'
 
-include { getGenomeAttribute      } from './subworkflows/local/utils_nfcore_pairalign_pipeline'
+include { getGenomeAttribute      } from './subworkflows/local/utils_nfcore_pairgenomealign_pipeline'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -43,7 +43,7 @@ params.fasta = getGenomeAttribute('fasta')
 //
 // WORKFLOW: Run main analysis pipeline depending on type of input
 //
-workflow NFCORE_PAIRALIGN {
+workflow NFCORE_PAIRGENOMEALIGN {
 
     take:
     samplesheet // channel: samplesheet read in from --input
@@ -54,13 +54,13 @@ workflow NFCORE_PAIRALIGN {
     //
     // WORKFLOW: Run pipeline
     //
-    PAIRALIGN (
+    PAIRGENOMEALIGN (
         samplesheet,
         target_genome
     )
 
     emit:
-    multiqc_report = PAIRALIGN.out.multiqc_report // channel: /path/to/multiqc_report.html
+    multiqc_report = PAIRGENOMEALIGN.out.multiqc_report // channel: /path/to/multiqc_report.html
 
 }
 /*
@@ -95,9 +95,14 @@ workflow {
     //
     // WORKFLOW: Run main workflow
     //
+<<<<<<< HEAD
     NFCORE_PAIRALIGN (
         PIPELINE_INITIALISATION.out.samplesheet,
         ch_target
+=======
+    NFCORE_PAIRGENOMEALIGN (
+        PIPELINE_INITIALISATION.out.samplesheet
+>>>>>>> TEMPLATE
     )
 
     //
@@ -110,7 +115,7 @@ workflow {
         params.outdir,
         params.monochrome_logs,
         params.hook_url,
-        NFCORE_PAIRALIGN.out.multiqc_report
+        NFCORE_PAIRGENOMEALIGN.out.multiqc_report
     )
 }
 
