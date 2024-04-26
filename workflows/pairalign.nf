@@ -53,7 +53,7 @@ workflow PAIRALIGN {
     //
     LAST_TRAIN (
          ch_samplesheet,
-         LAST_LASTDB.out.index
+         LAST_LASTDB.out.index.map { row -> row[1] }  // Remove metadata map
     )
 
     // MODULE: lastal
@@ -63,17 +63,17 @@ workflow PAIRALIGN {
         LAST_LASTDB.out.index.map { row -> row[1] }  // Remove metadata map
     )
 
-    // MODULE: last_dotplot
-    //
-    LAST_DOTPLOT (
-         LAST_LASTAL.out.maf,
-         'png'
-    )
- 
     // MODULE: last_split
     //
     LAST_SPLIT (
          LAST_LASTAL.out.maf
+    )
+
+    // MODULE: last_dotplot
+    //
+    LAST_DOTPLOT (
+         LAST_SPLIT.out.maf,
+         'png'
     )
      
     // Collate and save software versions
