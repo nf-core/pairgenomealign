@@ -5,11 +5,11 @@
 */
 
 include { ASSEMBLYSCAN           } from '../modules/nf-core/assemblyscan/main'
-include { LAST_LASTDB                 } from '../modules/nf-core/last/lastdb/main'
-include { LAST_TRAIN                 } from '../modules/nf-core/last/train/main'
-include { LAST_LASTAL                 } from '../modules/nf-core/last/lastal/main'
-include { LAST_DOTPLOT                 } from '../modules/nf-core/last/dotplot/main'
-include { LAST_SPLIT                 } from '../modules/nf-core/last/split/main'
+include { LAST_DOTPLOT           } from '../modules/nf-core/last/dotplot/main'
+include { LAST_LASTAL            } from '../modules/nf-core/last/lastal/main'
+include { LAST_LASTDB            } from '../modules/nf-core/last/lastdb/main'
+include { LAST_SPLIT             } from '../modules/nf-core/last/split/main'
+include { LAST_TRAIN             } from '../modules/nf-core/last/train/main'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
 include { paramsSummaryMap       } from 'plugin/nf-validation'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
