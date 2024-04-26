@@ -1,4 +1,4 @@
-# nf-core/pairalign: Output
+# nf-core/pairgenomealign: Output
 
 ## Introduction
 
