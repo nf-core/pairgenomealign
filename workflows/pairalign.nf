@@ -41,19 +41,19 @@ workflow PAIRALIGN {
     )
 
     //
-    // MODULE: assembly-scan 
+    // MODULE: assembly-scan
     //
     ASSEMBLYSCAN (
         ch_samplesheet
     )
     ch_multiqc_files = ch_multiqc_files.mix(ASSEMBLYSCAN.out.json.collect{it[1]})
     ch_versions = ch_versions.mix(ASSEMBLYSCAN.out.versions.first())
-    
+
     // MODULE: last-train
     //
     LAST_TRAIN (
-         ch_samplesheet,
-         LAST_LASTDB.out.index.map { row -> row[1] }  // Remove metadata map
+        ch_samplesheet,
+        LAST_LASTDB.out.index.map { row -> row[1] }  // Remove metadata map
     )
 
     // MODULE: lastal
@@ -66,16 +66,16 @@ workflow PAIRALIGN {
     // MODULE: last_split
     //
     LAST_SPLIT (
-         LAST_LASTAL.out.maf
+        LAST_LASTAL.out.maf
     )
 
     // MODULE: last_dotplot
     //
     LAST_DOTPLOT (
-         LAST_SPLIT.out.maf,
-         'png'
+        LAST_SPLIT.out.maf,
+        'png'
     )
-     
+
     // Collate and save software versions
     //
     softwareVersionsToYAML(ch_versions)
