@@ -95,14 +95,9 @@ workflow {
     //
     // WORKFLOW: Run main workflow
     //
-<<<<<<< HEAD
-    NFCORE_PAIRALIGN (
+    NFCORE_PAIRGENOMEALIGN (
         PIPELINE_INITIALISATION.out.samplesheet,
         ch_target
-=======
-    NFCORE_PAIRGENOMEALIGN (
-        PIPELINE_INITIALISATION.out.samplesheet
->>>>>>> TEMPLATE
     )
 
     //
