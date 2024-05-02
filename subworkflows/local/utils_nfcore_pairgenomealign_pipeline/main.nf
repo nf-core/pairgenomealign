@@ -1,5 +1,5 @@
 //
-// Subworkflow with functionality specific to the nf-core/pairalign pipeline
+// Subworkflow with functionality specific to the nf-core/pairgenomealign pipeline
 //
 
 /*

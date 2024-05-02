@@ -17,7 +17,7 @@ include { MULTIQC                } from '../modules/nf-core/multiqc/main'
 include { paramsSummaryMap       } from 'plugin/nf-validation'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
-include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_pairalign_pipeline'
+include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_pairgenomealign_pipeline'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -25,7 +25,7 @@ include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_pair
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-workflow PAIRALIGN {
+workflow PAIRGENOMEALIGN {
 
     take:
     ch_samplesheet  // channel: samplesheet read in from --input
@@ -44,19 +44,19 @@ workflow PAIRALIGN {
     )
 
     //
-    // MODULE: assembly-scan 
+    // MODULE: assembly-scan
     //
     ASSEMBLYSCAN (
         ch_samplesheet
     )
     ch_multiqc_files = ch_multiqc_files.mix(ASSEMBLYSCAN.out.json.collect{it[1]})
     ch_versions = ch_versions.mix(ASSEMBLYSCAN.out.versions.first())
-    
+
     // MODULE: last-train
     //
     LAST_TRAIN (
-         ch_samplesheet,
-         LAST_LASTDB.out.index.map { row -> row[1] }  // Remove metadata map
+        ch_samplesheet,
+        LAST_LASTDB.out.index.map { row -> row[1] }  // Remove metadata map
     )
 
     // MODULE: lastal

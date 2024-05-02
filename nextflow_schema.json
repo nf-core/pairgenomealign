@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "$id": "https://raw.githubusercontent.com/nf-core/pairalign/master/nextflow_schema.json",
-    "title": "nf-core/pairalign pipeline parameters",
+    "$id": "https://raw.githubusercontent.com/nf-core/pairgenomealign/master/nextflow_schema.json",
+    "title": "nf-core/pairgenomealign pipeline parameters",
     "description": "Pairwise alignment pipeline (genome to genome or reads to genome)",
     "type": "object",
     "definitions": {
@@ -62,7 +62,7 @@
                     "mimetype": "text/csv",
                     "pattern": "^\\S+\\.csv$",
                     "description": "Path to comma-separated file containing information about the samples in the experiment.",
-                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row. See [usage docs](https://nf-co.re/pairalign/usage#samplesheet-input).",
+                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row. See [usage docs](https://nf-co.re/pairgenomealign/usage#samplesheet-input).",
                     "fa_icon": "fas fa-file-csv"
                 },
                 "target": {
