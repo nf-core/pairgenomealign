@@ -5,10 +5,13 @@
 */
 
 include { ASSEMBLYSCAN           } from '../modules/nf-core/assemblyscan/main'
-include { LAST_DOTPLOT           } from '../modules/nf-core/last/dotplot/main'
+include { LAST_DOTPLOT as LAST_DOTPLOT_M2O          } from '../modules/nf-core/last/dotplot/main'
+include { LAST_DOTPLOT as LAST_DOTPLOT_M2M          } from '../modules/nf-core/last/dotplot/main'
+include { LAST_DOTPLOT as LAST_DOTPLOT_O2O          } from '../modules/nf-core/last/dotplot/main'
 include { LAST_LASTAL            } from '../modules/nf-core/last/lastal/main'
 include { LAST_LASTDB            } from '../modules/nf-core/last/lastdb/main'
-include { LAST_SPLIT             } from '../modules/nf-core/last/split/main'
+include { LAST_SPLIT as LAST_SPLIT_M2O            } from '../modules/nf-core/last/split/main'
+include { LAST_SPLIT as LAST_SPLIT_O2O             } from '../modules/nf-core/last/split/main'
 include { LAST_TRAIN             } from '../modules/nf-core/last/train/main'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
 include { paramsSummaryMap       } from 'plugin/nf-validation'
@@ -63,16 +66,36 @@ workflow PAIRGENOMEALIGN {
         LAST_LASTDB.out.index.map { row -> row[1] }  // Remove metadata map
     )
 
-    // MODULE: last_split
+    // MODULE: last_dotplot_m2m
     //
-    LAST_SPLIT (
+    LAST_DOTPLOT_M2M (
+        LAST_LASTAL.out.maf,
+        'png'
+    )
+
+    // MODULE: last_split_m2o
+    //
+    LAST_SPLIT_M2O (
         LAST_LASTAL.out.maf
     )
 
-    // MODULE: last_dotplot
+    // MODULE: last_dotplot_m2o
     //
-    LAST_DOTPLOT (
-        LAST_SPLIT.out.maf,
+    LAST_DOTPLOT_M2O (
+        LAST_SPLIT_M2O.out.maf,
+        'png'
+    )
+
+    // MODULE: last_split_o2o
+    //
+    LAST_SPLIT_O2O (
+        LAST_SPLIT_M2O.out.maf
+    )
+
+    // MODULE: last_dotplot_o2o
+    //
+    LAST_DOTPLOT_O2O (
+        LAST_SPLIT_O2O.out.maf,
         'png'
     )
 
