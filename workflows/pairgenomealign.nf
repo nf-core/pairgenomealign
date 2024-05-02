@@ -69,34 +69,34 @@ workflow PAIRGENOMEALIGN {
     // MODULE: last_dotplot_m2m
     //
     LAST_DOTPLOT_M2M (
-         LAST_LASTAL.out.maf,
-         'png'
+        LAST_LASTAL.out.maf,
+        'png'
     )
 
     // MODULE: last_split_m2o
     //
     LAST_SPLIT_M2O (
-         LAST_LASTAL.out.maf
+        LAST_LASTAL.out.maf
     )
 
     // MODULE: last_dotplot_m2o
     //
     LAST_DOTPLOT_M2O (
-         LAST_SPLIT_M2O.out.maf,
-         'png'
+        LAST_SPLIT_M2O.out.maf,
+        'png'
     )
-     
+
     // MODULE: last_split_o2o
     //
     LAST_SPLIT_O2O (
-         LAST_SPLIT_M2O.out.maf
+        LAST_SPLIT_M2O.out.maf
     )
 
     // MODULE: last_dotplot_o2o
     //
     LAST_DOTPLOT_O2O (
-         LAST_SPLIT_O2O.out.maf,
-         'png'
+        LAST_SPLIT_O2O.out.maf,
+        'png'
     )
 
     // Collate and save software versions
