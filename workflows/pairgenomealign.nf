@@ -40,12 +40,23 @@ workflow PAIRGENOMEALIGN {
     ch_versions = ch_versions.mix(ASSEMBLYSCAN.out.versions.first())
 
     //
-    // SUBWORKFLOW: pairalign_m2m
+    // SUBWORKFLOW: pairalign_m2o
     //
+    if (!(params.m2m)) {
     PAIRALIGN_M2O (
         ch_targetgenome,
         ch_samplesheet
     )
+    } else {
+
+    //
+    // SUBWORKFLOW: pairalign_m2m
+    //
+    PAIRALIGN_M2M (
+        ch_targetgenome,
+        ch_samplesheet
+    )
+    }
 
     // Collate and save software versions
     //

@@ -361,5 +361,11 @@
         {
             "$ref": "#/definitions/generic_options"
         }
-    ]
+    ],
+    "properties": {
+        "m2m": {
+            "type": "boolean",
+            "description": "make a many to many alignment"
+        }
+    }
 }
