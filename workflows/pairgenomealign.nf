@@ -6,6 +6,7 @@
 
 include { ASSEMBLYSCAN           } from '../modules/nf-core/assemblyscan/main'
 include { PAIRALIGN_M2M          } from '../subworkflows/local/pairalign_m2m/main'
+include { PAIRALIGN_M2O          } from '../subworkflows/local/pairalign_m2o/main'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
 include { paramsSummaryMap       } from 'plugin/nf-validation'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
@@ -41,7 +42,7 @@ workflow PAIRGENOMEALIGN {
     //
     // SUBWORKFLOW: pairalign_m2m
     //
-    PAIRALIGN_M2M (
+    PAIRALIGN_M2O (
         ch_targetgenome,
         ch_samplesheet
     )
