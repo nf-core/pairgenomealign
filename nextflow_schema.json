@@ -5,6 +5,19 @@
     "description": "Pairwise alignment pipeline (genome to genome or reads to genome)",
     "type": "object",
     "definitions": {
+        "lastal": {
+            "title": "Lastal",
+            "type": "object",
+            "description": "make a many to many alignment or skip it",
+            "default": "",
+            "help_text": "make a many to many alignment",
+            "properties": {
+                "m2m": {
+                    "type": "boolean",
+                    "description": "make a many to many alignment"
+                }
+            }
+        },
         "others_1st_batch": {
             "title": "Others 1st batch",
             "type": "object",
@@ -347,6 +360,9 @@
         }
     },
     "allOf": [
+        {
+            "$ref": "#/definitions/lastal"
+        },
         {
             "$ref": "#/definitions/others_1st_batch"
         },
