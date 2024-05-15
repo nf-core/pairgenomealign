@@ -357,6 +357,29 @@
                     "hidden": true
                 }
             }
+        },
+        "new_group_1": {
+            "title": "New Group 1",
+            "type": "object",
+            "description": "Lastal, last split arguments",
+            "default": "",
+            "properties": {
+                "lastal_args": {
+                    "type": "string",
+                    "default": "C2",
+                    "description": "this defaults to -C2 and is applied to both the calls to last-train and lastal, like in the LAST cookbook and the last-genome-alignments tutorial."
+                },
+                "lastal_extr_args": {
+                    "type": "string",
+                    "default": "D1e9",
+                    "description": "(default: -D1e9) is only passed to lastal and can be used for arguments that are not recognised by last-train."
+                },
+                "last_split_mismap": {
+                    "type": "string",
+                    "default": 1e-05,
+                    "description": "By default, last-split runs with -m1e-5 to omit alignments with mismap probability > 10\u22125, but this can be overriden with the --last_split_mismap option."
+                }
+            }
         }
     },
     "allOf": [
@@ -383,23 +406,9 @@
         },
         {
             "$ref": "#/definitions/generic_options"
-        }
-    ],
-    "properties": {
-        "lastal_args": {
-            "type": "string",
-            "default": "C2",
-            "description": "this defaults to -C2 and is applied to both the calls to last-train and lastal, like in the LAST cookbook and the last-genome-alignments tutorial."
         },
-        "lastal_extr_args": {
-            "type": "string",
-            "default": "D1e9",
-            "description": "(default: -D1e9) is only passed to lastal and can be used for arguments that are not recognised by last-train."
-        },
-        "last_split_mismap": {
-            "type": "string",
-            "default": 1e-05,
-            "description": "By default, last-split runs with -m1e-5 to omit alignments with mismap probability > 10\u22125, but this can be overriden with the --last_split_mismap option."
+        {
+            "$ref": "#/definitions/new_group_1"
         }
-    }
+    ]
 }
