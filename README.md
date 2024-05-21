@@ -139,7 +139,7 @@ First, prepare a samplesheet with your input data that looks as follows:
 
 ```csv
 sample,fasta
-Query_1,AEG588A1_S1_L002_R1_001.fasta
+Query_1,path-to-your-query-genome-file.fasta
 ```
 
 Each row represents a fasta file, this can also contain multiple rows to accomodate multiple query genomes in fasta format.
