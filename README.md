@@ -85,13 +85,6 @@ For each _query_ genome, this pipeline will align it to the _target_ genome, pos
   mismap probability > 10<sup>−5</sup>, but this can be overriden with
   the `--last_split_mismap` option.
 
-- `--last_split_args` defaults to empty value and is not very useful at the
-  moment, but is kept for backwards compatibility. It can be used to pass
-  options to `last-split`. Note that if you used `--m2m false` (which is
-  the default), the split parameters have to be passed in
-  `--lastal_extra_args` and have different names (see _split options_ in the
-  [lastal documentation][]).
-
 - The dotplots can be modified by overriding defaults and passing new
   arguments via the `--dotplot_options` argument. Defaults and available
   options can be seen on the manual page of the [`last-dotplot`][] program.
