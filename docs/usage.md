@@ -8,45 +8,38 @@
 
 ## Samplesheet input
 
-You will need to create a samplesheet with information about the samples you would like to analyse before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row as shown in the examples below.
+You will need to create a samplesheet with information about the samples you would like to analyse before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 2 columns or 3(if with lastal_params file), a header row and single or multiple sample rows (genome samples) as shown in the examples below.
 
 ```bash
 --input '[path to samplesheet file]'
 ```
 
-### Multiple runs of the same sample
-
-The `sample` identifiers have to be the same when you have re-sequenced the same sample more than once e.g. to increase sequencing depth. The pipeline will concatenate the raw reads before performing any downstream analysis. Below is an example for the same sample sequenced across 3 lanes:
-
-```csv title="samplesheet.csv"
-sample,fastq_1,fastq_2
-CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
-CONTROL_REP1,AEG588A1_S1_L003_R1_001.fastq.gz,AEG588A1_S1_L003_R2_001.fastq.gz
-CONTROL_REP1,AEG588A1_S1_L004_R1_001.fastq.gz,AEG588A1_S1_L004_R2_001.fastq.gz
-```
-
 ### Full samplesheet
 
-The pipeline will auto-detect whether a sample is single- or paired-end using the information provided in the samplesheet. The samplesheet can have as many columns as you desire, however, there is a strict requirement for the first 3 columns to match those defined in the table below.
+The pipeline will detect the samples id and fasta file path if well arranged using the information provided in the samplesheet. The samplesheet can have as many rows of sample genomes as you desire, however, there is a strict requirement for the first row (header row: 'sample,fasta') and the first 2 columns to match those defined in the table below.
 
-A final samplesheet file consisting of both single- and paired-end data may look something like the one below. This is for 6 samples, where `TREATMENT_REP3` has been sequenced twice.
+A final samplesheet file consisting of both samples id and fasta file path may look something like the one below. This is for 1 samples, where "Query_1" is the sample, and "AEG588A1_S1_L002_R1_001.fasta" is the file name. Remember, this could be a http or git or a repo path.
 
-```csv title="samplesheet.csv"
-sample,fastq_1,fastq_2
-CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
-CONTROL_REP2,AEG588A2_S2_L002_R1_001.fastq.gz,AEG588A2_S2_L002_R2_001.fastq.gz
-CONTROL_REP3,AEG588A3_S3_L002_R1_001.fastq.gz,AEG588A3_S3_L002_R2_001.fastq.gz
-TREATMENT_REP1,AEG588A4_S4_L003_R1_001.fastq.gz,
-TREATMENT_REP2,AEG588A5_S5_L003_R1_001.fastq.gz,
-TREATMENT_REP3,AEG588A6_S6_L003_R1_001.fastq.gz,
-TREATMENT_REP3,AEG588A6_S6_L004_R1_001.fastq.gz,
+## Usage
+
+Make sure to [test your setup] with `-profile test` before running the workflow on actual data.
+
+
+First, prepare a samplesheet with your input data that looks as follows:
+
+`samplesheet.csv`:
+
+```csv
+sample,fasta
+Query_1,AEG588A1_S1_L002_R1_001.fasta
 ```
+Each row represents a fasta file, this can also contain multiple rows to accomodate multiple query genomes in fasta format.
+
 
 | Column    | Description                                                                                                                                                                            |
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sample`  | Custom sample name. This entry will be identical for multiple sequencing libraries/runs from the same sample. Spaces in sample names are automatically converted to underscores (`_`). |
-| `fastq_1` | Full path to FastQ file for Illumina short reads 1. File has to be gzipped and have the extension ".fastq.gz" or ".fq.gz".                                                             |
-| `fastq_2` | Full path to FastQ file for Illumina short reads 2. File has to be gzipped and have the extension ".fastq.gz" or ".fq.gz".                                                             |
+| `sample`  | Custom sample name. Spaces in sample names are automatically converted to underscores (`_`). |
+| `fasta` | Full path to Fasta/fa/gz file
 
 An [example samplesheet](../assets/samplesheet.csv) has been provided with the pipeline.
 
@@ -55,7 +48,7 @@ An [example samplesheet](../assets/samplesheet.csv) has been provided with the p
 The typical command for running the pipeline is as follows:
 
 ```bash
-nextflow run nf-core/pairgenomealign --input ./samplesheet.csv --outdir ./results --genome GRCh37 -profile docker
+nextflow run nf-core/pairgenomealign --input ./samplesheet.csv --outdir ./results -profile docker
 ```
 
 This will launch the pipeline with the `docker` configuration profile. See below for more information about profiles.
@@ -66,6 +59,39 @@ Note that the pipeline will create the following files in your working directory
 work                # Directory containing the nextflow working files
 <OUTDIR>            # Finished results in specified location (defined with --outdir)
 .nextflow_log       # Log file from Nextflow
+
+## Advanced use
+
+### Reports
+
+The results directory contains three reports generated by Nextflow:
+
+ - `report.html` informs on the pipeline, its version, some metrics about
+   execution time.
+ - `timeline.html` displays the execution times like a Gantt chart.
+ - `trace.tsv` provides the raw data and can be displayed with the
+   `column -ts$'\t'` command.
+
+### Override computation limits
+
+Computation resources allocated to the processe are set with standard _nf-core_
+labels in the [`nextflow.config`](./nextflow.config) file of the pipeline.  To
+override their value, create a configuration file in your local directory and
+add it to the run's configuration with the `-c` option.
+
+For instance, with file called `overrideLabels.nf` containing the following:
+
+```
+process {
+  withLabel:process_high {
+    time = 3.d
+  }
+}
+```
+
+The command `nextflow -c overrideLabels.nf run …` would set the execution time
+limit for the training and alignment (whose module declare the `process_high`
+label) to 3 days instead of the 1 hour default.
 # Other nextflow hidden files, eg. history of pipeline runs and old logs.
 ```
 

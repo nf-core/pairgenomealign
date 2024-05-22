@@ -9,6 +9,22 @@ The directories listed below will be created in the results directory after the 
 
 ## Pipeline overview
 
+## Outputs
+
+For each _query_ genome, this pipeline will align it to the _target_genome, post-process the alignments and produce dot plots visualisations at different steps of the
+ workflow.  Each file contains a name suffix that indicates in which order they were created.
+
+ - `.train` is the alignment parameters computed by `last-train` (optional)
+ - `m2m_aln` is the _**many-to-many**_ alignment between _target_ and _query_ genomes. (optional through the `--m2m` option)
+ - `m2m_plot` (optional)
+ - `m2o_aln` is the _**many-to-one**_ alignment regions of the _target_ genome are matched at most once by the _query_ genome.
+ - `m2o_plot` (optional)
+ - `o2o_aln` is the _**one-to-one**_ alignment between the _target_ and _query_ genomes.
+ - `o2o_plot` (optional)
+ - `o2m_aln` is the _**one-to-many**_ alignment between the _target_ and _query_ genomes (optional).
+ - `o2m_plot` (optional)
+
+
 The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes data using the following steps:
 
 - [MultiQC](#multiqc) - Aggregate report describing results and QC from the whole pipeline
