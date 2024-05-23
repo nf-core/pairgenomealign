@@ -45,8 +45,8 @@
                 }
             }
         },
-        "skip_dotplot": {
-            "title": "skip dotplot",
+        "dotplot_params": {
+            "title": "dotplot params",
             "type": "object",
             "description": "Use --skip_dotplot_m2m, --skip_dotplot_m2o, --skip_dotplot_o2o --skip_dotplot_o2m to skip the production of the dot plots that can be computationally expensive and visually uninformative on large genomes with shared repeats.",
             "default": "",
@@ -66,6 +66,9 @@
                 "skip_dotplot_m2m": {
                     "type": "boolean",
                     "description": "To skip the dot plots representation of many to many alignment points"
+                },
+                "dotplot_options": {
+                    "type": "string"
                 }
             },
             "help_text": "Use --skip_dotplot_m2m, --skip_dotplot_m2o, --skip_dotplot_o2o --skip_dotplot_o2m to skip the production of the dot plots that can be computationally expensive and visually uninformative on large genomes with shared repeats."
@@ -378,6 +381,10 @@
                     "type": "string",
                     "default": 1e-05,
                     "description": "By default, last-split runs with -m1e-5 to omit alignments with mismap probability > 10\u22125, but this can be overriden with the --last_split_mismap option."
+                },
+                "lastal_params": {
+                    "type": "string",
+                    "description": "--lastal_params: path to a file containing alignment parameters computed by last-train or a scoring matrix. If this option is not used, the pipeline will run last-train for each query."
                 }
             }
         }
@@ -390,7 +397,7 @@
             "$ref": "#/definitions/others_1st_batch"
         },
         {
-            "$ref": "#/definitions/skip_dotplot"
+            "$ref": "#/definitions/dotplot_params"
         },
         {
             "$ref": "#/definitions/input_output_options"
@@ -410,10 +417,5 @@
         {
             "$ref": "#/definitions/new_group_1"
         }
-    ],
-    "properties": {
-        "dotplot_options": {
-            "type": "string"
-        }
-    }
+    ]
 }
