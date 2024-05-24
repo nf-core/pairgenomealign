@@ -6,7 +6,7 @@
 
 ## Introduction
 
-You need at least two genomes, a _target_, which will be indexed, and one or more _queries_, which will be aligned to the _target_.  Paths to the genome files for the _queries_ are passed with the _nf-core_ samplesheet `--input` system, and path to the genome file of the _target_ is passed with the `--target` parameter.  Note that the computation is not symmetric: inverting _target_ and _query_ does not lead to strictly identical results.
+You need at least two genomes, a _target_, which will be indexed, and one or more _queries_, which will be aligned to the _target_. Paths to the genome files for the _queries_ are passed with the _nf-core_ samplesheet `--input` system, and path to the genome file of the _target_ is passed with the `--target` parameter. Note that the computation is not symmetric: inverting _target_ and _query_ does not lead to strictly identical results.
 
 ## Samplesheet input
 
@@ -62,7 +62,6 @@ An [example samplesheet](../assets/samplesheet.csv) has been provided with the p
 - `--m2m`: (default: false) Compute and output the many-to-many alignment.
   This adds time and can comsume considerable amount of space; use only
   if you need that data.
-   
 - By default, `last-split` runs with `-m1e-5` to omit alignments with
   mismap probability > 10<sup>−5</sup>, but this can be overriden with
   the `--last_split_mismap` option.
@@ -84,7 +83,6 @@ An [example samplesheet](../assets/samplesheet.csv) has been provided with the p
   from the query IDs. Use the `--targetName` option to provide a name
   that will be used for the LAST index and that will be prefixed to the
   query IDs with a `___` separator.
-
 
 [`lastal`]: https://gitlab.com/mcfrith/last/-/blob/main/doc/lastal.rst
 [`last-dotplot`]: https://gitlab.com/mcfrith/last/-/blob/main/doc/last-dotplot.rst
