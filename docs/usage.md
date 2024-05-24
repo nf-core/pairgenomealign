@@ -6,23 +6,15 @@
 
 ## Introduction
 
+You need at least two genomes, a _target_, which will be indexed, and one or more _queries_, which will be aligned to the _target_.  Paths to the genome files for the _queries_ are passed with the _nf-core_ samplesheet `--input` system, and path to the genome file of the _target_ is passed with the `--target` parameter.  Note that the computation is not symmetric: inverting _target_ and _query_ does not lead to strictly identical results.
+
 ## Samplesheet input
 
-You will need to create a samplesheet with information about the samples you would like to analyse before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 2 columns or 3(if with lastal_params file), a header row and single or multiple sample rows (genome samples) as shown in the examples below.
+You will need to create a samplesheet with information about the samples you would like to analyse before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 2 columns, a header row and single or multiple sample rows (genome samples) as shown in the examples below.
 
 ```bash
 --input '[path to samplesheet file]'
 ```
-
-### Full samplesheet
-
-The pipeline will detect the samples id and fasta file path if well arranged using the information provided in the samplesheet. The samplesheet can have as many rows of sample genomes as you desire, however, there is a strict requirement for the first row (header row: 'sample,fasta') and the first 2 columns to match those defined in the table below.
-
-A final samplesheet file consisting of both samples id and fasta file path may look something like the one below. This is for 1 samples, where "Query_1" is the sample, and "AEG588A1_S1_L002_R1_001.fasta" is the file name. Remember, this could be a http or git or a repo path.
-
-## Usage
-
-Make sure to [test your setup] with `-profile test` before running the workflow on actual data.
 
 First, prepare a samplesheet with your input data that looks as follows:
 
@@ -30,7 +22,7 @@ First, prepare a samplesheet with your input data that looks as follows:
 
 ```csv
 sample,fasta
-Query_1,AEG588A1_S1_L002_R1_001.fasta
+Query_1,query1_assembly.fasta
 ```
 
 Each row represents a fasta file, this can also contain multiple rows to accomodate multiple query genomes in fasta format.
@@ -41,6 +33,74 @@ Each row represents a fasta file, this can also contain multiple rows to accomod
 | `fasta`  | Full path to Fasta/fa/gz file                                                                |
 
 An [example samplesheet](../assets/samplesheet.csv) has been provided with the pipeline.
+
+## Options
+
+- `--seed` selects the name of the [LAST seed][] The default (`YASS`) searches
+  for “_long-and-weak similarities_” that “_allow for mismatches but not
+  gaps_”. Among alternatives, there are `NEAR` for “_short-and-strong
+  (near-identical) similarities_ … _with many gaps (insertions and deletions)_”,
+  `MAM8` to find _“weak
+  similarities with high sensitivity, but low speed and high memory usage”_
+  or `RY128` that “_reduces run time and memory use, by only seeking seeds at
+  ~1/128 of positions in each sequence_”, which is useful when the purpose of
+  running this pipeline is only to generate whole-genome dotplots, or when
+  sensitivity for tiny fragments may be unnecessary or undesirable. Setting
+  the seed to `PSEUDO` triggers protein-to-DNA alignment mode (experimental).
+
+- `--lastal_args` defaults to `-C2 -D1e9` and is applied to both
+  the calls to `last-train` and `lastal`, like in the [LAST cookbook][]
+  and the [last-genome-alignments][] tutorial.
+
+- `--lastal_extr_args`is only passed to `lastal` and can be used for arguments
+  that are not recognised by `last-train`.
+
+- `--lastal_params`: path to a file containing alignment parameters
+  computed by [`last-train`][] or a [scoring matrix][]. If this option
+  is not used, the pipeline will run `last-train` for each query.
+
+- `--m2m`: (default: false) Compute and output the many-to-many alignment.
+  This adds time and can comsume considerable amount of space; use only
+  if you need that data.
+   
+- By default, `last-split` runs with `-m1e-5` to omit alignments with
+  mismap probability > 10<sup>−5</sup>, but this can be overriden with
+  the `--last_split_mismap` option.
+
+- The dotplots can be modified by overriding defaults and passing new
+  arguments via the `--dotplot_options` argument. Defaults and available
+  options can be seen on the manual page of the [`last-dotplot`][] program.
+  By default in this pipeline, the sequences of the _query_ genome are
+  sorted and oriented by their alignment to the _target_ genome
+  (`--sort2=3 --strands2=1`). For readability, their names are written
+  horizontally (`--rot2=h`).
+
+- Use `--skip_dotplot_m2m`, `--skip_dotplot_m2o`, `--skip_dotplot_o2o`
+  `--skip_dotplot_o2m` to skip the production of the dot plots that can be
+  computationally expensive and visually uninformative on large genomes with
+  shared repeats. File suffixes (see above) will not change.
+
+- By default the LAST index is named `target` and the ouput files are named
+  from the query IDs. Use the `--targetName` option to provide a name
+  that will be used for the LAST index and that will be prefixed to the
+  query IDs with a `___` separator.
+
+
+[`lastal`]: https://gitlab.com/mcfrith/last/-/blob/main/doc/lastal.rst
+[`last-dotplot`]: https://gitlab.com/mcfrith/last/-/blob/main/doc/last-dotplot.rst
+[LAST seed]: https://gitlab.com/mcfrith/last/-/blob/main/doc/last-seeds.rst
+[LAST cookbook]: https://gitlab.com/mcfrith/last/-/blob/main/doc/last-cookbook.rst
+[`last-train`]: https://gitlab.com/mcfrith/last/-/blob/main/doc/last-train.rst
+[LAST tuning]: https://gitlab.com/mcfrith/last/-/blob/main/doc/last-tuning.rst
+[scoring matrix]: https://gitlab.com/mcfrith/last/-/blob/main/doc/last-matrices.rst
+[lastal documentation]: https://gitlab.com/mcfrith/last/-/blob/main/doc/lastal.rst
+[last-genome-alignments]: https://github.com/mcfrith/last-genome-alignments
+
+## Fixed arguments (taken from the [LAST cookbook][] and the [LAST tuning][] manual)
+
+- The `lastdb` step soft-masks simple repeats by default, (`-c -R01`).It indexes both strands (`-S2`), which increases speed at the expense of memory usage.
+
+- The `last-train` commands runs with `--revsym` as the DNA strands play equivalent roles in the studied genomes.
 
 ## Running the pipeline
 
@@ -58,41 +118,6 @@ Note that the pipeline will create the following files in your working directory
 work                # Directory containing the nextflow working files
 <OUTDIR>            # Finished results in specified location (defined with --outdir)
 .nextflow_log       # Log file from Nextflow
-
-## Advanced use
-
-### Reports
-
-The results directory contains three reports generated by Nextflow:
-
- - `report.html` informs on the pipeline, its version, some metrics about
-   execution time.
- - `timeline.html` displays the execution times like a Gantt chart.
- - `trace.tsv` provides the raw data and can be displayed with the
-   `column -ts$'\t'` command.
-
-### Override computation limits
-
-Computation resources allocated to the processe are set with standard _nf-core_
-labels in the [`nextflow.config`](./nextflow.config) file of the pipeline.  To
-override their value, create a configuration file in your local directory and
-add it to the run's configuration with the `-c` option.
-
-For instance, with file called `overrideLabels.nf` containing the following:
-
-```
-
-process {
-withLabel:process_high {
-time = 3.d
-}
-}
-
-```
-
-The command `nextflow -c overrideLabels.nf run …` would set the execution time
-limit for the training and alignment (whose module declare the `process_high`
-label) to 3 days instead of the 1 hour default.
 # Other nextflow hidden files, eg. history of pipeline runs and old logs.
 ```
 
