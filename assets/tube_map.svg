@@ -2,13 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="143.74265mm"
+   height="145.20319mm"
+   viewBox="0 0 143.74265 145.20319"
    version="1.1"
    id="svg5"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
-   sodipodi:docname="pairgenomealign.svg"
+   sodipodi:docname="tube_map.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,10 +25,10 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.1893044"
-     inkscape:cx="359.45381"
-     inkscape:cy="381.73574"
-     inkscape:window-width="1440"
-     inkscape:window-height="2523"
+     inkscape:cx="314.88995"
+     inkscape:cy="291.76719"
+     inkscape:window-width="2560"
+     inkscape:window-height="1403"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -37,7 +37,7 @@
   <defs
      id="defs2">
     <rect
-       x="42.412528"
+       x="42.412529"
        y="149.33887"
        width="250.5847"
        height="130.57462"
@@ -46,7 +46,18 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-12.011778,-23.901257)">
+    <path
+       style="fill:none;stroke:#ff00c8;stroke-width:1;stroke-dasharray:1, 2;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 114.06746,129.82628 v 21.41988"
+       id="path2942"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#ff00c8;stroke-width:1;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 128.51964,142.20087 114.06746,130.48808"
+       id="path2707"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#ff00c8;stroke-width:1;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
        d="M 113.92757,87.489187 99.703985,109.58131"
@@ -58,12 +69,7 @@
        id="path2705"
        sodipodi:nodetypes="cc" />
     <path
-       style="fill:none;stroke:#ff00c8;stroke-width:1;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
-       d="M 128.51964,142.20087 114.06746,130.48808"
-       id="path2707"
-       sodipodi:nodetypes="cc" />
-    <path
-       style="fill:none;stroke:#ff00c8;stroke-width:1;stroke-dasharray:1,2;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:none;stroke:#ff00c8;stroke-width:1;stroke-dasharray:1, 2;stroke-dashoffset:0;stroke-opacity:1"
        d="M 128.51964,162.85018 114.06746,151.13739"
        id="path2709"
        sodipodi:nodetypes="cc" />
@@ -73,7 +79,7 @@
        id="path2711"
        sodipodi:nodetypes="cc" />
     <path
-       style="fill:none;stroke:#ff00c8;stroke-width:1;stroke-dasharray:1,1;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:none;stroke:#ff00c8;stroke-width:1;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
        d="M 128.51964,98.908236 114.06746,87.19545"
        id="path2703"
        sodipodi:nodetypes="cc" />
@@ -92,10 +98,10 @@
        id="path2589"
        sodipodi:nodetypes="cccc" />
     <path
-       style="fill:none;stroke:#ff0000;stroke-width:1;stroke-dasharray:1,1;stroke-dashoffset:0"
-       d="m 34.067914,49.328146 16.598592,-5.56113 20.079674,5.56113 19.077522,11.014414 h 24.186838 l 0.40452,0.108391"
+       style="fill:none;stroke:#ff0000;stroke-width:1;stroke-dasharray:1, 1;stroke-dashoffset:0"
+       d="M 70.74618,49.328146 89.823702,60.34256 h 24.186838 l 0.40452,0.108391"
        id="path1807"
-       sodipodi:nodetypes="cccccc" />
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:none;stroke:#ff0000;stroke-width:1;stroke-dasharray:none"
        d="M 34.067914,49.328146 H 70.74618 L 89.823702,60.34256 h 24.186838 l 0.40452,0.108391"
@@ -120,7 +126,7 @@
        xml:space="preserve"
        transform="scale(0.26458333)"
        id="text735"
-       style="fill:#000000;stroke:none;white-space:pre;shape-inside:url(#rect737)" />
+       style="white-space:pre;shape-inside:url(#rect737);fill:#000000;stroke:none" />
     <text
        xml:space="preserve"
        style="font-size:3.175px;fill:#ffffff;stroke:#000000;stroke-width:0.264583"
@@ -360,17 +366,6 @@
          x="59.989548"
          y="124.65204"
          id="tspan865">dotplot(s)</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:3.175px;fill:#000000;stroke:none;stroke-width:0.264583"
-       x="38.981373"
-       y="40.013103"
-       id="text889"><tspan
-         sodipodi:role="line"
-         id="tspan887"
-         style="stroke-width:0.264583"
-         x="38.981373"
-         y="40.013103">Windowmasker</tspan></text>
     <circle
        style="fill:#ffffff;stroke:#000000;stroke-width:0.537266"
        id="path111"
@@ -461,12 +456,6 @@
        cy="121.07459"
        r="2.8448455"
        transform="scale(-1,1)" />
-    <circle
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.537266"
-       id="circle885"
-       cx="50.431435"
-       cy="44.19809"
-       r="2.8448455" />
     <text
        xml:space="preserve"
        style="font-size:5.64444px;fill:#000000;stroke:none;stroke-width:1;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
@@ -478,10 +467,5 @@
          style="font-size:5.64444px;fill:#000000;stroke:none;stroke-width:1"
          x="38.071316"
          y="28.189709">Pairwise Genome alignment pipeline</tspan></text>
-    <path
-       style="fill:none;stroke:#ff00c8;stroke-width:1;stroke-dasharray:1,2;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 114.06746,129.82628 0,21.41988"
-       id="path2942"
-       sodipodi:nodetypes="cc" />
   </g>
 </svg>
