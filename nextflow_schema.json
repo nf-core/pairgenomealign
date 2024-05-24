@@ -68,7 +68,8 @@
                     "description": "To skip the dot plots representation of many to many alignment points"
                 },
                 "dotplot_options": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The dotplots can be modified by overriding defaults and passing new arguments via the --dotplot_options argument. Defaults and available options can be seen on the manual page of the last-dotplot program. By default in this pipeline, the sequences of the query genome are sorted and oriented by their alignment to the target genome (--sort2=3 --strands2=1). For readability, their names are written horizontally (--rot2=h)."
                 }
             },
             "help_text": "Use --skip_dotplot_m2m, --skip_dotplot_m2o, --skip_dotplot_o2o --skip_dotplot_o2m to skip the production of the dot plots that can be computationally expensive and visually uninformative on large genomes with shared repeats."
