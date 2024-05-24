@@ -5,69 +5,6 @@
     "description": "Pairwise alignment pipeline (genome to genome or reads to genome)",
     "type": "object",
     "definitions": {
-        "lastal": {
-            "title": "Lastal",
-            "type": "object",
-            "description": "make a many to many alignment or skip it",
-            "default": "",
-            "help_text": "make a many to many alignment",
-            "properties": {
-                "m2m": {
-                    "type": "boolean",
-                    "description": "make a many to many alignment"
-                }
-            }
-        },
-        "others_1st_batch": {
-            "title": "Others 1st batch",
-            "type": "object",
-            "description": "",
-            "default": "",
-            "properties": {
-                "seed": {
-                    "type": "string",
-                    "enum": ["YASS", "NEAR", "MAM8", "RY128", "PSEUDO"],
-                    "help_text": "--seed selects the name of the LAST seed The default (YASS) searches for \u201clong-and-weak similarities\u201d that \u201callow for mismatches but not gaps\u201d. Among alternatives, there are NEAR for \u201cshort-and-strong (near-identical) similarities \u2026 with many gaps (insertions and deletions)\u201d, MAM8 to find \u201cweak similarities with high sensitivity, but low speed and high memory usage\u201d or RY128 that \u201creduces run time and memory use, by only seeking seeds at ~1/128 of positions in each sequence\u201d, which is useful when the purpose of running this pipeline is only to generate whole-genome dotplots, or when sensitivity for tiny fragments may be unnecessary or undesirable. Setting the seed to PSEUDO triggers protein-to-DNA alignment mode (experimental).",
-                    "description": "The default (YASS) searches for \u201clong-and-weak similarities\u201d that \u201callow for mismatches but not gaps\u201d.",
-                    "default": "YASS"
-                },
-                "targetName": {
-                    "type": "string",
-                    "default": "target",
-                    "help_text": "By default the LAST index is named target and the ouput files are named from the query IDs. Use the --targetName option to provide a name that will be used for the LAST index and that will be prefixed to the query IDs with a ___ separator.",
-                    "description": "Provide a name that will be used for LAST Index"
-                }
-            }
-        },
-        "dotplot_params": {
-            "title": "dotplot params",
-            "type": "object",
-            "description": "Use --skip_dotplot_m2m, --skip_dotplot_m2o, --skip_dotplot_o2o --skip_dotplot_o2m to skip the production of the dot plots that can be computationally expensive and visually uninformative on large genomes with shared repeats.",
-            "default": "",
-            "properties": {
-                "skip_dotplot_o2m": {
-                    "type": "boolean",
-                    "description": "To skip the dot plots representation of one to many alignment points"
-                },
-                "skip_dotplot_o2o": {
-                    "type": "boolean",
-                    "description": "To skip the dot plots representation of one to one alignment points"
-                },
-                "skip_dotplot_m2o": {
-                    "type": "boolean",
-                    "description": "To skip the dot plots representation of many to one alignment points"
-                },
-                "skip_dotplot_m2m": {
-                    "type": "boolean",
-                    "description": "To skip the dot plots representation of many to many alignment points"
-                },
-                "dotplot_options": {
-                    "type": "string",
-                    "description": "The dotplots can be modified by overriding defaults and passing new arguments via the --dotplot_options argument. Defaults and available options can be seen on the manual page of the last-dotplot program. By default in this pipeline, the sequences of the query genome are sorted and oriented by their alignment to the target genome (--sort2=3 --strands2=1). For readability, their names are written horizontally (--rot2=h)."
-                }
-            },
-            "help_text": "Use --skip_dotplot_m2m, --skip_dotplot_m2o, --skip_dotplot_o2o --skip_dotplot_o2m to skip the production of the dot plots that can be computationally expensive and visually uninformative on large genomes with shared repeats."
-        },
         "input_output_options": {
             "title": "Input/output options",
             "type": "object",
@@ -93,6 +30,12 @@
                     "description": "Path to FASTA genome file for the target genome.",
                     "fa_icon": "far fa-file-code"
                 },
+                "targetName": {
+                    "type": "string",
+                    "default": "target",
+                    "help_text": "By default the LAST index is named `target` and the ouput files are named from the query IDs. Use this option to provide a name that will be used for the LAST index and that will be prefixed to the query IDs with a `___` separator.",
+                    "description": "Target genome name"
+                },
                 "outdir": {
                     "type": "string",
                     "format": "directory-path",
@@ -112,6 +55,84 @@
                     "fa_icon": "fas fa-file-signature"
                 }
             }
+        },
+        "alignment_options": {
+            "title": "Alignment options",
+            "type": "object",
+            "description": "Arguments for the lastdb, last-train, lastal and last-split programs.",
+            "default": "",
+            "properties": {
+                "m2m": {
+                    "type": "boolean",
+                    "description": "make a many to many alignment",
+                    "fa_icon": "fas fa-arrows-alt"
+                },
+                "seed": {
+                    "type": "string",
+                    "enum": ["YASS", "NEAR", "MAM8", "RY128", "PSEUDO"],
+                    "help_text": "LAST creates a database of seed sequences in the _target_ genome, and provides different ways to generate these seeds. The default (`YASS`) searches for long-and-weak similarities that allow for mismatches but not gaps. Among alternatives, there are `NEAR` for short-and-strong (near-identical) similarities with many gaps (insertions and deletions), `MAM8` to find weak similarities with high sensitivity, but low speed and high memory usage, or `RY128` that reduces run time and memory use, by only seeking seeds at ~1/128 of positions in each sequence, which is useful when the purpose of running this pipeline is only to generate whole-genome dotplots, or when sensitivity for tiny fragments may be unnecessary or undesirable. See <https://gitlab.com/mcfrith/last/-/blob/main/doc/last-seeds.rst> for details.",
+                    "description": "Selects the name of the LAST seed.",
+                    "default": "YASS",
+                    "fa_icon": "fas fa-seedling"
+                },
+                "lastal_params": {
+                    "type": "string",
+                    "description": "Path to a file containing alignment parameters or a scoring matrix. If this option is used, `last-train` will be skipped and alignment parameters will be the same for each query.",
+                    "fa_icon": "far fa-file-alt"
+                },
+                "lastal_args": {
+                    "type": "string",
+                    "default": "-C2 -D1e9",
+                    "description": "Arguments passed to both last-train and lastal.",
+                    "fa_icon": "fas fa-align-center"
+                },
+                "lastal_extr_args": {
+                    "type": "string",
+                    "description": "(Arguments passed only to lastal (useful when they are not recognised by last-train).",
+                    "fa_icon": "fas fa-align-center"
+                },
+                "last_split_mismap": {
+                    "type": "number",
+                    "default": 1e-5,
+                    "fa_icon": "fas fa-cut",
+                    "help_text": "Mismap probability cutoff for last-split."
+                }
+            },
+            "fa_icon": "fas fa-cogs"
+        },
+        "dotplot_parameters": {
+            "title": "Dotplot parameters",
+            "type": "object",
+            "description": "Customise dot-plots or skip them.",
+            "default": "",
+            "properties": {
+                "dotplot_options": {
+                    "type": "string",
+                    "description": "Extra arguments passed to the last-dotplot program to customise the output.  See <https://gitlab.com/mcfrith/last/-/blob/main/doc/last-dotplot.rst>.",
+                    "fa_icon": "fas fa-cog"
+                },
+                "skip_dotplot_o2m": {
+                    "type": "boolean",
+                    "description": "Do not generate the one-to-many alignment dot-plot.",
+                    "fa_icon": "fas fa-forward"
+                },
+                "skip_dotplot_o2o": {
+                    "type": "boolean",
+                    "description": "Do not generate the one-to-one alignment dot-plot.",
+                    "fa_icon": "fas fa-forward"
+                },
+                "skip_dotplot_m2o": {
+                    "type": "boolean",
+                    "description": "Do not generate the many-to-one alignment dot-plot.",
+                    "fa_icon": "fas fa-forward"
+                },
+                "skip_dotplot_m2m": {
+                    "type": "boolean",
+                    "description": "Do not generate the many-to-many alignment dot-plot.",
+                    "fa_icon": "fas fa-forward"
+                }
+            },
+            "fa_icon": "fas fa-cogs"
         },
         "reference_genome_options": {
             "title": "Reference genome options",
@@ -344,46 +365,17 @@
                     "hidden": true
                 }
             }
-        },
-        "new_group_1": {
-            "title": "New Group 1",
-            "type": "object",
-            "description": "Lastal, last split arguments",
-            "default": "",
-            "properties": {
-                "lastal_args": {
-                    "type": "string",
-                    "default": "-C2 -D1e9",
-                    "description": "this defaults to -C2 -D1e9)and is applied to both the calls to last-train and lastal, like in the LAST cookbook and the last-genome-alignments tutorial."
-                },
-                "lastal_extr_args": {
-                    "type": "string",
-                    "description": "(default: ' ' is only passed to lastal and can be used for arguments that are not recognised by last-train."
-                },
-                "last_split_mismap": {
-                    "type": "string",
-                    "default": 1e-5,
-                    "description": "By default, last-split runs with -m1e-5 to omit alignments with mismap probability > 10\u22125, but this can be overriden with the --last_split_mismap option."
-                },
-                "lastal_params": {
-                    "type": "string",
-                    "description": "--lastal_params: path to a file containing alignment parameters computed by last-train or a scoring matrix. If this option is not used, the pipeline will run last-train for each query."
-                }
-            }
         }
     },
     "allOf": [
         {
-            "$ref": "#/definitions/lastal"
-        },
-        {
-            "$ref": "#/definitions/others_1st_batch"
-        },
-        {
-            "$ref": "#/definitions/dotplot_params"
-        },
-        {
             "$ref": "#/definitions/input_output_options"
+        },
+        {
+            "$ref": "#/definitions/alignment_options"
+        },
+        {
+            "$ref": "#/definitions/dotplot_parameters"
         },
         {
             "$ref": "#/definitions/reference_genome_options"
@@ -396,9 +388,6 @@
         },
         {
             "$ref": "#/definitions/generic_options"
-        },
-        {
-            "$ref": "#/definitions/new_group_1"
         }
     ]
 }
