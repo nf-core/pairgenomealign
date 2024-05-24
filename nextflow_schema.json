@@ -369,13 +369,12 @@
             "properties": {
                 "lastal_args": {
                     "type": "string",
-                    "default": "C2",
-                    "description": "this defaults to -C2 and is applied to both the calls to last-train and lastal, like in the LAST cookbook and the last-genome-alignments tutorial."
+                    "default": "-C2 -D1e9",
+                    "description": "this defaults to -C2 -D1e9)and is applied to both the calls to last-train and lastal, like in the LAST cookbook and the last-genome-alignments tutorial."
                 },
                 "lastal_extr_args": {
                     "type": "string",
-                    "default": "D1e9",
-                    "description": "(default: -D1e9) is only passed to lastal and can be used for arguments that are not recognised by last-train."
+                    "description": "(default: ' ' is only passed to lastal and can be used for arguments that are not recognised by last-train."
                 },
                 "last_split_mismap": {
                     "type": "string",
