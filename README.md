@@ -73,10 +73,11 @@ For more details about the output files and reports, please refer to the
 
 ## Credits
 
-nf-core/pairgenomealign was originally written by charles-plessy.
+`nf-core/pairgenomealign` was originally written by [charles-plessy](https://github.com/charles-plessy); the original versions are available at <https://github.com/oist/plessy_pairwiseGenomeComparison>.
 
 We thank the following people for their extensive assistance in the development of this pipeline:
-...
+
+- [Mahdi Mohammed](https://github.com/U13bs1125): ported the original pipeline to _nf-core_ template 2.14.x.
 
 ## Contributions and Support
 
