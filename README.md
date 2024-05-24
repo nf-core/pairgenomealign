@@ -19,25 +19,18 @@
 
 ## Introduction
 
-**nf-core/pairgenomealign** is a bioinformatics pipeline that aligns a single or set of query genomes in csv format with a target genome to make a pairwise representation in dotplots.
-
-This pipeline usually takes in as an input a sample sheet in csv format which contain this set of queries or single query and align it pairwise with atarget genome in fasta or fa.gz format to make a dotplots representation of the paired alignment or alignments in case of multiple queries.
+**nf-core/pairgenomealign** is a bioinformatics pipeline that aligns one or more _query_ genomes to a _target_ genome, and plots pairwise representations.
 
 <img src= "assets/tube_map.svg">
 
-## Outputs
+The pipeline can generate four kinds of outputs, depending on whether sequences of one genome can match the other genome multiple times or not.
 
-For each _query_ genome, this pipeline will align it to the _target_ genome, post-process the alignments and produce dot plots visualisations at different steps of the workflow. Each file contains a name suffix that indicates in which order they were created.
+- _**many-to-many**_ (M2M): Every computed alignments between the _target_ and a _query_ genome.
+- _**many-to-one**_ (M2O): Alignments where regions of the _target_ genome are matched at most once by a _query_ genome.
+- _**one-to-many**_ (M2O): Alignments where regions of a _query_ genome are matched at most once by the _target_ genome.
+- _**one-to-one**_ (O2O) Alignment where regions of the _target_ and _query_ genomes are used at most once.
 
-- `.train` is the alignment parameters computed by `last-train` (optional)
-- `m2m_aln` is the _**many-to-many**_ alignment between _target_ and _query_ genomes. (optional through the `--m2m` option)
-- `m2m_plot` (optional)
-- `m2o_aln` is the _**many-to-one**_ alignment regions of the _target_ genome are matched at most once by the _query_ genome.
-- `m2o_plot` (optional)
-- `o2o_aln` is the _**one-to-one**_ alignment between the _target_ and _query_ genomes.
-- `o2o_plot` (optional)
-- `o2m_aln` is the _**one-to-many**_ alignment between the _target_ and _query_ genomes (optional).
-- `o2m_plot` (optional)
+These alignments are output in [MAF](https://genome.ucsc.edu/FAQ/FAQformat.html#format5) format, and optional line plot representations are output in PNG format.
 
 ## Mandatory parameters
 
