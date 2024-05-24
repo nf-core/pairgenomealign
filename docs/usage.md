@@ -24,7 +24,6 @@ A final samplesheet file consisting of both samples id and fasta file path may l
 
 Make sure to [test your setup] with `-profile test` before running the workflow on actual data.
 
-
 First, prepare a samplesheet with your input data that looks as follows:
 
 `samplesheet.csv`:
@@ -33,13 +32,13 @@ First, prepare a samplesheet with your input data that looks as follows:
 sample,fasta
 Query_1,AEG588A1_S1_L002_R1_001.fasta
 ```
+
 Each row represents a fasta file, this can also contain multiple rows to accomodate multiple query genomes in fasta format.
 
-
-| Column    | Description                                                                                                                                                                            |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sample`  | Custom sample name. Spaces in sample names are automatically converted to underscores (`_`). |
-| `fasta` | Full path to Fasta/fa/gz file
+| Column   | Description                                                                                  |
+| -------- | -------------------------------------------------------------------------------------------- |
+| `sample` | Custom sample name. Spaces in sample names are automatically converted to underscores (`_`). |
+| `fasta`  | Full path to Fasta/fa/gz file                                                                |
 
 An [example samplesheet](../assets/samplesheet.csv) has been provided with the pipeline.
 
@@ -82,11 +81,13 @@ add it to the run's configuration with the `-c` option.
 For instance, with file called `overrideLabels.nf` containing the following:
 
 ```
+
 process {
-  withLabel:process_high {
-    time = 3.d
-  }
+withLabel:process_high {
+time = 3.d
 }
+}
+
 ```
 
 The command `nextflow -c overrideLabels.nf run …` would set the execution time
