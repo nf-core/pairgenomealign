@@ -10,8 +10,7 @@ The directories listed below will be created in the results directory after the 
 
 ## Outputs
 
-For each _query_ genome, this pipeline will align it to the _target_ genome, post-process the alignments and produce dot plots visualisations at different steps of the
-workflow. Each file contains a name suffix that indicates in which order they were created.
+Each _query_ genome, is aligned to the _target_ genome, and each alignment is visualised with dot plots.  The output file names are constructed by concatenating the _target_ and _query_ sample identifiers with a `___` separator (three underscores), to faciliate re-extraction of the IDs from file names.  The file suffixes are as follows:
 
 - `.train` is the alignment parameters computed by `last-train` (optional)
 - `m2m_aln` is the _**many-to-many**_ alignment between _target_ and _query_ genomes. (optional through the `--m2m` option)
