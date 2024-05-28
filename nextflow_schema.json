@@ -93,7 +93,7 @@
                 },
                 "last_split_mismap": {
                     "type": "string",
-                    "default": 1e-05,
+                    "default": 1E-05,
                     "fa_icon": "fas fa-cut",
                     "description": "Mismap probability cutoff for last-split."
                 }
