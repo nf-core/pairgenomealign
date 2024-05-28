@@ -95,7 +95,7 @@
                     "type": "string",
                     "default": 1e-05,
                     "fa_icon": "fas fa-cut",
-                    "help_text": "Mismap probability cutoff for last-split."
+                    "description": "Mismap probability cutoff for last-split."
                 }
             },
             "fa_icon": "fas fa-cogs"
