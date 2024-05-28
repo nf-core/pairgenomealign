@@ -105,7 +105,7 @@ An [example samplesheet](../assets/samplesheet.csv) has been provided with the p
 The typical command for running the pipeline is as follows:
 
 ```bash
-nextflow run nf-core/pairgenomealign --input ./samplesheet.csv --outdir ./results -profile docker
+nextflow run nf-core/pairgenomealign --target ./target_genome_file.fa --input ./samplesheet.csv --outdir ./results -profile docker
 ```
 
 This will launch the pipeline with the `docker` configuration profile. See below for more information about profiles.
