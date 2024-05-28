@@ -10,7 +10,7 @@ The directories listed below will be created in the results directory after the 
 
 ## Outputs
 
-For each _query_ genome, this pipeline will align it to the \_target_genome, post-process the alignments and produce dot plots visualisations at different steps of the
+For each _query_ genome, this pipeline will align it to the _target_ genome, post-process the alignments and produce dot plots visualisations at different steps of the
 workflow. Each file contains a name suffix that indicates in which order they were created.
 
 - `.train` is the alignment parameters computed by `last-train` (optional)
