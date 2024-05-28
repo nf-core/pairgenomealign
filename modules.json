@@ -1,6 +1,6 @@
 {
-    "name": "nf-core/pairalign",
-    "homePage": "https://github.com/nf-core/pairalign",
+    "name": "nf-core/pairgenomealign",
+    "homePage": "https://github.com/nf-core/pairgenomealign",
     "repos": {
         "https://github.com/nf-core/modules.git": {
             "modules": {
