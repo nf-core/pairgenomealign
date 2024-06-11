@@ -8,7 +8,7 @@ include { LAST_DOTPLOT as LAST_DOTPLOT_M2O          } from '../../../modules/nf-
 include { LAST_DOTPLOT as LAST_DOTPLOT_M2M          } from '../../../modules/nf-core/last/dotplot/main'
 include { LAST_DOTPLOT as LAST_DOTPLOT_O2O          } from '../../../modules/nf-core/last/dotplot/main'
 include { LAST_DOTPLOT as LAST_DOTPLOT_O2M          } from '../../../modules/nf-core/last/dotplot/main'
-include { LAST_LASTAL            } from '../../../modules/nf-core/last/lastal/main'
+include { LAST_LASTAL  as LAST_LASTAL_M2M           } from '../../../modules/nf-core/last/lastal/main'
 include { LAST_LASTDB            } from '../../../modules/nf-core/last/lastdb/main'
 include { LAST_SPLIT as LAST_SPLIT_M2O            } from '../../../modules/nf-core/last/split/main'
 include { LAST_SPLIT as LAST_SPLIT_O2O             } from '../../../modules/nf-core/last/split/main'
@@ -45,7 +45,7 @@ workflow PAIRALIGN_M2M {
 
     // MODULE: lastal
     //
-    LAST_LASTAL (
+    LAST_LASTAL_M2M (
         ch_queries.join(LAST_TRAIN.out.param_file),
         LAST_LASTDB.out.index.map { row -> row[1] }  // Remove metadata map
     )
@@ -54,7 +54,7 @@ workflow PAIRALIGN_M2M {
     //
     if (! (params.skip_dotplot_m2m) ) {
     LAST_DOTPLOT_M2M (
-        LAST_LASTAL.out.maf,
+        LAST_LASTAL_M2M.out.maf,
         'png'
     )
     }
@@ -63,7 +63,7 @@ workflow PAIRALIGN_M2M {
     // with_arg
     //
     LAST_SPLIT_O2M (
-        LAST_LASTAL.out.maf
+        LAST_LASTAL_M2M.out.maf
     )
 
     // MODULE: last_dotplot_o2m
@@ -79,7 +79,7 @@ workflow PAIRALIGN_M2M {
     // MODULE: last_split_m2o
     //
     LAST_SPLIT_M2O (
-        LAST_LASTAL.out.maf
+        LAST_LASTAL_M2M.out.maf
     )
 
     // MODULE: last_dotplot_m2o
@@ -109,7 +109,7 @@ workflow PAIRALIGN_M2M {
 
     emit:
 
-    m2m = LAST_LASTAL.out.maf
+    m2m = LAST_LASTAL_M2M.out.maf
     m2o = LAST_SPLIT_M2O.out.maf
     o2m = LAST_SPLIT_O2M.out.maf
     o2o = LAST_SPLIT_O2O.out.maf
