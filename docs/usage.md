@@ -8,7 +8,13 @@
 
 You need at least two genomes, a _target_, which will be indexed, and one or more _queries_, which will be aligned to the _target_. Paths to the genome files for the _queries_ are passed with the _nf-core_ samplesheet `--input` system, and path to the genome file of the _target_ is passed with the `--target` parameter. Note that the computation is not symmetric: inverting _target_ and _query_ does not lead to strictly identical results.
 
-## Samplesheet input
+## Input
+
+### Target genome
+
+The target genome sequence is taken from a FASTA-formated file passed by the `--target` parameter. Its masking information (sequences in lower-case letters) is first discarded, and then simple repeats (like `cacacacacacacacac`) are converted to lower-case (`lastdb -R01`). The lowercased letters in the _target_ **and** in the _query_ will be excluded for initial matches (`lastdb -c`). Both strands of the genome are indexed (`lastdb -S2`).
+
+### Samplesheet for query genome(s)
 
 You will need to create a samplesheet with information about the samples you would like to analyse before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 2 columns, a header row and single or multiple sample rows (genome samples) as shown in the examples below.
 
@@ -96,9 +102,13 @@ An [example samplesheet](../assets/samplesheet.csv) has been provided with the p
 
 ## Fixed arguments (taken from the [LAST cookbook][] and the [LAST tuning][] manual)
 
-- The `lastdb` step soft-masks simple repeats by default, (`-c -R01`).It indexes both strands (`-S2`), which increases speed at the expense of memory usage.
-
 - The `last-train` commands runs with `--revsym` as the DNA strands play equivalent roles in the studied genomes.
+
+- The `lastdb` command takes all CPU cores available (`lastdb -P0`). Note that
+  when using more than one core, the output of `lastdb` may vary, causing the
+  order of tied positions to change. To prevent this to happen, you can pass a
+  nextflow parameter file to the pipeline that reduces the number of CPUs
+  allocated to `LAST_LASTDB` to 1.
 
 ## Running the pipeline
 
