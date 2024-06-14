@@ -21,11 +21,11 @@ process CUSTOMMODULE {
     echo "id\tpercent_A\tpercent_C\tpercent_G\tpercent_T" > gc_cont_summary_mqc.tsv
     for i in $json
     do
-      printf "\$(basename \$i _mqc.json)\t" >> gc_cont_summary_mqc.tsv
-      grep contig_percent_a \$i | awk '{print \$2}' | sed -e 's/"//' -e 's/".*//' | tr '\n' '\t' >> gc_cont_summary_mqc.tsv
-      grep contig_percent_c \$i | awk '{print \$2}' | sed -e 's/"//' -e 's/".*//' | tr '\n' '\t' >> gc_cont_summary_mqc.tsv
-      grep contig_percent_g \$i | awk '{print \$2}' | sed -e 's/"//' -e 's/".*//' | tr '\n' '\t' >> gc_cont_summary_mqc.tsv
-      grep contig_percent_t \$i | awk '{print \$2}' | sed -e 's/"//' -e 's/".*//' >> gc_cont_summary_mqc.tsv
+        printf "\$(basename \$i _mqc.json)\t" >> gc_cont_summary_mqc.tsv
+        grep contig_percent_a \$i | awk '{print \$2}' | sed -e 's/"//' -e 's/".*//' | tr '\n' '\t' >> gc_cont_summary_mqc.tsv
+        grep contig_percent_c \$i | awk '{print \$2}' | sed -e 's/"//' -e 's/".*//' | tr '\n' '\t' >> gc_cont_summary_mqc.tsv
+        grep contig_percent_g \$i | awk '{print \$2}' | sed -e 's/"//' -e 's/".*//' | tr '\n' '\t' >> gc_cont_summary_mqc.tsv
+        grep contig_percent_t \$i | awk '{print \$2}' | sed -e 's/"//' -e 's/".*//' >> gc_cont_summary_mqc.tsv
     done
     """
 }
