@@ -5,6 +5,7 @@
 */
 
 include { ASSEMBLYSCAN           } from '../modules/nf-core/assemblyscan/main'
+include { CUSTOMMODULE           } from '../modules/local/custommodule.nf'
 include { PAIRALIGN_M2M          } from '../subworkflows/local/pairalign_m2m/main'
 include { PAIRALIGN_M2O          } from '../subworkflows/local/pairalign_m2o/main'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
@@ -36,7 +37,14 @@ workflow PAIRGENOMEALIGN {
     ASSEMBLYSCAN (
         ch_samplesheet
     )
-    ch_multiqc_files = ch_multiqc_files.mix(ASSEMBLYSCAN.out.json.collect{it[1]})
+    //
+    // MODULE: CUSTOMMODULE
+    //
+    CUSTOMMODULE (
+        ASSEMBLYSCAN.out.json.collect{it[1]}
+    )
+
+    ch_multiqc_files = ch_multiqc_files.mix(CUSTOMMODULE.out.tsv)
     ch_versions = ch_versions.mix(ASSEMBLYSCAN.out.versions.first())
 
     //

@@ -11,7 +11,7 @@ process ASSEMBLYSCAN {
     tuple val(meta), path(assembly)
 
     output:
-    tuple val(meta), path("*.json"), emit: json
+    tuple val(meta), path("*_mqc.json"), emit: json
     path "versions.yml"            , emit: versions
 
     when:
@@ -21,7 +21,7 @@ process ASSEMBLYSCAN {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    assembly-scan $assembly > ${prefix}.json
+    assembly-scan $assembly > ${prefix}_mqc.json
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
