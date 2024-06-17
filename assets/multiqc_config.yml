@@ -24,4 +24,4 @@ disable_version_detection: true
 #    ylab: 'Number of things'
 # sp:
 # example_files:
-#   fn: 'final_output_mqc.tsv'
+#   fn: '*_mqc.tsv'
