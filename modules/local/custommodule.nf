@@ -18,21 +18,25 @@ process CUSTOMMODULE {
     script:
     def args = task.ext.args ?: ''
     """
-    echo "id\tpercent_A\tpercent_C\tpercent_G\tpercent_T" > gc_summary_mqc.tsv
+    echo "id\tpercent_A\tpercent_C\tpercent_G\tpercent_T\tpercent_N\tcontig_non_ACGTN" > gc_summary_mqc.tsv
     for i in $json
     do
         printf "\$(basename \$i _mqc.json)\t" >> gc_summary_mqc.tsv
-        grep contig_percent_a \$i | awk '{print \$2}' | sed -e 's/"//' -e 's/".*//' | tr '\n' '\t' >> gc_summary_mqc.tsv
-        grep contig_percent_c \$i | awk '{print \$2}' | sed -e 's/"//' -e 's/".*//' | tr '\n' '\t' >> gc_summary_mqc.tsv
-        grep contig_percent_g \$i | awk '{print \$2}' | sed -e 's/"//' -e 's/".*//' | tr '\n' '\t' >> gc_summary_mqc.tsv
-        grep contig_percent_t \$i | awk '{print \$2}' | sed -e 's/"//' -e 's/".*//' >> gc_summary_mqc.tsv
+        jq -r '[.contig_percent_a, .contig_percent_c, .contig_percent_g, .contig_percent_t, .contig_percent_n, .contig_non_acgtn] | @tsv' \$i >> gc_summary_mqc.tsv
     done
 
-    echo "id\tcontigs" > cont_no_mqc.tsv
+    echo "id\tTOTALcontiglen\tMINcontiglen\tMAXcontiglen" > contig_length_mqc.tsv
     for i in $json
     do
-        printf "\$(basename \$i _mqc.json)\t" >> cont_no_mqc.tsv
-        jq -r '.total_contig' >>cont_no_mqc.tsv
+        printf "\$(basename \$i _mqc.json)\t" >> contig_length_mqc.tsv
+        jq -r '[.total_contig_length, .min_contig_length, .max_contig_length] | @tsv' \$i >> contig_length_mqc.tsv
+    done
+
+    echo "id\ttotalcontigs\tcontigs>1k\tcontigs>10k" > contig_total_mqc.tsv
+    for i in $json
+    do
+        printf "\$(basename \$i _mqc.json)\t" >> contig_total_mqc.tsv
+        jq -r '[.total_contig, .contigs_greater_1k, .contigs_greater_10k] | @tsv' \$i >> contig_total_mqc.tsv
     done
     """
 }
