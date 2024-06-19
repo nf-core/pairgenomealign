@@ -6,8 +6,8 @@
 
 include { ASSEMBLYSCAN           } from '../modules/nf-core/assemblyscan/main'
 include { PAIRALIGN_M2M          } from '../subworkflows/local/pairalign_m2m/main'
-include { SEQTK_CUTN as SEQTK_T  } from '../modules/nf-core/seqtk/cutn/main'
-include { SEQTK_CUTN as SEQTK_S  } from '../modules/nf-core/seqtk/cutn/main'
+include { SEQTK_CUTN as SEQTK_CUTN_TARGET  } from '../modules/nf-core/seqtk/cutn/main'
+include { SEQTK_CUTN as SEQTK_CUTN_QUERY  } from '../modules/nf-core/seqtk/cutn/main'
 include { PAIRALIGN_M2O          } from '../subworkflows/local/pairalign_m2o/main'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
 include { paramsSummaryMap       } from 'plugin/nf-validation'
@@ -35,14 +35,14 @@ workflow PAIRGENOMEALIGN {
     //
     // MODULE: seqtk_cutn_target
     //
-    SEQTK_T (
+    SEQTK_CUTN_TARGET (
         ch_targetgenome
     )
 
     //
-    // MODULE: seqtk_cutn_samples
+    // MODULE: seqtk_cutn_query
     //
-    SEQTK_S (
+    SEQTK_CUTN_QUERY (
         ch_samplesheet
     )
 
