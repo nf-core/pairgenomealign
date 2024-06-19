@@ -49,6 +49,11 @@
                         "branch": "master",
                         "git_sha": "8f2062e7b4185590fb9f43c275381a31a6544fc0",
                         "installed_by": ["modules"]
+                    },
+                    "seqtk/cutn": {
+                        "branch": "master",
+                        "git_sha": "7f88aae93c69586c0789322b77743ee0ef469502",
+                        "installed_by": ["modules"]
                     }
                 }
             },
