@@ -202,6 +202,14 @@ If `-profile` is not specified, the pipeline will run locally and expect all sof
 - `test`
   - A profile with a complete configuration for automated testing
   - Includes links to test data so needs no other parameters
+- `test_small`
+  - A profile with a complete configuration for small-scale testing
+  - Includes links to two fungal geonomes at NCBI so needs no other parameters
+  - Should take less than 5 min to run and produce meaningful plots
+- `test_full`
+  - A profile with a complete configuration for automated testing at large-scale
+  - Includes links to larger genomes at NCBI so needs no other parameters
+  - Requires larger computational power, useful for stress-testing and real-scale example results
 - `docker`
   - A generic configuration profile to be used with [Docker](https://docker.com/)
 - `singularity`
