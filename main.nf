@@ -91,14 +91,11 @@ workflow {
         .map { file_obj -> [ [id:params.targetName], file_obj] }
         .set { ch_target }
 
-    ch_query = PIPELINE_INITIALISATION.out.samplesheet
-        .map { row -> [ [id: params.targetName + '___' + row[0].id] , row.tail() ] }
-
     //
     // WORKFLOW: Run main workflow
     //
     NFCORE_PAIRGENOMEALIGN (
-        ch_query,
+        PIPELINE_INITIALISATION.out.samplesheet,
         ch_target
     )
 
