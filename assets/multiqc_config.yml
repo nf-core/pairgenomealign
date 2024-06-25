@@ -13,3 +13,15 @@ report_section_order:
 export_plots: true
 
 disable_version_detection: true
+# custom content:
+# id: 'Output from my script'
+# section_name: 'Custom data file'
+# description: 'This output is described in the file header. Any MultiQC installation will understand it without prior configuration.'
+# format: 'tsv'
+# plot_type: 'bargraph'
+# pconfig:
+#    id: 'custom_bargraph_w_header'
+#    ylab: 'Number of things'
+# sp:
+# example_files:
+#   fn: 'final_output_mqc.tsv'
