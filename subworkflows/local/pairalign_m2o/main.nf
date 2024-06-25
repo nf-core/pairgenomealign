@@ -73,6 +73,7 @@ workflow PAIRALIGN_M2O {
 
     emit:
 
+    train = LAST_TRAIN.out.param_file
     m2o = LAST_LASTAL_M2O.out.maf
     o2o = LAST_SPLIT_O2O.out.maf
 }
