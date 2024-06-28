@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This document describes the output produced by the pipeline. Most of the plots are taken from the Last_dotplot report, which summarises results at the end of the pipeline.
+This document describes the output produced by the pipeline.
 
 The directories listed below will be created in the results directory after the pipeline has finished. All paths are relative to the top-level results directory.
 
@@ -21,6 +21,8 @@ Each _query_ genome, is aligned to the _target_ genome, and each alignment is vi
 - `o2o_plot` (optional)
 - `o2m_aln` is the _**one-to-many**_ alignment between the _target_ and _query_ genomes (optional).
 - `o2m_plot` (optional)
+
+The poly-N regions longer than 9 bases in each genome sequence are marked in pale red in the dot-plots. These often indicate contig boundaries in scaffolds. This is done with `seqtk cutN` and its output is provided in the `seqtk` directory.
 
 The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes data using the following steps:
 
