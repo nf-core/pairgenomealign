@@ -26,6 +26,8 @@ workflow PAIRALIGN_M2M {
     take:
     ch_target       // channel: target file read in from --target
     ch_queries      // channel: query sequences found in samplesheet read in from --input
+    ch_target_bed   // channel: position of poly-N stretches in the target genome
+    ch_queries_bed  // channel: position of poly-N stretches in the query genomes
 
     main:
 
@@ -54,7 +56,8 @@ workflow PAIRALIGN_M2M {
     //
     if (! (params.skip_dotplot_m2m) ) {
     LAST_DOTPLOT_M2M (
-        LAST_LASTAL_M2M.out.maf,
+        LAST_LASTAL_M2M.out.maf.join(ch_queries_bed),
+        ch_target_bed,
         'png'
     )
     }
@@ -71,7 +74,8 @@ workflow PAIRALIGN_M2M {
     //
     if (! (params.skip_dotplot_o2m) ) {
     LAST_DOTPLOT_O2M (
-        LAST_SPLIT_O2M.out.maf,
+        LAST_SPLIT_O2M.out.maf.join(ch_queries_bed),
+        ch_target_bed,
         'png'
     )
     }
@@ -86,7 +90,8 @@ workflow PAIRALIGN_M2M {
     //
     if (! (params.skip_dotplot_m2o) ) {
     LAST_DOTPLOT_M2O (
-        LAST_SPLIT_M2O.out.maf,
+        LAST_SPLIT_M2O.out.maf.join(ch_queries_bed),
+        ch_target_bed,
         'png'
     )
     }
@@ -102,7 +107,8 @@ workflow PAIRALIGN_M2M {
     //
     if (! (params.skip_dotplot_o2o) ) {
     LAST_DOTPLOT_O2O (
-        LAST_SPLIT_O2O.out.maf,
+        LAST_SPLIT_O2O.out.maf.join(ch_queries_bed),
+        ch_target_bed,
         'png'
     )
     }
