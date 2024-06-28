@@ -3,8 +3,8 @@
 
 <svg
    width="143.74265mm"
-   height="145.20319mm"
-   viewBox="0 0 143.74265 145.20319"
+   height="122.29343mm"
+   viewBox="0 0 143.74265 122.29343"
    version="1.1"
    id="svg5"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
@@ -25,8 +25,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.1893044"
-     inkscape:cx="314.88995"
-     inkscape:cy="291.76719"
+     inkscape:cx="110.14842"
+     inkscape:cy="227.02346"
      inkscape:window-width="2560"
      inkscape:window-height="1403"
      inkscape:window-x="0"
@@ -49,9 +49,24 @@
      id="layer1"
      transform="translate(-12.011778,-23.901257)">
     <path
-       style="fill:none;stroke:#ff00c8;stroke-width:1;stroke-dasharray:1, 2;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 114.06746,129.82628 v 21.41988"
-       id="path2942"
+       style="fill:none;stroke:#999999;stroke-width:1;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 129.95699,141.72328 H 56.996372"
+       id="path686"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#999999;stroke-width:1;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 129.95699,121.00145 H 56.996372"
+       id="path680"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#999999;stroke-width:1;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 129.95699,98.587349 H 56.996372"
+       id="path678"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#999999;stroke-width:1;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 57.496372,48.540679 V 141.87992"
+       id="path580"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#ff00c8;stroke-width:1;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
@@ -67,11 +82,6 @@
        style="fill:none;stroke:#ff00c8;stroke-width:1;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
        d="M 128.51964,120.7134 114.06746,109.00061"
        id="path2705"
-       sodipodi:nodetypes="cc" />
-    <path
-       style="fill:none;stroke:#ff00c8;stroke-width:1;stroke-dasharray:1, 2;stroke-dashoffset:0;stroke-opacity:1"
-       d="M 128.51964,162.85018 114.06746,151.13739"
-       id="path2709"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#ff00c8;stroke-width:1;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
@@ -147,13 +157,13 @@
        xml:space="preserve"
        style="font-size:3.175px;fill:#000000;stroke:none;stroke-width:0.264583"
        x="65.31089"
-       y="43.941532"
+       y="42.883198"
        id="text767"><tspan
          sodipodi:role="line"
          id="tspan765"
          style="stroke-width:0.264583"
          x="65.31089"
-         y="43.941532">Index</tspan></text>
+         y="42.883198">Index</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:3.175px;fill:#000000;stroke:none;stroke-width:0.264583"
@@ -247,27 +257,6 @@
     <text
        xml:space="preserve"
        style="font-size:3.175px;fill:#000000;stroke:none;stroke-width:0.264583"
-       x="90.17942"
-       y="150.00612"
-       id="text815"><tspan
-         sodipodi:role="line"
-         id="tspan811"
-         style="stroke-width:0.264583"
-         x="90.17942"
-         y="150.00612">Postmasked</tspan><tspan
-         sodipodi:role="line"
-         style="stroke-width:0.264583"
-         x="90.17942"
-         y="153.97487"
-         id="tspan817">One-to-one</tspan><tspan
-         sodipodi:role="line"
-         style="stroke-width:0.264583"
-         x="90.17942"
-         y="157.94362"
-         id="tspan813">alignment(s)</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:3.175px;fill:#000000;stroke:none;stroke-width:0.264583"
        x="132.86125"
        y="97.23867"
        id="text825"><tspan
@@ -316,27 +305,6 @@
     <text
        xml:space="preserve"
        style="font-size:3.175px;fill:#000000;stroke:none;stroke-width:0.264583"
-       x="132.58965"
-       y="160.50652"
-       id="text851"><tspan
-         sodipodi:role="line"
-         id="tspan845"
-         style="stroke-width:0.264583"
-         x="132.58965"
-         y="160.50652">Postmasked</tspan><tspan
-         sodipodi:role="line"
-         style="stroke-width:0.264583"
-         x="132.58965"
-         y="164.47527"
-         id="tspan847">One-to-one</tspan><tspan
-         sodipodi:role="line"
-         style="stroke-width:0.264583"
-         x="132.58965"
-         y="168.44402"
-         id="tspan849">dotplot(s)</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:3.175px;fill:#000000;stroke:none;stroke-width:0.264583"
        x="72.398552"
        y="108.92319"
        id="text859"><tspan
@@ -354,17 +322,17 @@
        xml:space="preserve"
        style="font-size:3.175px;fill:#000000;stroke:none;stroke-width:0.264583"
        x="59.989548"
-       y="120.68329"
+       y="120.15411"
        id="text867"><tspan
          sodipodi:role="line"
          id="tspan863"
          style="stroke-width:0.264583"
          x="59.989548"
-         y="120.68329">One-to-many</tspan><tspan
+         y="120.15411">One-to-many</tspan><tspan
          sodipodi:role="line"
          style="stroke-width:0.264583"
          x="59.989548"
-         y="124.65204"
+         y="124.12286"
          id="tspan865">dotplot(s)</tspan></text>
     <circle
        style="fill:#ffffff;stroke:#000000;stroke-width:0.537266"
@@ -414,12 +382,6 @@
        r="2.8448455" />
     <circle
        style="fill:#ffffff;stroke:#000000;stroke-width:0.537266"
-       id="circle809"
-       cx="114.06746"
-       cy="151.30379"
-       r="2.8448455" />
-    <circle
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.537266"
        id="circle819"
        cx="128.7594"
        cy="98.587349"
@@ -429,18 +391,6 @@
        id="circle827"
        cx="128.7594"
        cy="121.00145"
-       r="2.8448455" />
-    <circle
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.537266"
-       id="circle835"
-       cx="128.7594"
-       cy="141.72328"
-       r="2.8448455" />
-    <circle
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.537266"
-       id="circle843"
-       cx="128.7594"
-       cy="163.06389"
        r="2.8448455" />
     <circle
        style="fill:#ffffff;stroke:#000000;stroke-width:0.537266"
@@ -467,5 +417,59 @@
          style="font-size:5.64444px;fill:#000000;stroke:none;stroke-width:1"
          x="38.071316"
          y="28.189709">Pairwise Genome alignment pipeline</tspan></text>
+    <circle
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.537266"
+       id="circle312"
+       cx="46.233009"
+       cy="48.962841"
+       r="2.8448455" />
+    <circle
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.537266"
+       id="circle314"
+       cx="46.233009"
+       cy="65.312614"
+       r="2.8448455" />
+    <circle
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.537266"
+       id="circle371"
+       cx="57.496372"
+       cy="48.962841"
+       r="2.8448455" />
+    <circle
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.537266"
+       id="circle373"
+       cx="57.496372"
+       cy="65.312614"
+       r="2.8448455" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;text-align:center;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.264583"
+       x="54.707027"
+       y="-6.1873097"
+       id="text377"
+       transform="rotate(45)"><tspan
+         sodipodi:role="line"
+         style="text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="54.707027"
+         y="-6.1873097"
+         id="tspan431">seqtk cutN</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;fill:#000000;stroke:none;stroke-width:0.264583"
+       x="41.713676"
+       y="1.1549476"
+       id="text575"
+       transform="rotate(45)"><tspan
+         sodipodi:role="line"
+         id="tspan573"
+         style="stroke-width:0.264583"
+         x="41.713676"
+         y="1.1549476">assemblyscan</tspan></text>
+    <circle
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.537266"
+       id="circle835"
+       cx="128.7594"
+       cy="141.72328"
+       r="2.8448455" />
   </g>
 </svg>
