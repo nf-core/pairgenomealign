@@ -8,26 +8,47 @@ The directories listed below will be created in the results directory after the 
 
 ## Pipeline overview
 
-## Outputs
-
-Each _query_ genome, is aligned to the _target_ genome, and each alignment is visualised with dot plots. The output file names are constructed by concatenating the _target_ and _query_ sample identifiers with a `___` separator (three underscores), to faciliate re-extraction of the IDs from file names. The file suffixes are as follows:
-
-- `.train` is the alignment parameters computed by `last-train` (optional)
-- `m2m_aln` is the _**many-to-many**_ alignment between _target_ and _query_ genomes. (optional through the `--m2m` option)
-- `m2m_plot` (optional)
-- `m2o_aln` is the _**many-to-one**_ alignment regions of the _target_ genome are matched at most once by the _query_ genome.
-- `m2o_plot` (optional)
-- `o2o_aln` is the _**one-to-one**_ alignment between the _target_ and _query_ genomes.
-- `o2o_plot` (optional)
-- `o2m_aln` is the _**one-to-many**_ alignment between the _target_ and _query_ genomes (optional).
-- `o2m_plot` (optional)
-
-The poly-N regions longer than 9 bases in each genome sequence are marked in pale red in the dot-plots. These often indicate contig boundaries in scaffolds. This is done with `seqtk cutN` and its output is provided in the `seqtk` directory.
-
 The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes data using the following steps:
 
+- [Alignments](#alignments) - Alignment of the _query_ genomes to the _target_ genome
+- [Dot plots](#dot-plots) - Alignment of the _query_ genomes to the _target_ genome
 - [MultiQC](#multiqc) - Aggregate report describing results and QC from the whole pipeline
 - [Pipeline information](#pipeline-information) - Report metrics generated during the workflow execution
+
+Each _query_ genome, is aligned to the _target_ genome, and each alignment is visualised with dot plots. The output file names are constructed by concatenating the _target_ and _query_ sample identifiers with a `___` separator (three underscores), to faciliate re-extraction of the IDs from file names.
+
+### Alignments
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `last/`
+  - `*.train` is the alignment parameters computed by `last-train` (optional)
+  - `*.m2m_aln.maf.gz` is the _**many-to-many**_ alignment between _target_ and _query_ genomes. (optional through the `--m2m` option)
+  - `*.m2o_aln.maf.gz` is the _**many-to-one**_ alignment regions of the _target_ genome are matched at most once by the _query_ genome.
+  - `*.o2o_aln.maf.gz` is the _**one-to-one**_ alignment between the _target_ and _query_ genomes.
+  - `*.o2m_aln.maf.gz` is the _**one-to-many**_ alignment between the _target_ and _query_ genomes (optional).
+
+</details>
+
+Genomes are aligned witn [`lastal`](https://gitlab.com/mcfrith/last/-/blob/main/doc/lastal.rst) after alignment parameters have been determined with [`last-train`](https://gitlab.com/mcfrith/last/-/blob/main/doc/last-train.rst). _**Many-to-many**_ alignments are progressively converted to _**one-to-one**_ with [`last-split`](https://gitlab.com/mcfrith/last/-/blob/main/doc/last-split.rst).
+
+### Dot plots
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `last/`
+  - `*.m2m_plot` (optional)
+  - `*.m2o_plot` (optional)
+  - `*.o2o_plot` (optional)
+  - `*.o2m_plot` (optional)
+
+</details>
+
+Dot plots representing the pairwise genome alignments, produced with the [`last-dotplot`](https://gitlab.com/mcfrith/last/-/blob/main/doc/last-dotplot.rst) tool.
+
+The poly-N regions longer than 9 bases in each genome sequence are marked in pale red in the dot-plots. These often indicate contig boundaries in scaffolds. This is done with `seqtk cutN` and its output is provided in the `seqtk` directory.
 
 ### MultiQC
 
