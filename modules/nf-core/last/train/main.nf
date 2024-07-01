@@ -42,15 +42,14 @@ process LAST_TRAIN {
     echo "#    title: 'alingment parameters'" >> ${prefix}_mqc.tsv
     echo "#    ylab: ''" >> ${prefix}_mqc.tsv
     echo "id\tsubstitution_percent_identity\tlast -t\tlast -a\tlast -A\tlast -b\tlast -B\tlast -S" >> ${prefix}_mqc.tsv
-    i = *.\$INDEX_NAME.train
-    printf "\$(basename \$i .target.train)\t" >> ${prefix}_mqc.tsv
-    grep 'substitution percent identity' \$i | tail -n 1 | awk '{print \$5}' | tr '\n' '\t' >> ${prefix}_mqc.tsv
-    grep 'last -t' \$i | tail -n 1 | awk '{print \$2}' | sed -e 's/-t//' | tr '\n' '\t' >> ${prefix}_mqc.tsv
-    grep 'last -a' \$i | tail -n 1 | awk '{print \$3}' | tr '\n' '\t' >> ${prefix}_mqc.tsv
-    grep 'last -A' \$i | tail -n 1 | awk '{print \$3}' | tr '\n' '\t' >> ${prefix}_mqc.tsv
-    grep 'last -b' \$i | tail -n 1 | awk '{print \$3}' | tr '\n' '\t' >> ${prefix}_mqc.tsv
-    grep 'last -B' \$i | tail -n 1 | awk '{print \$3}' | tr '\n' '\t' >> ${prefix}_mqc.tsv
-    grep 'last -S' \$i | tail -n 1 | awk '{print \$3}' >> ${prefix}_mqc.tsv
+    printf "\$(basename ${prefix}.\$INDEX_NAME.train .target.train)\t" >> ${prefix}_mqc.tsv
+    grep 'substitution percent identity' ${prefix}.\$INDEX_NAME.train | tail -n 1 | awk '{print \$5}' | tr '\n' '\t' >> ${prefix}_mqc.tsv
+    grep 'last -t' ${prefix}.\$INDEX_NAME.train | tail -n 1 | awk '{print \$2}' | sed -e 's/-t//' | tr '\n' '\t' >> ${prefix}_mqc.tsv
+    grep 'last -a' ${prefix}.\$INDEX_NAME.train | tail -n 1 | awk '{print \$3}' | tr '\n' '\t' >> ${prefix}_mqc.tsv
+    grep 'last -A' ${prefix}.\$INDEX_NAME.train | tail -n 1 | awk '{print \$3}' | tr '\n' '\t' >> ${prefix}_mqc.tsv
+    grep 'last -b' ${prefix}.\$INDEX_NAME.train | tail -n 1 | awk '{print \$3}' | tr '\n' '\t' >> ${prefix}_mqc.tsv
+    grep 'last -B' ${prefix}.\$INDEX_NAME.train | tail -n 1 | awk '{print \$3}' | tr '\n' '\t' >> ${prefix}_mqc.tsv
+    grep 'last -S' ${prefix}.\$INDEX_NAME.train | tail -n 1 | awk '{print \$3}' >> ${prefix}_mqc.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
