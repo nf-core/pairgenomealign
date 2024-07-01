@@ -6,7 +6,6 @@
 
 include { ASSEMBLYSCAN           } from '../modules/nf-core/assemblyscan/main'
 include { CUSTOMMODULE           } from '../modules/local/custommodule.nf'
-include { CUSTOMMODULETRAIN      } from '../modules/local/custommoduletrain.nf'
 include { PAIRALIGN_M2M          } from '../subworkflows/local/pairalign_m2m/main'
 include { SEQTK_CUTN as SEQTK_CUTN_TARGET  } from '../modules/nf-core/seqtk/cutn/main'
 include { SEQTK_CUTN as SEQTK_CUTN_QUERY  } from '../modules/nf-core/seqtk/cutn/main'
@@ -77,7 +76,7 @@ workflow PAIRGENOMEALIGN {
         ch_targetgenome,
         ch_samplesheet
     )
-    ch_train = PAIRALIGN_M2O.out.train
+    ch_train = PAIRALIGN_M2O.out.tsv
     } else {
 
     //
@@ -87,17 +86,9 @@ workflow PAIRGENOMEALIGN {
         ch_targetgenome,
         ch_samplesheet
     )
-    ch_train = PAIRALIGN_M2M.out.train
+    ch_train = PAIRALIGN_M2M.out.tsv
     }
-
-    //
-    // MODULE: CUSTOMMODULETRAIN
-    //
-    CUSTOMMODULETRAIN (
-        ch_train.collect{it[1]}
-    )
-    ch_multiqc_files = ch_multiqc_files.mix(CUSTOMMODULETRAIN.out.tsv)
-
+    ch_multiqc_files = ch_multiqc_files.mix(ch_train.collect{it[1]})
     // Collate and save software versions
     //
     softwareVersionsToYAML(ch_versions)
