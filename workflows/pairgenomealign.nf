@@ -76,7 +76,7 @@ workflow PAIRGENOMEALIGN {
         ch_targetgenome,
         ch_samplesheet
     )
-    ch_train = PAIRALIGN_M2O.out.tsv
+    ch_train = PAIRALIGN_M2O.out.multiqc
     } else {
 
     //
@@ -86,7 +86,7 @@ workflow PAIRGENOMEALIGN {
         ch_targetgenome,
         ch_samplesheet
     )
-    ch_train = PAIRALIGN_M2M.out.tsv
+    ch_train = PAIRALIGN_M2M.out.multiqc
     }
     ch_multiqc_files = ch_multiqc_files.mix(ch_train.collect{it[1]})
     // Collate and save software versions
