@@ -122,6 +122,7 @@ workflow PAIRALIGN_M2M {
     m2o = LAST_SPLIT_M2O.out.maf
     o2m = LAST_SPLIT_O2M.out.maf
     o2o = LAST_SPLIT_O2O.out.maf
+    versions = LAST_LASTDB.out.versions
 }
 
 /*

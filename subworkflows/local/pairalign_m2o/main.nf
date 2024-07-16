@@ -82,6 +82,7 @@ workflow PAIRALIGN_M2O {
         .mix(LAST_SPLIT_O2O.out.multiqc.collect{ it[1]} )
     m2o = LAST_LASTAL_M2O.out.maf
     o2o = LAST_SPLIT_O2O.out.maf
+    versions = LAST_LASTDB.out.versions
 }
 
 /*

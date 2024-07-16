@@ -53,7 +53,6 @@ workflow PAIRGENOMEALIGN {
     ASSEMBLYSCAN (
         ch_samplesheet
     )
-    ch_versions = ch_versions.mix(ASSEMBLYSCAN.out.versions.first())
 
     // Prefix query ids with target genome name before producing alignment files
     ch_samplesheet = ch_samplesheet
@@ -88,6 +87,12 @@ workflow PAIRGENOMEALIGN {
 
     // Collate and save software versions
     //
+
+    ch_versions = ch_versions
+        .mix(SEQTK_CUTN_TARGET.out.versions)
+        .mix(     ASSEMBLYSCAN.out.versions)
+        .mix(        pairalign_out.versions)
+
     softwareVersionsToYAML(ch_versions)
         .collectFile(
             storeDir: "${params.outdir}/pipeline_info",
