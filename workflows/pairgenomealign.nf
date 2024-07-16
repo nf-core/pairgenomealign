@@ -53,8 +53,6 @@ workflow PAIRGENOMEALIGN {
     ASSEMBLYSCAN (
         ch_samplesheet
     )
-    ch_multiqc_files = ch_multiqc_files.mix(ASSEMBLYSCAN.out.json.collect{it[1]})
-    ch_versions = ch_versions.mix(ASSEMBLYSCAN.out.versions.first())
 
     // Prefix query ids with target genome name before producing alignment files
     ch_samplesheet = ch_samplesheet
@@ -72,6 +70,7 @@ workflow PAIRGENOMEALIGN {
         SEQTK_CUTN_TARGET.out.bed,
         ch_seqtk_cutn_query
     )
+    pairalign_out = PAIRALIGN_M2O.out
     } else {
 
     //
@@ -83,10 +82,17 @@ workflow PAIRGENOMEALIGN {
         SEQTK_CUTN_TARGET.out.bed,
         ch_seqtk_cutn_query
     )
+    pairalign_out = PAIRALIGN_M2M.out
     }
 
     // Collate and save software versions
     //
+
+    ch_versions = ch_versions
+        .mix(SEQTK_CUTN_TARGET.out.versions)
+        .mix(     ASSEMBLYSCAN.out.versions)
+        .mix(        pairalign_out.versions)
+
     softwareVersionsToYAML(ch_versions)
         .collectFile(
             storeDir: "${params.outdir}/pipeline_info",
@@ -117,10 +123,12 @@ workflow PAIRGENOMEALIGN {
     ch_methods_description                = Channel.value(
         methodsDescriptionText(ch_multiqc_custom_methods_description))
 
-    ch_multiqc_files = ch_multiqc_files.mix(
-        ch_workflow_summary.collectFile(name: 'workflow_summary_mqc.yaml'))
-    ch_multiqc_files = ch_multiqc_files.mix(ch_collated_versions)
-    ch_multiqc_files = ch_multiqc_files.mix(
+    ch_multiqc_files = ch_multiqc_files
+        .mix(ch_workflow_summary.collectFile(name: 'workflow_summary_mqc.yaml'))
+        .mix(ASSEMBLYSCAN.out.json.collect{it[1]})
+        .mix(pairalign_out.multiqc)
+        .mix(ch_collated_versions)
+        .mix(
         ch_methods_description.collectFile(
             name: 'methods_description_mqc.yaml',
             sort: true
@@ -131,7 +139,9 @@ workflow PAIRGENOMEALIGN {
         ch_multiqc_files.collect(),
         ch_multiqc_config.toList(),
         ch_multiqc_custom_config.toList(),
-        ch_multiqc_logo.toList()
+        ch_multiqc_logo.toList(),
+        [],
+        []
     )
 
     emit:

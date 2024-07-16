@@ -115,10 +115,14 @@ workflow PAIRALIGN_M2M {
 
     emit:
 
+    multiqc = Channel.empty()
+        .mix(    LAST_TRAIN.out.multiqc.collect{ it[1]} )
+        .mix(LAST_SPLIT_O2O.out.multiqc.collect{ it[1]} )
     m2m = LAST_LASTAL_M2M.out.maf
     m2o = LAST_SPLIT_M2O.out.maf
     o2m = LAST_SPLIT_O2M.out.maf
     o2o = LAST_SPLIT_O2O.out.maf
+    versions = LAST_LASTDB.out.versions
 }
 
 /*

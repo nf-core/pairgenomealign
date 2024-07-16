@@ -13,3 +13,19 @@ report_section_order:
 export_plots: true
 
 disable_version_detection: true
+
+custom_data:
+  train:
+    file_format: "tsv"
+    section_name: "Training parameter statistics"
+    plot_type: "table"
+  last_o2o:
+    file_format: "tsv"
+    section_name: "Alignment statistics"
+    plot_type: "table"
+
+sp:
+  last_o2o:
+    fn: "*o2o_aln.tsv"
+  train:
+    fn: "*train.tsv"
