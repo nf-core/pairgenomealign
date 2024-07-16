@@ -22,7 +22,7 @@
                     },
                     "last/lastal": {
                         "branch": "master",
-                        "git_sha": "3fa9017b55b9c26e1c327ca189d3942b55f4d496",
+                        "git_sha": "882e20c8a18270f0d391a931cef4b80d1a0eeea5",
                         "installed_by": ["modules"]
                     },
                     "last/lastdb": {
@@ -37,17 +37,17 @@
                     },
                     "last/split": {
                         "branch": "master",
-                        "git_sha": "3fa9017b55b9c26e1c327ca189d3942b55f4d496",
+                        "git_sha": "882e20c8a18270f0d391a931cef4b80d1a0eeea5",
                         "installed_by": ["modules"]
                     },
                     "last/train": {
                         "branch": "master",
-                        "git_sha": "3fa9017b55b9c26e1c327ca189d3942b55f4d496",
+                        "git_sha": "4e5f4687318f24ba944a13609d3ea6ebd890737d",
                         "installed_by": ["modules"]
                     },
                     "multiqc": {
                         "branch": "master",
-                        "git_sha": "8f2062e7b4185590fb9f43c275381a31a6544fc0",
+                        "git_sha": "b80f5fd12ff7c43938f424dd76392a2704fa2396",
                         "installed_by": ["modules"]
                     },
                     "seqtk/cutn": {
