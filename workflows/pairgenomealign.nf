@@ -8,7 +8,7 @@ include { ASSEMBLYSCAN           } from '../modules/nf-core/assemblyscan/main'
 include { CUSTOMMODULE           } from '../modules/local/custommodule'
 include { PAIRALIGN_M2M          } from '../subworkflows/local/pairalign_m2m/main'
 include { SEQTK_CUTN as SEQTK_CUTN_TARGET  } from '../modules/nf-core/seqtk/cutn/main'
-include { SEQTK_CUTN as SEQTK_CUTN_QUERY  } from '../modules/nf-core/seqtk/cutn/main'
+include { SEQTK_CUTN as SEQTK_CUTN_QUERY   } from '../modules/nf-core/seqtk/cutn/main'
 include { PAIRALIGN_M2O          } from '../subworkflows/local/pairalign_m2o/main'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
 include { paramsSummaryMap       } from 'plugin/nf-validation'
@@ -33,64 +33,52 @@ workflow PAIRGENOMEALIGN {
     ch_versions = Channel.empty()
     ch_multiqc_files = Channel.empty()
 
-    //
-    // MODULE: seqtk_cutn_target
+    // Extract coordinates of poly-N regions; they are often contig boundaries in scaffolds
     //
     SEQTK_CUTN_TARGET (
         // Avoid file name conflicts when target genome is also in the list of queries
         ch_targetgenome.map { meta, file -> [ [id:'targetGenome'] , file ] }
     )
-
-    //
-    // MODULE: seqtk_cutn_query
-    //
     SEQTK_CUTN_QUERY (
         ch_samplesheet
     )
 
-    //
-    // MODULE: assembly-scan
+    // Extract statistics on contig length and GC content
     //
     ASSEMBLYSCAN (
         ch_samplesheet
     )
-
-    //
-    // MODULE: custommodule
-    //
+    // Parse assembly-scan's JSON for MultiQC
     CUSTOMMODULE (
         ASSEMBLYSCAN.out.json.collect{it[1]}
     )
 
     // Prefix query ids with target genome name before producing alignment files
+    //
     ch_samplesheet = ch_samplesheet
         .map { row -> [ [id: params.targetName + '___' + row[0].id] , row.tail() ] }
     ch_seqtk_cutn_query = SEQTK_CUTN_QUERY.out.bed
         .map { row -> [ [id: params.targetName + '___' + row[0].id] , row.tail() ] }
 
-    //
-    // SUBWORKFLOW: pairalign_m2o
+    // Align with either the many-to-many or the many-to-one subworkflow
+    // and collect the output under a fixed name
     //
     if (!(params.m2m)) {
-    PAIRALIGN_M2O (
-        ch_targetgenome,
-        ch_samplesheet,
-        SEQTK_CUTN_TARGET.out.bed,
-        ch_seqtk_cutn_query
-    )
-    pairalign_out = PAIRALIGN_M2O.out
+        PAIRALIGN_M2O (
+            ch_targetgenome,
+            ch_samplesheet,
+            SEQTK_CUTN_TARGET.out.bed,
+            ch_seqtk_cutn_query
+        )
+        pairalign_out = PAIRALIGN_M2O.out
     } else {
-
-    //
-    // SUBWORKFLOW: pairalign_m2m
-    //
-    PAIRALIGN_M2M (
-        ch_targetgenome,
-        ch_samplesheet,
-        SEQTK_CUTN_TARGET.out.bed,
-        ch_seqtk_cutn_query
-    )
-    pairalign_out = PAIRALIGN_M2M.out
+        PAIRALIGN_M2M (
+            ch_targetgenome,
+            ch_samplesheet,
+            SEQTK_CUTN_TARGET.out.bed,
+            ch_seqtk_cutn_query
+        )
+        pairalign_out = PAIRALIGN_M2M.out
     }
 
     // Collate and save software versions

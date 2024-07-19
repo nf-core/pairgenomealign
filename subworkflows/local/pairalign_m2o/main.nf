@@ -6,10 +6,10 @@
 
 include { LAST_DOTPLOT as LAST_DOTPLOT_M2O          } from '../../../modules/nf-core/last/dotplot/main'
 include { LAST_DOTPLOT as LAST_DOTPLOT_O2O          } from '../../../modules/nf-core/last/dotplot/main'
-include { LAST_LASTAL as LAST_LASTAL_M2O           } from '../../../modules/nf-core/last/lastal/main'
-include { LAST_LASTDB            } from '../../../modules/nf-core/last/lastdb/main'
-include { LAST_SPLIT as LAST_SPLIT_O2O             } from '../../../modules/nf-core/last/split/main'
-include { LAST_TRAIN             } from '../../../modules/nf-core/last/train/main'
+include { LAST_LASTAL  as LAST_LASTAL_M2O           } from '../../../modules/nf-core/last/lastal/main'
+include { LAST_LASTDB                               } from '../../../modules/nf-core/last/lastdb/main'
+include { LAST_SPLIT  as LAST_SPLIT_O2O             } from '../../../modules/nf-core/last/split/main'
+include { LAST_TRAIN                                } from '../../../modules/nf-core/last/train/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -27,52 +27,48 @@ workflow PAIRALIGN_M2O {
 
     main:
 
-    //
-    // MODULE: lastdb
+    // Index the target genome
     //
     LAST_LASTDB (
         ch_target
     )
 
-    // MODULE: last-train
+    // Train alignment parameters
     //
     LAST_TRAIN (
         ch_queries,
         LAST_LASTDB.out.index.map { row -> row[1] }  // Remove metadata map
     )
 
-    // MODULE: lastal_lastal_m2o
+    // Align queries to target.
+    // This directly computes a many-to-one alignment because of parameter modules
     //
     LAST_LASTAL_M2O (
         ch_queries.join(LAST_TRAIN.out.param_file),
         LAST_LASTDB.out.index.map { row -> row[1] }  // Remove metadata map
     )
 
-    // MODULE: last_dotplot_m2o
+    // Optionally plot the many-to-one alignment
     //
     if (! (params.skip_dotplot_m2o) ) {
-    LAST_DOTPLOT_M2O (
-        LAST_LASTAL_M2O.out.maf.join(ch_queries_bed),
-        ch_target_bed,
-        'png'
-    )
+        LAST_DOTPLOT_M2O (
+            LAST_LASTAL_M2O.out.maf.join(ch_queries_bed),
+            ch_target_bed,
+            'png'
+        )
     }
 
-    // MODULE: last_split_o2o
-    // with_arg
+    // Compute the one-to-one alignment and optionally plot it
     //
     LAST_SPLIT_O2O (
         LAST_LASTAL_M2O.out.maf
     )
-
-    // MODULE: last_dotplot_o2o
-    //
     if (! (params.skip_dotplot_o2o) ) {
-    LAST_DOTPLOT_O2O (
-        LAST_SPLIT_O2O.out.maf.join(ch_queries_bed),
-        ch_target_bed,
-        'png'
-    )
+        LAST_DOTPLOT_O2O (
+            LAST_SPLIT_O2O.out.maf.join(ch_queries_bed),
+            ch_target_bed,
+            'png'
+        )
     }
 
     emit:
