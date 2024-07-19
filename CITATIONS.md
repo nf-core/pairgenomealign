@@ -10,9 +10,17 @@
 
 ## Pipeline tools
 
-- [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+- [LAST](https://gitlab.com/mcfrith/last/)
 
-  > Andrews, S. (2010). FastQC: A Quality Control Tool for High Throughput Sequence Data [Online].
+  > Kiełbasa SM, Wan R, Sato K, Horton P, Frith MC. Adaptive seeds tame genomic sequence comparison. Genome Res. 2011 21(3):487-93. doi: 10.1101/gr.113985.110. PubMed PMID: 21209072 (This describes the main algorithms used by LAST.)
+
+  > Frith MC, Noé L. Improved search heuristics find 20,000 new alignments between human and mouse genomes. doi: 10.1093/nar/gku104 PubMed PMID: 24493737 (This describes sensitive DNA seeding (MAM8 and MAM4)
+
+  > Frith MC, Kawaguchi R. Split-alignment of genomes finds orthologies more accurately. Genome Biology. 2015 16:106. doi: 10.1186/s13059-015-0670-9 PubMed PMID: 25994148 (Describes the split alignment algorithm, and its application to whole genome alignment.)
+
+  > Hamada M, Ono Y, Asai K Frith MC. Training alignment parameters for arbitrary sequencers with LAST-TRAIN. Bioinformatics. 2017 33(6):926-928. doi: 10.1093/bioinformatics/btw742 PubMed PMID: 28039163 (Describes last-train.)
+
+  > Frith MC, Shaw J, Spouge JL. How to optimally sample a sequence for rapid analysis. doi: 10.1093/bioinformatics/btad057 PubMed PMID: 36702468 (Describes the lastdb -u RY sparsity options.)
 
 - [MultiQC](https://pubmed.ncbi.nlm.nih.gov/27312411/)
 
