@@ -4,15 +4,15 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { ASSEMBLYSCAN           } from '../modules/nf-core/assemblyscan/main'
-include { CUSTOMMODULE           } from '../modules/local/custommodule'
-include { PAIRALIGN_M2M          } from '../subworkflows/local/pairalign_m2m/main'
+include { ASSEMBLYSCAN                     } from '../modules/nf-core/assemblyscan/main'
+include { CUSTOMMODULE                     } from '../modules/local/custommodule'
+include { PAIRALIGN_M2M                    } from '../subworkflows/local/pairalign_m2m/main'
 include { SEQTK_CUTN as SEQTK_CUTN_TARGET  } from '../modules/nf-core/seqtk/cutn/main'
 include { SEQTK_CUTN as SEQTK_CUTN_QUERY   } from '../modules/nf-core/seqtk/cutn/main'
-include { PAIRALIGN_M2O          } from '../subworkflows/local/pairalign_m2o/main'
-include { MULTIQC                } from '../modules/nf-core/multiqc/main'
-include { paramsSummaryMap       } from 'plugin/nf-validation'
-include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
+include { PAIRALIGN_M2O                    } from '../subworkflows/local/pairalign_m2o/main'
+include { MULTIQC                          } from '../modules/nf-core/multiqc/main'
+include { paramsSummaryMap                 } from 'plugin/nf-validation'
+include { paramsSummaryMultiqc             } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_pairgenomealign_pipeline'
 
