@@ -18,9 +18,6 @@ The target genome sequence is taken from a FASTA-formated file passed by the `--
 
 You will need to create a samplesheet with information about the samples you would like to analyse before running the pipeline. Use the `--input` parameter to specify its location. It has to be a comma-separated file with 2 columns, a header row and single or multiple sample rows (genome samples) as shown in the examples below.
 
-```bash
---input '[path to samplesheet file]'
-```
 
 First, prepare a samplesheet with your input data that looks as follows:
 
