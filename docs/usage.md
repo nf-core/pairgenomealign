@@ -29,9 +29,11 @@ First, prepare a samplesheet with your input data that looks as follows:
 ```csv title="samplesheet.csv"
 sample,fasta
 Query_1,query1_assembly.fasta
+Query_2,query2_assembly.fasta
+…
 ```
 
-Each row represents a fasta file, this can also contain multiple rows to accomodate multiple query genomes in fasta format.
+Each row represents a fasta file. Use multiple rows as in the example above to accomodate multiple query genomes.
 
 | Column   | Description                                                                                  |
 | -------- | -------------------------------------------------------------------------------------------- |
