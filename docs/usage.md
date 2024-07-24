@@ -51,8 +51,7 @@ An [example samplesheet](../assets/samplesheet.csv) has been provided with the p
   or `RY128` that “_reduces run time and memory use, by only seeking seeds at
   ~1/128 of positions in each sequence_”, which is useful when the purpose of
   running this pipeline is only to generate whole-genome dotplots, or when
-  sensitivity for tiny fragments may be unnecessary or undesirable. Setting
-  the seed to `PSEUDO` triggers protein-to-DNA alignment mode (experimental).
+  sensitivity for tiny fragments may be unnecessary or undesirable.
 
 - `--lastal_args` defaults to `-C2 -D1e9` and is applied to both
   the calls to `last-train` and `lastal`, like in the [LAST cookbook][]
@@ -60,10 +59,6 @@ An [example samplesheet](../assets/samplesheet.csv) has been provided with the p
 
 - `--lastal_extr_args`is only passed to `lastal` and can be used for arguments
   that are not recognised by `last-train`.
-
-- `--lastal_params`: path to a file containing alignment parameters
-  computed by [`last-train`][] or a [scoring matrix][]. If this option
-  is not used, the pipeline will run `last-train` for each query.
 
 - `--m2m`: (default: false) Compute and output the many-to-many alignment.
   This adds time and can comsume considerable amount of space; use only
