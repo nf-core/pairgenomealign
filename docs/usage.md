@@ -21,7 +21,6 @@ You will need to create a samplesheet with information about the samples you wou
 
 First, prepare a samplesheet with your input data that looks as follows:
 
-`samplesheet.csv`:
 
 ```csv title="samplesheet.csv"
 sample,fasta
