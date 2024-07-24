@@ -38,60 +38,12 @@ An [example samplesheet](../assets/samplesheet_full.csv) has been provided with 
 
 ## Options
 
-- `--seed` selects the name of the [LAST seed][] The default (`YASS`) searches
-  for “_long-and-weak similarities_” that “_allow for mismatches but not
-  gaps_”. Among alternatives, there are `NEAR` for “_short-and-strong
-  (near-identical) similarities_ … _with many gaps (insertions and deletions)_”,
-  `MAM8` to find _“weak
-  similarities with high sensitivity, but low speed and high memory usage”_
-  or `RY128` that “_reduces run time and memory use, by only seeking seeds at
-  ~1/128 of positions in each sequence_”, which is useful when the purpose of
-  running this pipeline is only to generate whole-genome dotplots, or when
-  sensitivity for tiny fragments may be unnecessary or undesirable.
-
-- `--lastal_args` defaults to `-C2 -D1e9` and is applied to both
-  the calls to `last-train` and `lastal`, like in the [LAST cookbook][]
-  and the [last-genome-alignments][] tutorial.
-
-- `--lastal_extr_args`is only passed to `lastal` and can be used for arguments
-  that are not recognised by `last-train`.
-
-- `--m2m`: (default: false) Compute and output the many-to-many alignment.
-  This adds time and can comsume considerable amount of space; use only
-  if you need that data.
-- By default, `last-split` runs with `-m1e-5` to omit alignments with
-  mismap probability > 10<sup>−5</sup>, but this can be overriden with
-  the `--last_split_mismap` option.
-
-- The dotplots can be modified by overriding defaults and passing new
-  arguments via the `--dotplot_options` argument. Defaults and available
-  options can be seen on the manual page of the [`last-dotplot`][] program.
-  By default in this pipeline, the sequences of the _query_ genome are
-  sorted and oriented by their alignment to the _target_ genome
-  (`--sort2=3 --strands2=1`). For readability, their names are written
-  horizontally (`--rot2=h`).
-
-- Use `--skip_dotplot_m2m`, `--skip_dotplot_m2o`, `--skip_dotplot_o2o`
-  `--skip_dotplot_o2m` to skip the production of the dot plots that can be
-  computationally expensive and visually uninformative on large genomes with
-  shared repeats. File suffixes (see above) will not change.
-
-- By default the LAST index is named `target` and the ouput files are named
-  from the query IDs. Use the `--targetName` option to provide a name
-  that will be used for the LAST index and that will be prefixed to the
-  query IDs with a `___` separator.
-
-[`lastal`]: https://gitlab.com/mcfrith/last/-/blob/main/doc/lastal.rst
-[`last-dotplot`]: https://gitlab.com/mcfrith/last/-/blob/main/doc/last-dotplot.rst
-[LAST seed]: https://gitlab.com/mcfrith/last/-/blob/main/doc/last-seeds.rst
-[LAST cookbook]: https://gitlab.com/mcfrith/last/-/blob/main/doc/last-cookbook.rst
-[`last-train`]: https://gitlab.com/mcfrith/last/-/blob/main/doc/last-train.rst
-[LAST tuning]: https://gitlab.com/mcfrith/last/-/blob/main/doc/last-tuning.rst
-[scoring matrix]: https://gitlab.com/mcfrith/last/-/blob/main/doc/last-matrices.rst
-[lastal documentation]: https://gitlab.com/mcfrith/last/-/blob/main/doc/lastal.rst
-[last-genome-alignments]: https://github.com/mcfrith/last-genome-alignments
+Please see the [parameter documentation](https://nf-co.re/pairgenomealign/parameters) for details.
 
 ## Fixed arguments (taken from the [LAST cookbook][] and the [LAST tuning][] manual)
+
+[LAST cookbook]: https://gitlab.com/mcfrith/last/-/blob/main/doc/last-cookbook.rst
+[LAST tuning]: https://gitlab.com/mcfrith/last/-/blob/main/doc/last-tuning.rst
 
 - The `last-train` commands runs with `--revsym` as the DNA strands play equivalent roles in the studied genomes.
 

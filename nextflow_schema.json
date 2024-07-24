@@ -65,6 +65,7 @@
                 "m2m": {
                     "type": "boolean",
                     "description": "make a many to many alignment",
+                    "help_text": "This adds time and can comsume considerable amount of space; use only if you need that data.",
                     "fa_icon": "fas fa-arrows-alt"
                 },
                 "seed": {
