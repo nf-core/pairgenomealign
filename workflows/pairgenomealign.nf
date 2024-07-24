@@ -7,8 +7,8 @@
 include { ASSEMBLYSCAN                     } from '../modules/nf-core/assemblyscan/main'
 include { CUSTOMMODULE                     } from '../modules/local/custommodule'
 include { PAIRALIGN_M2M                    } from '../subworkflows/local/pairalign_m2m/main'
-include { SEQTK_CUTN as SEQTK_CUTN_TARGET  } from '../modules/nf-core/seqtk/cutn/main'
-include { SEQTK_CUTN as SEQTK_CUTN_QUERY   } from '../modules/nf-core/seqtk/cutn/main'
+include { SEQTK_CUTN as CUTN_TARGET        } from '../modules/nf-core/seqtk/cutn/main'
+include { SEQTK_CUTN as CUTN_QUERY         } from '../modules/nf-core/seqtk/cutn/main'
 include { PAIRALIGN_M2O                    } from '../subworkflows/local/pairalign_m2o/main'
 include { MULTIQC                          } from '../modules/nf-core/multiqc/main'
 include { paramsSummaryMap                 } from 'plugin/nf-validation'
@@ -35,11 +35,11 @@ workflow PAIRGENOMEALIGN {
 
     // Extract coordinates of poly-N regions; they are often contig boundaries in scaffolds
     //
-    SEQTK_CUTN_TARGET (
+    CUTN_TARGET (
         // Avoid file name conflicts when target genome is also in the list of queries
         ch_targetgenome.map { meta, file -> [ [id:'targetGenome'] , file ] }
     )
-    SEQTK_CUTN_QUERY (
+    CUTN_QUERY (
         ch_samplesheet
     )
 
@@ -57,7 +57,7 @@ workflow PAIRGENOMEALIGN {
     //
     ch_samplesheet = ch_samplesheet
         .map { row -> [ [id: params.targetName + '___' + row[0].id] , row.tail() ] }
-    ch_seqtk_cutn_query = SEQTK_CUTN_QUERY.out.bed
+    ch_seqtk_cutn_query = CUTN_QUERY.out.bed
         .map { row -> [ [id: params.targetName + '___' + row[0].id] , row.tail() ] }
 
     // Align with either the many-to-many or the many-to-one subworkflow
@@ -67,7 +67,7 @@ workflow PAIRGENOMEALIGN {
         PAIRALIGN_M2O (
             ch_targetgenome,
             ch_samplesheet,
-            SEQTK_CUTN_TARGET.out.bed,
+            CUTN_TARGET.out.bed,
             ch_seqtk_cutn_query
         )
         pairalign_out = PAIRALIGN_M2O.out
@@ -75,7 +75,7 @@ workflow PAIRGENOMEALIGN {
         PAIRALIGN_M2M (
             ch_targetgenome,
             ch_samplesheet,
-            SEQTK_CUTN_TARGET.out.bed,
+            CUTN_TARGET.out.bed,
             ch_seqtk_cutn_query
         )
         pairalign_out = PAIRALIGN_M2M.out
@@ -85,9 +85,9 @@ workflow PAIRGENOMEALIGN {
     //
 
     ch_versions = ch_versions
-        .mix(SEQTK_CUTN_TARGET.out.versions)
-        .mix(     ASSEMBLYSCAN.out.versions)
-        .mix(        pairalign_out.versions)
+        .mix( CUTN_TARGET.out.versions)
+        .mix(ASSEMBLYSCAN.out.versions)
+        .mix    pairalign_out.versions)
 
     softwareVersionsToYAML(ch_versions)
         .collectFile(

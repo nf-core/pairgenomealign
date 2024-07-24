@@ -12,6 +12,7 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 
 - [Alignments](#alignments) - Alignment of the _query_ genomes to the _target_ genome
 - [Dot plots](#dot-plots) - Visualisation of the alignment of the _query_ genomes to the _target_ genome
+- [`N` regions](#n-regions) - Coordinate of the `N` regions on the _query_ and _target_ genomes
 - [MultiQC](#multiqc) - Aggregate report describing results and QC from the whole pipeline
 - [Pipeline information](#pipeline-information) - Report metrics generated during the workflow execution
 
@@ -48,7 +49,18 @@ Genomes are aligned witn [`lastal`](https://gitlab.com/mcfrith/last/-/blob/main/
 
 Dot plots representing the pairwise genome alignments, produced with the [`last-dotplot`](https://gitlab.com/mcfrith/last/-/blob/main/doc/last-dotplot.rst) tool.
 
-The poly-N regions longer than 9 bases in each genome sequence are marked in pale red in the dot-plots. These often indicate contig boundaries in scaffolds. This is done with `seqtk cutN` and its output is provided in the `seqtk` directory.
+### `N` regions
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `cutn/`
+  - `targetGenome.bed`
+  - `<sample>.bed`
+
+</details>
+
+The poly-N regions longer than 9 bases in each genome sequence often indicate contig boundaries in scaffolds. Therefore, we marked them in pale red in the dot-plots. They are detected with the`seqtk cutN` command and its output (in 3-column BED format) is provided in the `cutn` directory. Sample IDs are constructed to generate file names, except for the _target_ genome which is always called `targetGenome` to avoid filename collisions.
 
 ### MultiQC
 
