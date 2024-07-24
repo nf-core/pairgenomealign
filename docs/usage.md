@@ -26,7 +26,7 @@ First, prepare a samplesheet with your input data that looks as follows:
 
 `samplesheet.csv`:
 
-```csv
+```csv title="samplesheet.csv"
 sample,fasta
 Query_1,query1_assembly.fasta
 ```
