@@ -6,7 +6,7 @@
 
 ## Introduction
 
-You need at least two genomes, a _target_, which will be indexed, and one or more _queries_, which will be aligned to the _target_. Paths to the genome files for the _queries_ are passed with the _nf-core_ samplesheet `--input` system, and path to the genome file of the _target_ is passed with the `--target` parameter. Note that the computation is not symmetric: inverting _target_ and _query_ does not lead to strictly identical results.
+You need at least two genomes, a _target_, which will be indexed, and one or more _queries_, which will be aligned to the _target_. Paths to the genome files for the _queries_ are passed as samplesheets through the `--input` parameter and the path to the genome file of the _target_ is passed with the `--target` parameter. Note that the computation is not symmetric: inverting _target_ and _query_ does not lead to strictly identical results.
 
 ## Input
 
@@ -16,7 +16,7 @@ The target genome sequence is taken from a FASTA-formated file passed by the `--
 
 ### Samplesheet for query genome(s)
 
-You will need to create a samplesheet with information about the samples you would like to analyse before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 2 columns, a header row and single or multiple sample rows (genome samples) as shown in the examples below.
+You will need to create a samplesheet with information about the samples you would like to analyse before running the pipeline. Use the `--input` parameter to specify its location. It has to be a comma-separated file with 2 columns, a header row and single or multiple sample rows (genome samples) as shown in the examples below.
 
 ```bash
 --input '[path to samplesheet file]'
@@ -26,7 +26,7 @@ First, prepare a samplesheet with your input data that looks as follows:
 
 `samplesheet.csv`:
 
-```csv
+```csv title="samplesheet.csv"
 sample,fasta
 Query_1,query1_assembly.fasta
 ```

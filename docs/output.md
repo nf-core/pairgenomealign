@@ -11,7 +11,7 @@ The directories listed below will be created in the results directory after the 
 The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes data using the following steps:
 
 - [Alignments](#alignments) - Alignment of the _query_ genomes to the _target_ genome
-- [Dot plots](#dot-plots) - Alignment of the _query_ genomes to the _target_ genome
+- [Dot plots](#dot-plots) - Visualisation of the alignment of the _query_ genomes to the _target_ genome
 - [MultiQC](#multiqc) - Aggregate report describing results and QC from the whole pipeline
 - [Pipeline information](#pipeline-information) - Report metrics generated during the workflow execution
 

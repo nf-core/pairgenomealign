@@ -88,7 +88,7 @@
                 },
                 "lastal_extr_args": {
                     "type": "string",
-                    "description": "(Arguments passed only to lastal (useful when they are not recognised by last-train).",
+                    "description": "Arguments passed only to lastal (useful when they are not recognised by last-train).",
                     "fa_icon": "fas fa-align-center"
                 },
                 "last_split_mismap": {
