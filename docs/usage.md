@@ -6,7 +6,7 @@
 
 ## Introduction
 
-You need at least two genomes, a _target_, which will be indexed, and one or more _queries_, which will be aligned to the _target_. Paths to the genome files for the _queries_ are passed with the _nf-core_ samplesheet `--input` system, and path to the genome file of the _target_ is passed with the `--target` parameter. Note that the computation is not symmetric: inverting _target_ and _query_ does not lead to strictly identical results.
+You need at least two genomes, a _target_, which will be indexed, and one or more _queries_, which will be aligned to the _target_. Paths to the genome files for the _queries_ are passed as samplesheets through the `--input` parameter and the path to the genome file of the _target_ is passed with the `--target` parameter. Note that the computation is not symmetric: inverting _target_ and _query_ does not lead to strictly identical results.
 
 ## Input
 
