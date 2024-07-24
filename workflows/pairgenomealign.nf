@@ -87,7 +87,7 @@ workflow PAIRGENOMEALIGN {
     ch_versions = ch_versions
         .mix( CUTN_TARGET.out.versions)
         .mix(ASSEMBLYSCAN.out.versions)
-        .mix    pairalign_out.versions)
+        .mix(   pairalign_out.versions)
 
     softwareVersionsToYAML(ch_versions)
         .collectFile(
