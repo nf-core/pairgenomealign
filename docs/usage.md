@@ -34,7 +34,7 @@ Each row represents a fasta file, this can also contain multiple rows to accomod
 | `sample` | Custom sample name. Spaces in sample names are automatically converted to underscores (`_`). |
 | `fasta`  | Full path to Fasta/fa/gz file                                                                |
 
-An [example samplesheet](../assets/samplesheet.csv) has been provided with the pipeline.
+An [example samplesheet](../assets/samplesheet_full.csv) has been provided with the pipeline.
 
 ## Options
 
