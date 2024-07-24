@@ -22,7 +22,7 @@ Each _query_ genome, is aligned to the _target_ genome, and each alignment is vi
 <details markdown="1">
 <summary>Output files</summary>
 
-- `last/`
+- `alignment/`
   - `*.train` is the alignment parameters computed by `last-train` (optional)
   - `*.m2m_aln.maf.gz` is the _**many-to-many**_ alignment between _target_ and _query_ genomes. (optional through the `--m2m` option)
   - `*.m2o_aln.maf.gz` is the _**many-to-one**_ alignment regions of the _target_ genome are matched at most once by the _query_ genome.
@@ -38,7 +38,7 @@ Genomes are aligned witn [`lastal`](https://gitlab.com/mcfrith/last/-/blob/main/
 <details markdown="1">
 <summary>Output files</summary>
 
-- `last/`
+- `alignment/`
   - `*.m2m_plot` (optional)
   - `*.m2o_plot` (optional)
   - `*.o2o_plot` (optional)
