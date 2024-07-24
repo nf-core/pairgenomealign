@@ -23,12 +23,7 @@
 
 <img src= "assets/tube_map.svg">
 
-The pipeline can generate four kinds of outputs, depending on whether sequences of one genome can match the other genome multiple times or not.
-
-- _**many-to-many**_ (M2M): Every computed alignments between the _target_ and a _query_ genome.
-- _**many-to-one**_ (M2O): Alignments where regions of the _target_ genome are matched at most once by a _query_ genome.
-- _**one-to-many**_ (M2O): Alignments where regions of a _query_ genome are matched at most once by the _target_ genome.
-- _**one-to-one**_ (O2O) Alignment where regions of the _target_ and _query_ genomes are used at most once.
+The pipeline can generate four kinds of outputs, called _many-to-many_, _many-to-one_, _one-to-many_ and _one-to-one_, depending on whether sequences of one genome are allowed match the other genome multiple times or not.
 
 These alignments are output in [MAF](https://genome.ucsc.edu/FAQ/FAQformat.html#format5) format, and optional line plot representations are output in PNG format.
 
