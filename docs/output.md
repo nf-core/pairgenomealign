@@ -18,6 +18,18 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 
 Each _query_ genome, is aligned to the _target_ genome, and each alignment is visualised with dot plots. The output file names are constructed by concatenating the _target_ and _query_ sample identifiers with a `___` separator (three underscores), to faciliate re-extraction of the IDs from file names.
 
+### Assembly statistics
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `assemblyscan/`
+  - `*.json` contains the statistics collected with the [`assembly-scan`](https://github.com/rpetit3/assembly-scan) software.
+
+</details>
+
+Basic statistics on nucleotide content and contig length are collected for aligned genome for later plotting with MultiQC.
+
 ### Alignments
 
 <details markdown="1">
@@ -71,6 +83,7 @@ The poly-N regions longer than 9 bases in each genome sequence often indicate co
   - `multiqc_report.html`: a standalone HTML file that can be viewed in your web browser.
   - `multiqc_data/`: directory containing parsed statistics from the different tools used in the pipeline.
   - `multiqc_plots/`: directory containing static images from the report in various formats.
+  - `assemblyscan_plot_data`: GC content and contig length statistics parsed from `assemblyscan` for MultiQC with a local module.
 
 </details>
 

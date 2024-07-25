@@ -5,7 +5,7 @@
 */
 
 include { ASSEMBLYSCAN                     } from '../modules/nf-core/assemblyscan/main'
-include { CUSTOMMODULE                     } from '../modules/local/custommodule'
+include { MULTIQC_ASSEMBLYSCAN_PLOT_DATA   } from '../modules/local/multiqc_assemblyscan_plot_data'
 include { PAIRALIGN_M2M                    } from '../subworkflows/local/pairalign_m2m/main'
 include { SEQTK_CUTN as CUTN_TARGET        } from '../modules/nf-core/seqtk/cutn/main'
 include { SEQTK_CUTN as CUTN_QUERY         } from '../modules/nf-core/seqtk/cutn/main'
@@ -49,7 +49,7 @@ workflow PAIRGENOMEALIGN {
         ch_samplesheet
     )
     // Parse assembly-scan's JSON for MultiQC
-    CUSTOMMODULE (
+    MULTIQC_ASSEMBLYSCAN_PLOT_DATA (
         ASSEMBLYSCAN.out.json.collect{it[1]}
     )
 
@@ -121,7 +121,7 @@ workflow PAIRGENOMEALIGN {
 
     ch_multiqc_files = ch_multiqc_files
         .mix(ch_workflow_summary.collectFile(name: 'workflow_summary_mqc.yaml'))
-        .mix(CUSTOMMODULE.out.tsv)
+        .mix(MULTIQC_ASSEMBLYSCAN_PLOT_DATA.out.tsv)
         .mix(pairalign_out.multiqc)
         .mix(ch_collated_versions)
         .mix(
