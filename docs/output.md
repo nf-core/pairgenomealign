@@ -59,7 +59,10 @@ Genomes are aligned witn [`lastal`](https://gitlab.com/mcfrith/last/-/blob/main/
 
 </details>
 
-Dot plots representing the pairwise genome alignments, produced with the [`last-dotplot`](https://gitlab.com/mcfrith/last/-/blob/main/doc/last-dotplot.rst) tool.
+Dot plots representing the pairwise genome alignments, produced with the [`last-dotplot`](https://gitlab.com/mcfrith/last/-/blob/main/doc/last-dotplot.rst) tool. In the one-to-one alignment example below, the `hg38` human genome (_target_) is represented on the horizontal axis and a monkey genopme (_Macaca mulatta_ accession number `GCA\_003339765.3`) on the vertical axis (_query_). Regions containing unknown (`N`) sequences are on pink background. Forward (+/+) alignments are plotted in red and reverse (+/– or –/+) in blue. _Target_ (human) contigs are displayed in their original order.  _Query_ contigs (monkey) are reordered and possibly reverse-complemented to diagonalise the plot as much as possible. The names of reverse-complemented contigs are printed in blue.
+
+ ![Example of a dot-plot produced by the pipeline after aligning human and macaque genomes](images/Homo_sapiens_GCA_000001405.29_GRCh38.p14___Macaca_mulatta_GCA_003339765.3.o2o_plt.png
+ "Human–Monkey comparison") 
 
 ### `N` regions
 
