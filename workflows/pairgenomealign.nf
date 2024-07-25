@@ -136,8 +136,6 @@ workflow PAIRGENOMEALIGN {
         ch_multiqc_config.toList(),
         ch_multiqc_custom_config.toList(),
         ch_multiqc_logo.toList(),
-        [],
-        []
     )
 
     emit:
