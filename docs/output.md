@@ -61,7 +61,7 @@ Genomes are aligned witn [`lastal`](https://gitlab.com/mcfrith/last/-/blob/main/
 
 Dot plots representing the pairwise genome alignments, produced with the [`last-dotplot`](https://gitlab.com/mcfrith/last/-/blob/main/doc/last-dotplot.rst) tool. In the one-to-one alignment example below, the `hg38` human genome (_target_) is represented on the horizontal axis and a monkey genopme (_Macaca mulatta_ accession number `GCA\_003339765.3`) on the vertical axis (_query_). Regions containing unknown (`N`) sequences are on pink background. Forward (+/+) alignments are plotted in red and reverse (+/– or –/+) in blue. _Target_ (human) contigs are displayed in their original order. _Query_ contigs (monkey) are reordered and possibly reverse-complemented to diagonalise the plot as much as possible. The names of reverse-complemented contigs are printed in blue.
 
-![Example of a dot-plot produced by the pipeline after aligning human and macaque genomes](images/Homo_sapiens_GCA_000001405.29_GRCh38.p14___Macaca_mulatta_GCA_003339765.3.o2o_plt.png "Human–Monkey comparison") 
+![Example of a dot-plot produced by the pipeline after aligning human and macaque genomes](images/Homo_sapiens_GCA_000001405.29_GRCh38.p14___Macaca_mulatta_GCA_003339765.3.o2o_plt.png "Human–Monkey comparison")
 
 ### `N` regions
 
@@ -99,7 +99,7 @@ The example MultiQC plots below were generated on this pipeline's full test data
 
 The pipeline reports the base content of every query genome, like in the example below:
 
-![Example of a base content report for primate genomes](images/mqc_base_content_summary-pct.png "Primate genome base content") 
+![Example of a base content report for primate genomes](images/mqc_base_content_summary-pct.png "Primate genome base content")
 
 #### Contig length statistics
 
@@ -111,13 +111,13 @@ Contig length statistics can be displayed by MultiQC as violin plots.
 
 Alignment parameters computed by `last-train` can be displayed by MultiQC as violin plots.
 
-![Example of alignment parameters for primate genomes aligned to the human genome](images/mqc_train-stats.png "Alignment parameters") 
+![Example of alignment parameters for primate genomes aligned to the human genome](images/mqc_train-stats.png "Alignment parameters")
 
 #### Alignment
 
 Alignment statistics can be displayed by MultiQC as violin plots.
 
-![Example of alignment statistics for primate genomes aligned to the human genome](images/mqc_last_o2o-stats.png "Alignment statistics") 
+![Example of alignment statistics for primate genomes aligned to the human genome](images/mqc_last_o2o-stats.png "Alignment statistics")
 
 ### Pipeline information
 
