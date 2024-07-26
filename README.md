@@ -21,7 +21,7 @@
 
 **nf-core/pairgenomealign** is a bioinformatics pipeline that aligns one or more _query_ genomes to a _target_ genome, and plots pairwise representations.
 
-<img src= "docs/images/pairgenomealgn-logo.png">
+ ![Tubemap workflow summary](docs/images/pairgenomealign-tubemap.png "Tubemap workflow summary") 
 
 The pipeline can generate four kinds of outputs, called _many-to-many_, _many-to-one_, _one-to-many_ and _one-to-one_, depending on whether sequences of one genome are allowed match the other genome multiple times or not.
 
