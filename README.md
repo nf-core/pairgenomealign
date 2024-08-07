@@ -72,7 +72,11 @@ For more details about the output files and reports, please refer to the
 
 We thank the following people for their extensive assistance in the development of this pipeline:
 
-- [Mahdi Mohammed](https://github.com/U13bs1125): ported the original pipeline to _nf-core_ template 2.14.x.
+- [Mahdi Mohammed](https://github.com/U13bs1125) ported the original pipeline to _nf-core_ template 2.14.x.
+- [Martin Frith](https://github.com/mcfrith/), the author of LAST, gave us extensive feedback and advices.
+- [Michael Mansfield](https://github.com/mjmansfi) tested the pipeline and provided critical comments.
+- [Aleksandra Bliznina](https://github.com/aleksandrabliznina) contributed to the creation of the initial `last/*` modules.
+- [Jiashun Miao](https://github.com/miaojiashun) and [Huyen Pham](https://github.com/ngochuyenpham) tested the pipeline on vertebrate genomes.
 
 ## Contributions and Support
 
