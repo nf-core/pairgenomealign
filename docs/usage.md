@@ -47,12 +47,6 @@ Please see the [parameter documentation](https://nf-co.re/pairgenomealign/parame
 
 - The `last-train` commands runs with `--revsym` as the DNA strands play equivalent roles in the studied genomes.
 
-- The `lastdb` command takes all CPU cores available (`lastdb -P0`). Note that
-  when using more than one core, the output of `lastdb` may vary, causing the
-  order of tied positions to change. To prevent this to happen, you can pass a
-  nextflow parameter file to the pipeline that reduces the number of CPUs
-  allocated to `LAST_LASTDB` to 1.
-
 ## Running the pipeline
 
 The typical command for running the pipeline is as follows:
