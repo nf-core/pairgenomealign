@@ -27,14 +27,14 @@
                     "type": "string",
                     "pattern": "^\\S+\\.fn?a(sta)?(\\.gz)?$",
                     "format": "file-path",
-                    "description": "Path to FASTA genome file for the target genome.",
+                    "description": "Path or URL to a FASTA genome file for the _target_ genome.",
                     "fa_icon": "far fa-file-code"
                 },
                 "targetName": {
                     "type": "string",
                     "default": "target",
-                    "help_text": "By default the LAST index is named `target` and the ouput files are named from the query IDs. Use this option to provide a name that will be used for the LAST index and that will be prefixed to the query IDs with a `___` separator.",
-                    "description": "Target genome name"
+                    "help_text": "By default the _target_ genome is named `target` and this name is concatenated with the sample IDs using `___` as a separator to construct alignment file names. Use this option to provide a more informative name for the target genome.",
+                    "description": "Target genome name."
                 },
                 "outdir": {
                     "type": "string",
@@ -64,14 +64,15 @@
             "properties": {
                 "m2m": {
                     "type": "boolean",
-                    "description": "make a many to many alignment",
+                    "description": "Make a many to many alignment",
+                    "help_text": "This adds time and can comsume considerable amount of space; use only if you need that data, for instance in the case of a self-alignment",
                     "fa_icon": "fas fa-arrows-alt"
                 },
                 "seed": {
                     "type": "string",
-                    "enum": ["YASS", "NEAR", "MAM8", "RY128", "PSEUDO"],
+                    "enum": ["YASS", "NEAR", "MAM8", "RY128"],
                     "help_text": "LAST creates a database of seed sequences in the _target_ genome, and provides different ways to generate these seeds. The default (`YASS`) searches for long-and-weak similarities that allow for mismatches but not gaps. Among alternatives, there are `NEAR` for short-and-strong (near-identical) similarities with many gaps (insertions and deletions), `MAM8` to find weak similarities with high sensitivity, but low speed and high memory usage, or `RY128` that reduces run time and memory use, by only seeking seeds at ~1/128 of positions in each sequence, which is useful when the purpose of running this pipeline is only to generate whole-genome dotplots, or when sensitivity for tiny fragments may be unnecessary or undesirable. See <https://gitlab.com/mcfrith/last/-/blob/main/doc/last-seeds.rst> for details.",
-                    "description": "Selects the name of the LAST seed.",
+                    "description": "Select the the LAST seed to index the _target_ genome.",
                     "default": "YASS",
                     "fa_icon": "fas fa-seedling"
                 },
@@ -83,19 +84,19 @@
                 "lastal_args": {
                     "type": "string",
                     "default": "-C2 -D1e9",
-                    "description": "Arguments passed to both last-train and lastal.",
+                    "description": "Arguments passed to both `last-train` and `lastal`.",
                     "fa_icon": "fas fa-align-center"
                 },
                 "lastal_extr_args": {
                     "type": "string",
-                    "description": "(Arguments passed only to lastal (useful when they are not recognised by last-train).",
+                    "description": "Arguments passed only to `lastal` (useful when they are not recognised by `last-train`).",
                     "fa_icon": "fas fa-align-center"
                 },
                 "last_split_mismap": {
                     "type": "string",
                     "default": 0.00001,
                     "fa_icon": "fas fa-cut",
-                    "description": "Mismap probability cutoff for last-split."
+                    "description": "Mismap probability cutoff for `last-split`."
                 }
             },
             "fa_icon": "fas fa-cogs"
@@ -108,7 +109,7 @@
             "properties": {
                 "dotplot_options": {
                     "type": "string",
-                    "description": "Extra arguments passed to the last-dotplot program to customise the output.  See <https://gitlab.com/mcfrith/last/-/blob/main/doc/last-dotplot.rst>.",
+                    "description": "Extra arguments passed to `last-dotplot` to customise the output. See <https://gitlab.com/mcfrith/last/-/blob/main/doc/last-dotplot.rst>.",
                     "fa_icon": "fas fa-cog"
                 },
                 "skip_dotplot_o2m": {
