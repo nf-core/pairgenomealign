@@ -56,6 +56,31 @@
                 }
             }
         },
+        "indexing_options": {
+            "title": "Indexing options",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "fa_icon": "fas fa-database",
+            "properties": {
+                "seed": {
+                    "type": "string",
+                    "enum": ["YASS", "NEAR", "MAM8", "RY128"],
+                    "help_text": "LAST creates a database of seed sequences in the _target_ genome, and provides different ways to generate these seeds. The default (`YASS`) searches for long-and-weak similarities that allow for mismatches but not gaps. Among alternatives, there are `NEAR` for short-and-strong (near-identical) similarities with many gaps (insertions and deletions), `MAM8` to find weak similarities with high sensitivity, but low speed and high memory usage, or `RY128` that reduces run time and memory use, by only seeking seeds at ~1/128 of positions in each sequence, which is useful when the purpose of running this pipeline is only to generate whole-genome dotplots, or when sensitivity for tiny fragments may be unnecessary or undesirable. See <https://gitlab.com/mcfrith/last/-/blob/main/doc/last-seeds.rst> for details.",
+                    "description": "Select the the LAST seed to index the _target_ genome.",
+                    "default": "YASS",
+                    "fa_icon": "fas fa-seedling"
+                },
+                "softmask": {
+                    "type": "string",
+                    "enum": ["tantan", "original"],
+                    "help_text": "In this pipeline, letters soft-masked in lowercase are excluded from indexing (`lastdb -c`).  By default, the original mask is removed and a new one is made with an internal verison of the “tantan” tool.  Set this option to `original` to keep the orininal soft-masking.  See <https://gitlab.com/mcfrith/last/-/blob/main/doc/lastdb.rst> for details.",
+                    "description": "Customise the way to mask the _target_ genome.",
+                    "default": "tantan",
+                    "fa_icon": "fas fa-theater-masks"
+                }
+            }
+        },
         "alignment_options": {
             "title": "Alignment options",
             "type": "object",
@@ -67,14 +92,6 @@
                     "description": "Make a many to many alignment",
                     "help_text": "This adds time and can comsume considerable amount of space; use only if you need that data, for instance in the case of a self-alignment",
                     "fa_icon": "fas fa-arrows-alt"
-                },
-                "seed": {
-                    "type": "string",
-                    "enum": ["YASS", "NEAR", "MAM8", "RY128"],
-                    "help_text": "LAST creates a database of seed sequences in the _target_ genome, and provides different ways to generate these seeds. The default (`YASS`) searches for long-and-weak similarities that allow for mismatches but not gaps. Among alternatives, there are `NEAR` for short-and-strong (near-identical) similarities with many gaps (insertions and deletions), `MAM8` to find weak similarities with high sensitivity, but low speed and high memory usage, or `RY128` that reduces run time and memory use, by only seeking seeds at ~1/128 of positions in each sequence, which is useful when the purpose of running this pipeline is only to generate whole-genome dotplots, or when sensitivity for tiny fragments may be unnecessary or undesirable. See <https://gitlab.com/mcfrith/last/-/blob/main/doc/last-seeds.rst> for details.",
-                    "description": "Select the the LAST seed to index the _target_ genome.",
-                    "default": "YASS",
-                    "fa_icon": "fas fa-seedling"
                 },
                 "lastal_params": {
                     "type": "string",
@@ -371,6 +388,9 @@
     "allOf": [
         {
             "$ref": "#/definitions/input_output_options"
+        },
+        {
+            "$ref": "#/definitions/indexing_options"
         },
         {
             "$ref": "#/definitions/alignment_options"
