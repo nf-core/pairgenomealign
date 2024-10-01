@@ -38,7 +38,7 @@ An [example samplesheet](../assets/samplesheet_full.csv) has been provided with 
 
 ## Options
 
-The parameters are described in details in the [online documentation](https://nf-co.re/pairgenomealign/parameters). Epert users can pass extra command line arguments to LAST commands. Apart from this the following options are of special importance:
+The parameters are described in details in the [online documentation](https://nf-co.re/pairgenomealign/parameters). Expert users can pass extra command line arguments to LAST commands. Apart from this the following options are of special importance:
 
 - `--m2m` enables the computation of the _many-to-many_ alignment, which is the only one to be useful in the case of self-alignments, but which on the other hand can exhaust computing resources in the case of very large genomes.
 - Likewise, when comparing very similar and repetitive genomes (like two vertebrate genomes from the same species), any dotplot other than for the _one-to-one_ alignment will be heavy to compute and useless anyway, because the whole page will be filled with dots. The `--skip_dotplot_*` options are there to solve that problem.
