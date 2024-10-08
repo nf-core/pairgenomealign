@@ -1,2 +1,20 @@
+bump_version: null
+lint:
+  files_unchanged:
+    - assets/nf-core-pairgenomealign_logo_light.png
+    - docs/images/nf-core-pairgenomealign_logo_light.png
+    - docs/images/nf-core-pairgenomealign_logo_dark.png
+nf_core_version: 3.0.0
+org_path: null
 repository_type: pipeline
-nf_core_version: "2.14.1"
+template:
+  author: charles-plessy
+  description: Pairwise alignment pipeline (genome to genome or reads to genome)
+  force: false
+  is_nfcore: true
+  name: pairgenomealign
+  org: nf-core
+  outdir: .
+  skip_features: null
+  version: 1.1.0
+update: null
