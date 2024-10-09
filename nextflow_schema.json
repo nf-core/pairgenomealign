@@ -74,7 +74,7 @@
                 "softmask": {
                     "type": "string",
                     "enum": ["tantan", "original"],
-                    "help_text": "In this pipeline, letters soft-masked in lowercase are excluded from indexing (`lastdb -c`).  By default, the original mask is removed and a new one is made with an internal verison of the “tantan” tool.  Set this option to `original` to keep the orininal soft-masking.  See <https://gitlab.com/mcfrith/last/-/blob/main/doc/lastdb.rst> for details.",
+                    "help_text": "In this pipeline, letters soft-masked in lowercase are excluded from indexing (`lastdb -c`).  By default, the original mask is removed and a new one is made with an internal version of the “tantan” tool.  Set this option to `original` to keep the original soft-masking.  See <https://gitlab.com/mcfrith/last/-/blob/main/doc/lastdb.rst> for details.",
                     "description": "Customise the way to mask the _target_ genome.",
                     "default": "tantan",
                     "fa_icon": "fas fa-theater-masks"
