@@ -9,8 +9,6 @@
 ----------------------------------------------------------------------------------------
 */
 
-nextflow.enable.dsl = 2
-
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     IMPORT FUNCTIONS / MODULES / SUBWORKFLOWS / WORKFLOWS
@@ -20,7 +18,6 @@ nextflow.enable.dsl = 2
 include { PAIRGENOMEALIGN  } from './workflows/pairgenomealign'
 include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_pairgenomealign_pipeline'
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_pairgenomealign_pipeline'
-
 include { getGenomeAttribute      } from './subworkflows/local/utils_nfcore_pairgenomealign_pipeline'
 
 /*
@@ -57,10 +54,8 @@ workflow NFCORE_PAIRGENOMEALIGN {
         samplesheet,
         target_genome
     )
-
     emit:
     multiqc_report = PAIRGENOMEALIGN.out.multiqc_report // channel: /path/to/multiqc_report.html
-
 }
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -71,13 +66,11 @@ workflow NFCORE_PAIRGENOMEALIGN {
 workflow {
 
     main:
-
     //
     // SUBWORKFLOW: Run initialisation tasks
     //
     PIPELINE_INITIALISATION (
         params.version,
-        params.help,
         params.validate_params,
         params.monochrome_logs,
         args,
@@ -98,7 +91,6 @@ workflow {
         PIPELINE_INITIALISATION.out.samplesheet,
         ch_target
     )
-
     //
     // SUBWORKFLOW: Run completion tasks
     //
