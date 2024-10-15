@@ -5,14 +5,54 @@
         "https://github.com/nf-core/modules.git": {
             "modules": {
                 "nf-core": {
-                    "fastqc": {
+                    "assemblyscan": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "3f5420aa22e00bd030a2556dfdffc9e164ec0ec5",
+                        "installed_by": ["modules"]
+                    },
+                    "gfastats": {
+                        "branch": "master",
+                        "git_sha": "3f5420aa22e00bd030a2556dfdffc9e164ec0ec5",
+                        "installed_by": ["modules"]
+                    },
+                    "last/dotplot": {
+                        "branch": "master",
+                        "git_sha": "23a928df77b20861eac09ca998029ad47a7155cb",
+                        "installed_by": ["modules"]
+                    },
+                    "last/lastal": {
+                        "branch": "master",
+                        "git_sha": "882e20c8a18270f0d391a931cef4b80d1a0eeea5",
+                        "installed_by": ["modules"]
+                    },
+                    "last/lastdb": {
+                        "branch": "master",
+                        "git_sha": "3fa9017b55b9c26e1c327ca189d3942b55f4d496",
+                        "installed_by": ["modules"]
+                    },
+                    "last/mafswap": {
+                        "branch": "master",
+                        "git_sha": "3fa9017b55b9c26e1c327ca189d3942b55f4d496",
+                        "installed_by": ["modules"]
+                    },
+                    "last/split": {
+                        "branch": "master",
+                        "git_sha": "882e20c8a18270f0d391a931cef4b80d1a0eeea5",
+                        "installed_by": ["modules"]
+                    },
+                    "last/train": {
+                        "branch": "master",
+                        "git_sha": "4e5f4687318f24ba944a13609d3ea6ebd890737d",
                         "installed_by": ["modules"]
                     },
                     "multiqc": {
                         "branch": "master",
                         "git_sha": "cf17ca47590cc578dfb47db1c2a44ef86f89976d",
+                        "installed_by": ["modules"]
+                    },
+                    "seqtk/cutn": {
+                        "branch": "master",
+                        "git_sha": "7f88aae93c69586c0789322b77743ee0ef469502",
                         "installed_by": ["modules"]
                     }
                 }

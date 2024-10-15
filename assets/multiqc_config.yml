@@ -13,3 +13,48 @@ report_section_order:
 export_plots: true
 
 disable_version_detection: true
+
+custom_data:
+  train:
+    file_format: "tsv"
+    section_name: "Training parameter statistics"
+    plot_type: "table"
+    headers:
+      id:
+        title: "ID"
+        description: "target___query"
+      substitution_percent_identity:
+        title: "Substitution Percent Identity"
+      "last -t":
+        title: "Temperature"
+        description: "Parameter for converting between scores and probability ratios. This affects the column ambiguity estimates. A score is converted to a probability ratio by this formula: exp(score / TEMPERATURE). The default value is 1/lambda, where lambda is the scale factor of the scoring matrix, which is calculated by the method of Yu and Altschul (YK Yu et al. 2003, PNAS 100(26):15688-93)."
+      "last -a":
+        title: "Gap existence"
+        description: "Gap existence cost (lastal -a)"
+      "last -b":
+        title: "Gap extension"
+        description: "Gap extension cost (lastal -b)"
+      "last -A":
+        title: "Insertion existence"
+        description: "Insertion existence cost (lastal -A)"
+      "last -B":
+        title: "Insertion extension"
+        description: "Insertion extension cost (lastal -B)"
+  last_o2o:
+    file_format: "tsv"
+    section_name: "Alignment statistics"
+    plot_type: "table"
+    headers:
+      id:
+        title: "ID"
+        description: "target__query"
+      TotalAlignmentLength:
+        title: "Total alignment length"
+      PercentSimilarity:
+        title: "Percent similarity"
+
+sp:
+  last_o2o:
+    fn: "*o2o_aln.tsv"
+  train:
+    fn: "*train.tsv"

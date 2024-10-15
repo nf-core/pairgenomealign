@@ -26,7 +26,6 @@ include { getGenomeAttribute      } from './subworkflows/local/utils_nfcore_pair
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-// TODO nf-core: Remove this line if you don't need a FASTA file
 //   This is an example of how to use getGenomeAttribute() to fetch parameters
 //   from igenomes.config using `--genome`
 params.fasta = getGenomeAttribute('fasta')
@@ -44,6 +43,7 @@ workflow NFCORE_PAIRGENOMEALIGN {
 
     take:
     samplesheet // channel: samplesheet read in from --input
+    target_genome // channel: genome file read in from --target
 
     main:
 
@@ -51,7 +51,8 @@ workflow NFCORE_PAIRGENOMEALIGN {
     // WORKFLOW: Run pipeline
     //
     PAIRGENOMEALIGN (
-        samplesheet
+        samplesheet,
+        target_genome
     )
     emit:
     multiqc_report = PAIRGENOMEALIGN.out.multiqc_report // channel: /path/to/multiqc_report.html
@@ -77,11 +78,18 @@ workflow {
         params.input
     )
 
+    channel
+        .value( params.target )
+        .map { filename -> file(filename, checkIfExists: true) }
+        .map { file_obj -> [ [id:params.targetName], file_obj] }
+        .set { ch_target }
+
     //
     // WORKFLOW: Run main workflow
     //
     NFCORE_PAIRGENOMEALIGN (
-        PIPELINE_INITIALISATION.out.samplesheet
+        PIPELINE_INITIALISATION.out.samplesheet,
+        ch_target
     )
     //
     // SUBWORKFLOW: Run completion tasks

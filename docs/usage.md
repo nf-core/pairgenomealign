@@ -6,58 +6,56 @@
 
 ## Introduction
 
-<!-- TODO nf-core: Add documentation about anything specific to running your pipeline. For general topics, please point to (and add to) the main nf-core website. -->
+You need at least two genomes, a _target_, which will be indexed, and one or more _queries_, which will be aligned to the _target_. Paths to the genome files for the _queries_ are passed as samplesheets through the `--input` parameter and the path to the genome file of the _target_ is passed with the `--target` parameter. Note that the computation is not symmetric: inverting _target_ and _query_ does not lead to strictly identical results.
 
-## Samplesheet input
+## Input
 
-You will need to create a samplesheet with information about the samples you would like to analyse before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row as shown in the examples below.
+### Target genome
 
-```bash
---input '[path to samplesheet file]'
-```
+The target genome sequence is taken from a FASTA-formated file passed by the `--target` parameter. Its masking information (sequences in lower-case letters) is first discarded, and then simple repeats (like `cacacacacacacacac`) are converted to lower-case (`lastdb -R01`). The lowercased letters in the _target_ **and** in the _query_ will be excluded for initial matches (`lastdb -c`). Both strands of the genome are indexed (`lastdb -S2`).
 
-### Multiple runs of the same sample
+### Samplesheet for query genome(s)
 
-The `sample` identifiers have to be the same when you have re-sequenced the same sample more than once e.g. to increase sequencing depth. The pipeline will concatenate the raw reads before performing any downstream analysis. Below is an example for the same sample sequenced across 3 lanes:
+You will need to create a samplesheet with information about the samples you would like to analyse before running the pipeline. Use the `--input` parameter to specify its location. It has to be a comma-separated file with 2 columns, a header row and single or multiple sample rows (genome samples) as shown in the examples below.
 
-```csv title="samplesheet.csv"
-sample,fastq_1,fastq_2
-CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
-CONTROL_REP1,AEG588A1_S1_L003_R1_001.fastq.gz,AEG588A1_S1_L003_R2_001.fastq.gz
-CONTROL_REP1,AEG588A1_S1_L004_R1_001.fastq.gz,AEG588A1_S1_L004_R2_001.fastq.gz
-```
-
-### Full samplesheet
-
-The pipeline will auto-detect whether a sample is single- or paired-end using the information provided in the samplesheet. The samplesheet can have as many columns as you desire, however, there is a strict requirement for the first 3 columns to match those defined in the table below.
-
-A final samplesheet file consisting of both single- and paired-end data may look something like the one below. This is for 6 samples, where `TREATMENT_REP3` has been sequenced twice.
+First, prepare a samplesheet with your input data that looks as follows:
 
 ```csv title="samplesheet.csv"
-sample,fastq_1,fastq_2
-CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
-CONTROL_REP2,AEG588A2_S2_L002_R1_001.fastq.gz,AEG588A2_S2_L002_R2_001.fastq.gz
-CONTROL_REP3,AEG588A3_S3_L002_R1_001.fastq.gz,AEG588A3_S3_L002_R2_001.fastq.gz
-TREATMENT_REP1,AEG588A4_S4_L003_R1_001.fastq.gz,
-TREATMENT_REP2,AEG588A5_S5_L003_R1_001.fastq.gz,
-TREATMENT_REP3,AEG588A6_S6_L003_R1_001.fastq.gz,
-TREATMENT_REP3,AEG588A6_S6_L004_R1_001.fastq.gz,
+sample,fasta
+Query_1,query1_assembly.fasta
+Query_2,query2_assembly.fasta
+…
 ```
 
-| Column    | Description                                                                                                                                                                            |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sample`  | Custom sample name. This entry will be identical for multiple sequencing libraries/runs from the same sample. Spaces in sample names are automatically converted to underscores (`_`). |
-| `fastq_1` | Full path to FastQ file for Illumina short reads 1. File has to be gzipped and have the extension ".fastq.gz" or ".fq.gz".                                                             |
-| `fastq_2` | Full path to FastQ file for Illumina short reads 2. File has to be gzipped and have the extension ".fastq.gz" or ".fq.gz".                                                             |
+Each row represents a fasta file. Use multiple rows as in the example above to accomodate multiple query genomes.
 
-An [example samplesheet](../assets/samplesheet.csv) has been provided with the pipeline.
+| Column   | Description                                                                                  |
+| -------- | -------------------------------------------------------------------------------------------- |
+| `sample` | Custom sample name. Spaces in sample names are automatically converted to underscores (`_`). |
+| `fasta`  | Full path to Fasta/fa/gz file                                                                |
+
+An [example samplesheet](../assets/samplesheet_full.csv) has been provided with the pipeline.
+
+## Options
+
+The parameters are described in details in the [online documentation](https://nf-co.re/pairgenomealign/parameters). Expert users can pass extra command line arguments to LAST commands. Apart from this the following options are of special importance:
+
+- `--m2m` enables the computation of the _many-to-many_ alignment, which is the only one to be useful in the case of self-alignments, but which on the other hand can exhaust computing resources in the case of very large genomes.
+- Likewise, when comparing very similar and repetitive genomes (like two vertebrate genomes from the same species), any dotplot other than for the _one-to-one_ alignment will be heavy to compute and useless anyway, because the whole page will be filled with dots. The `--skip_dotplot_*` options are there to solve that problem.
+
+## Fixed arguments (taken from the [LAST cookbook][] and the [LAST tuning][] manual)
+
+[LAST cookbook]: https://gitlab.com/mcfrith/last/-/blob/main/doc/last-cookbook.rst
+[LAST tuning]: https://gitlab.com/mcfrith/last/-/blob/main/doc/last-tuning.rst
+
+- The `last-train` commands runs with `--revsym` as the DNA strands play equivalent roles in the studied genomes.
 
 ## Running the pipeline
 
 The typical command for running the pipeline is as follows:
 
 ```bash
-nextflow run nf-core/pairgenomealign --input ./samplesheet.csv --outdir ./results --genome GRCh37 -profile docker
+nextflow run nf-core/pairgenomealign --target ./target_genome_file.fa --input ./samplesheet.csv --outdir ./results -profile docker
 ```
 
 This will launch the pipeline with the `docker` configuration profile. See below for more information about profiles.
@@ -144,6 +142,14 @@ If `-profile` is not specified, the pipeline will run locally and expect all sof
 - `test`
   - A profile with a complete configuration for automated testing
   - Includes links to test data so needs no other parameters
+- `test_small`
+  - A profile with a complete configuration for small-scale testing
+  - Includes links to two fungal geonomes at NCBI so needs no other parameters
+  - Should take less than 5 min to run and produce meaningful plots
+- `test_full`
+  - A profile with a complete configuration for automated testing at large-scale
+  - Includes links to primate genomes at NCBI so needs no other parameters
+  - Requires larger computational power, useful for stress-testing and real-scale example results
 - `docker`
   - A generic configuration profile to be used with [Docker](https://docker.com/)
 - `singularity`
