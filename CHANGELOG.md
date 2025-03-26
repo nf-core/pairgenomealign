@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Changed`
 
-- [PR #]() Updated the JSON schema to make input validation stricter, thus preventing more errors during the pipeline run.
+- [PR #51](https://github.com/nf-core/pairgenomealign/pull/51) Updated the JSON schema to make input validation stricter, thus preventing more errors during the pipeline run.
 
 ## [v2.0.0](https://github.com/nf-core/pairgenomealign/releases/tag/2.0.0) "Naga imo" - [February 5th, 2025]
 
