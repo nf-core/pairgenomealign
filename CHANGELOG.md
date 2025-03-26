@@ -3,6 +3,12 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Dev
+
+### `Changed`
+
+- [PR #]() Updated the JSON schema to make input validation stricter, thus preventing more errors during the pipeline run.
+
 ## [v2.0.0](https://github.com/nf-core/pairgenomealign/releases/tag/2.0.0) "Naga imo" - [February 5th, 2025]
 
 ### `Breaking changes`

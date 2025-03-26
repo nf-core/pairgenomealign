@@ -17,13 +17,13 @@
                     "format": "file-path",
                     "exists": true,
                     "schema": "assets/schema_input.json",
-                    "mimetype": "text/csv",
-                    "pattern": "^\\S+\\.csv$",
+                    "pattern": "^\\S+\\.(csv|tsv|json|yaml|yml)$",
                     "description": "Path to comma-separated file containing information about the samples in the experiment.",
                     "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row. See [usage docs](https://nf-co.re/pairgenomealign/usage#samplesheet-input).",
                     "fa_icon": "fas fa-file-csv"
                 },
                 "target": {
+                    "exists": true,
                     "type": "string",
                     "pattern": "^\\S+\\.fn?a(sta)?(\\.gz)?$",
                     "format": "file-path",
@@ -116,6 +116,7 @@
                 },
                 "lastal_params": {
                     "type": "string",
+                    "exists": true,
                     "description": "Path to a file containing alignment parameters or a scoring matrix. If this option is used, `last-train` will be skipped and alignment parameters will be the same for each query.",
                     "fa_icon": "far fa-file-alt"
                 },
@@ -152,22 +153,22 @@
                 },
                 "skip_dotplot_o2m": {
                     "type": "boolean",
-                    "description": "Do not generate the one-to-many alignment dot-plot.",
+                    "description": "This option tells the pipeline to not generate the one-to-many alignment dot-plot.",
                     "fa_icon": "fas fa-forward"
                 },
                 "skip_dotplot_o2o": {
                     "type": "boolean",
-                    "description": "Do not generate the one-to-one alignment dot-plot.",
+                    "description": "This option tells the pipeline to not generate the one-to-one alignment dot-plot.",
                     "fa_icon": "fas fa-forward"
                 },
                 "skip_dotplot_m2o": {
                     "type": "boolean",
-                    "description": "Do not generate the many-to-one alignment dot-plot.",
+                    "description": "This option tells the pipeline to not generate the many-to-one alignment dot-plot.",
                     "fa_icon": "fas fa-forward"
                 },
                 "skip_dotplot_m2m": {
                     "type": "boolean",
-                    "description": "Do not generate the many-to-many alignment dot-plot.",
+                    "description": "This option tells the pipeline to not generate the many-to-many alignment dot-plot.",
                     "fa_icon": "fas fa-forward"
                 }
             },
