@@ -75,10 +75,11 @@ workflow PAIRGENOMEALIGN {
 
     // Prefix query ids with target genome name before producing alignment files
     //
+    def pair_id_prefix = "${params.targetName}___"
     ch_querygenome_pairnames = ch_querygenome
-        .map { row -> [ [id: params.targetName + '___' + row[0].id] , row.tail() ] }
+        .map { row -> [ [id: pair_id_prefix + row[0].id] , row.tail() ] }
     ch_seqtk_cutn_query = CUTN_QUERY.out.bed
-        .map { row -> [ [id: params.targetName + '___' + row[0].id] , row.tail() ] }
+        .map { row -> [ [id: pair_id_prefix + row[0].id] , row.tail() ] }
 
     // Align with either the many-to-many or the many-to-one subworkflow
     // and collect the output under a fixed name
