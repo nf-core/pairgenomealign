@@ -3,6 +3,12 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v3.0.2](https://github.com/nf-core/pairgenomealign/releases/tag/3.0.2) "Tokoroten" - [tbd]
+
+### `Fixed`
+
+- Restore maximum tandem repeat unit length to 400 for genome masking, to prevent running out of memory on centromeric repeats. LASTs default changed to 100 in version 1638, causing a regression in this pipeline's v3.0.0 release ([#139](https://github.com/nf-core/pairgenomealign/issues/139))
+
 ## [v3.0.1](https://github.com/nf-core/pairgenomealign/releases/tag/3.0.1) "Tokoroten" - [June 29th 2026]
 
 ### `Fixed`
