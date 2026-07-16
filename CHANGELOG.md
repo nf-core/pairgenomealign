@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Fixed`
 
+- Restore maximum tandem repeat unit length to 400 for genome masking, to prevent running out of memory on centromeric repeats. LASTs default changed to 100 in version 1638, causing a regression in this pipeline's v3.0.0 release ([#139](https://github.com/nf-core/pairgenomealign/issues/139))
+- Restore missing `fasta` in the _target_ genome name indexed for CRAM files ([#140](https://github.com/nf-core/pairgenomealign/pull/140)).
+- Avoid collisions by adding `.cuts` to the name of the file defining the regions of more than 10 `N`s in the _target_ genome. ([#138](https://github.com/nf-core/pairgenomealign/pull/138)).
+- Fix blasttab+ export option by correcting Nextflow schema. Thanks, `@sapunyangkut` ([#141](https://github.com/nf-core/pairgenomealign/pull/141)).
+- Fix blasttab+ format by upgrading LAST to version 1652 (no other changes). For consistency, Samtools and Bcftools were also upgraded (no visible changes expected).
+
+### `Dependencies`
+
+| Dependency | Old version | New version |
+| ---------- | ----------- | ----------- |
+| `LAST`     | 1651        | 1652        |
+| `BCFTOOLS` | 1.23.1      | 1.24        |
+| `SAMTOOLS` | 1.23.1      | 1.24        |
+
 ## [v3.0.1](https://github.com/nf-core/pairgenomealign/releases/tag/3.0.1) "Tokoroten" - [June 29th 2026]
 
 ### `Fixed`
