@@ -102,7 +102,7 @@
                 "pipeline_info",
                 "pipeline_info/nf_core_pairgenomealign_software_mqc_versions.yml",
                 "targetgenome",
-                "targetgenome/MT192765.bed"
+                "targetgenome/MT192765.cuts.bed"
             ],
             [
                 "MT192765___contigs.o2o.maf.gz:md5,ff9255b020c829903a1e84d212646795",
@@ -128,10 +128,10 @@
                 "multiqc_contigs_length_statistics_plot.txt:md5,47ae2dc83d76ea6380b59f8bf0d75a80",
                 "multiqc_last_o2o.txt:md5,ef9b0686c73d09daeedd548a3194a4b6",
                 "multiqc_train.txt:md5,d785f7b0188b1239d0f1d40f0ef89871",
-                "MT192765.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                "MT192765.cuts.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
             ]
         ],
-        "timestamp": "2026-07-16T14:15:24.304804884",
+        "timestamp": "2026-07-16T15:47:22.75221941",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

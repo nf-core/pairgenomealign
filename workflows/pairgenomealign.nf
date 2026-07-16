@@ -56,7 +56,7 @@ workflow PAIRGENOMEALIGN {
     // Extract coordinates of poly-N regions; they are often contig boundaries in scaffolds
     //
     TARGETGENOME_CUTN (
-        ch_targetgenome
+        ch_targetgenome.map { meta, target -> [[id:meta.id + '.cuts'], target] }
     )
     CUTN_QUERY (
         ch_querygenome
