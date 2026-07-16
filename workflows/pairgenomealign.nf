@@ -49,7 +49,7 @@ workflow PAIRGENOMEALIGN {
     export_formats = params.export_aln_to.tokenize(',')
     def needs_genome = ['cram','bam','bcf','gff'].any { export_formats.contains(it) }
     if (params.multi_cram || needs_genome) {
-        FASTA_BGZIP_INDEX_DICT_SAMTOOLS( ch_targetgenome )
+        FASTA_BGZIP_INDEX_DICT_SAMTOOLS( ch_targetgenome.map { meta, target -> [[id:meta.id + '.fasta'], target] } )
         ch_targetgenome_indexed = FASTA_BGZIP_INDEX_DICT_SAMTOOLS.out.fasta_fai_gzi_dict.first()
     }
 
