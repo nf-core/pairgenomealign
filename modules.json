@@ -12,43 +12,43 @@
                     },
                     "htslib/bgziptabix": {
                         "branch": "master",
-                        "git_sha": "22edd7ce9462025093b25e3b55006f7720ff0d8e",
+                        "git_sha": "37f69c8ca3eb3d038a5d44f33a329e49f44bd4f2",
                         "installed_by": ["fasta_bgzip_index_dict_samtools"],
                         "patch": "modules/nf-core/htslib/bgziptabix/htslib-bgziptabix.diff"
                     },
                     "last/dotplot": {
                         "branch": "master",
-                        "git_sha": "e972519eb46cf42c31587bdfb663026e915d76b2",
+                        "git_sha": "a37e7925c5dbd382ddd23a1b3b7d6326449b1aa2",
                         "installed_by": ["modules"],
                         "patch": "modules/nf-core/last/dotplot/last-dotplot.diff"
                     },
                     "last/lastal": {
                         "branch": "master",
-                        "git_sha": "204a4fbb6b1087a3fd3dc9367740e8e19a869b55",
+                        "git_sha": "a37e7925c5dbd382ddd23a1b3b7d6326449b1aa2",
                         "installed_by": ["modules"],
                         "patch": "modules/nf-core/last/lastal/last-lastal.diff"
                     },
                     "last/lastdb": {
                         "branch": "master",
-                        "git_sha": "e972519eb46cf42c31587bdfb663026e915d76b2",
+                        "git_sha": "a37e7925c5dbd382ddd23a1b3b7d6326449b1aa2",
                         "installed_by": ["modules"],
                         "patch": "modules/nf-core/last/lastdb/last-lastdb.diff"
                     },
                     "last/mafconvert": {
                         "branch": "master",
-                        "git_sha": "9d3f43456cee409e1f70ccef8661b245fdda5069",
+                        "git_sha": "a37e7925c5dbd382ddd23a1b3b7d6326449b1aa2",
                         "installed_by": ["modules"],
                         "patch": "modules/nf-core/last/mafconvert/last-mafconvert.diff"
                     },
                     "last/split": {
                         "branch": "master",
-                        "git_sha": "204a4fbb6b1087a3fd3dc9367740e8e19a869b55",
+                        "git_sha": "a37e7925c5dbd382ddd23a1b3b7d6326449b1aa2",
                         "installed_by": ["modules"],
                         "patch": "modules/nf-core/last/split/last-split.diff"
                     },
                     "last/train": {
                         "branch": "master",
-                        "git_sha": "e972519eb46cf42c31587bdfb663026e915d76b2",
+                        "git_sha": "a37e7925c5dbd382ddd23a1b3b7d6326449b1aa2",
                         "installed_by": ["modules"],
                         "patch": "modules/nf-core/last/train/last-train.diff"
                     },
@@ -59,19 +59,19 @@
                     },
                     "samtools/dict": {
                         "branch": "master",
-                        "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+                        "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
                         "installed_by": ["fasta_bgzip_index_dict_samtools", "modules"],
                         "patch": "modules/nf-core/samtools/dict/samtools-dict.diff"
                     },
                     "samtools/faidx": {
                         "branch": "master",
-                        "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+                        "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
                         "installed_by": ["fasta_bgzip_index_dict_samtools", "modules"],
                         "patch": "modules/nf-core/samtools/faidx/samtools-faidx.diff"
                     },
                     "samtools/merge": {
                         "branch": "master",
-                        "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+                        "git_sha": "9339809fcb90af8a8b7051e6cd914894d5c52002",
                         "installed_by": ["modules"],
                         "patch": "modules/nf-core/samtools/merge/samtools-merge.diff"
                     },
