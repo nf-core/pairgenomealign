@@ -1,5 +1,6 @@
 Changes in component 'nf-core/last/train'
 'modules/nf-core/last/train/environment.yml' is unchanged
+'modules/nf-core/last/train/meta.yml' is unchanged
 Changes in 'last/train/main.nf':
 --- modules/nf-core/last/train/main.nf
 +++ modules/nf-core/last/train/main.nf
@@ -7,15 +8,14 @@ Changes in 'last/train/main.nf':
  
      conda "${moduleDir}/environment.yml"
      container "${workflow.containerEngine in ['singularity', 'apptainer'] && !task.ext.singularity_pull_docker_container
--        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/2e/2eb57450207840a7fba7f60b65239a86679bfcaa79fb5fba652dd41af2b3e1d9/data'
--        : 'community.wave.seqera.io/library/last:1651--c83f04148c23181f'}"
-+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/fc/fc775f66277d9ca6584b130ff24d9ddeaf2797f1729fadb6d73641dcaa685be7/data'
-+        : 'community.wave.seqera.io/library/bcftools_last_samtools_bzip2_pruned:93dbd1b10eecc490'}"
+-        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/05/05ff1dba1dcf86a28dd9d911ffcbc925175b370e77b5ea699ae421b8481556bc/data'
+-        : 'community.wave.seqera.io/library/last_gzip:40e65bc1d7d8624e'}"
++        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/62/62292ffa3ecc9230d6ad20b2537a2f4434a08908864c4c2c66f2d8667f031924/data'
++        : 'community.wave.seqera.io/library/bcftools_last_samtools_bzip2_pruned:562cda40b12e94c1'}"
  
      input:
      tuple val(meta), path(fastx)
 
-'modules/nf-core/last/train/meta.yml' is unchanged
 'modules/nf-core/last/train/tests/main.nf.test.snap' is unchanged
 'modules/nf-core/last/train/tests/main.nf.test' is unchanged
 ************************************************************

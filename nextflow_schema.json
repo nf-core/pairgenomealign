@@ -162,7 +162,7 @@
                     "type": "string",
                     "default": "no_export",
                     "description": "Convert the final _one-to-one_ alignment to a different format than MAF.",
-                    "pattern": "^((no_export|axt|bam|bcf|bed|blast|blasttab|blasttab+|chain|cram|gff|html|psl|sam|tab)?,?)*(?<!,)$",
+                    "pattern": "^((no_export|axt|bam|bcf|bed|blast|blasttab|blasttab\\+|chain|cram|gff|html|psl|sam|tab)?,?)*(?<!,)$",
                     "fa_icon": "fas fa-file-export",
                     "help_text": "Multiple formats separated with commas. Supported formats are `axt`, `bam`, `bcf`, `bed`, `blast`, `blasttab`, `blasttab+`, `chain`, `cram`, `gff`, `html`, `psl`, `sam` and `tab`. This is useful for downstream tools that do not parse MAF. The files in text format are always compressed with `gzip`."
                 },
