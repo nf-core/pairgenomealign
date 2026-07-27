@@ -1,0 +1,140 @@
+{
+    "-profile test": {
+        "content": [
+            {
+                "ALIGNMENT_DOTPLOT_M2O": {
+                    "last": 1652
+                },
+                "ALIGNMENT_DOTPLOT_O2O": {
+                    "last": 1652
+                },
+                "ALIGNMENT_EXP": {
+                    "last": 1652
+                },
+                "ALIGNMENT_LASTAL_M2O": {
+                    "last": 1652
+                },
+                "ALIGNMENT_LASTDB": {
+                    "last": 1652
+                },
+                "ALIGNMENT_SPLIT_O2O": {
+                    "last": 1652
+                },
+                "ALIGNMENT_TRAIN": {
+                    "last": 1652
+                },
+                "ASSEMBLYSCAN": {
+                    "assemblyscan": "1.0.0"
+                },
+                "CUTN_QUERY": {
+                    "seqtk": "1.4-r122"
+                },
+                "MULTIQC_ASSEMBLYSCAN_PLOT_DATA": {
+                    "jq": "1.7.1"
+                },
+                "TARGETGENOME_CUTN": {
+                    "seqtk": "1.4-r122"
+                },
+                "Workflow": {
+                    "nf-core/pairgenomealign": "v3.0.2"
+                }
+            },
+            [
+                "alignment",
+                "alignment/MT192765___contigs.m2o.png",
+                "alignment/MT192765___contigs.o2o.maf.gz",
+                "alignment/MT192765___contigs.o2o.matrix.txt",
+                "alignment/MT192765___contigs.o2o.png",
+                "alignment/MT192765___contigs.o2o.tsv",
+                "alignment/MT192765___contigs.sam.gz",
+                "alignment/MT192765___contigs.train",
+                "alignment/MT192765___contigs.train.tsv",
+                "alignment/MT192765___genome-OY074094.m2o.png",
+                "alignment/MT192765___genome-OY074094.o2o.maf.gz",
+                "alignment/MT192765___genome-OY074094.o2o.matrix.txt",
+                "alignment/MT192765___genome-OY074094.o2o.png",
+                "alignment/MT192765___genome-OY074094.o2o.tsv",
+                "alignment/MT192765___genome-OY074094.sam.gz",
+                "alignment/MT192765___genome-OY074094.train",
+                "alignment/MT192765___genome-OY074094.train.tsv",
+                "assemblyscan",
+                "assemblyscan/contigs.json",
+                "assemblyscan/genome-OY074094.json",
+                "cutn",
+                "cutn/contigs.bed",
+                "cutn/genome-OY074094.bed",
+                "multiqc",
+                "multiqc/assemblyscan_plot_data",
+                "multiqc/assemblyscan_plot_data/contig_length_mqc.tsv",
+                "multiqc/assemblyscan_plot_data/gc_summary_mqc.tsv",
+                "multiqc/multiqc_data",
+                "multiqc/multiqc_data/llms-full.txt",
+                "multiqc/multiqc_data/multiqc.log",
+                "multiqc/multiqc_data/multiqc.parquet",
+                "multiqc/multiqc_data/multiqc_base_content_summary_plot.txt",
+                "multiqc/multiqc_data/multiqc_citations.txt",
+                "multiqc/multiqc_data/multiqc_contigs_length_statistics_plot.txt",
+                "multiqc/multiqc_data/multiqc_data.json",
+                "multiqc/multiqc_data/multiqc_last_o2o.txt",
+                "multiqc/multiqc_data/multiqc_software_versions.txt",
+                "multiqc/multiqc_data/multiqc_sources.txt",
+                "multiqc/multiqc_data/multiqc_train.txt",
+                "multiqc/multiqc_plots",
+                "multiqc/multiqc_plots/pdf",
+                "multiqc/multiqc_plots/pdf/base_content_summary_plot-cnt.pdf",
+                "multiqc/multiqc_plots/pdf/base_content_summary_plot-pct.pdf",
+                "multiqc/multiqc_plots/pdf/contigs_length_statistics_plot.pdf",
+                "multiqc/multiqc_plots/pdf/last_o2o.pdf",
+                "multiqc/multiqc_plots/pdf/train.pdf",
+                "multiqc/multiqc_plots/png",
+                "multiqc/multiqc_plots/png/base_content_summary_plot-cnt.png",
+                "multiqc/multiqc_plots/png/base_content_summary_plot-pct.png",
+                "multiqc/multiqc_plots/png/contigs_length_statistics_plot.png",
+                "multiqc/multiqc_plots/png/last_o2o.png",
+                "multiqc/multiqc_plots/png/train.png",
+                "multiqc/multiqc_plots/svg",
+                "multiqc/multiqc_plots/svg/base_content_summary_plot-cnt.svg",
+                "multiqc/multiqc_plots/svg/base_content_summary_plot-pct.svg",
+                "multiqc/multiqc_plots/svg/contigs_length_statistics_plot.svg",
+                "multiqc/multiqc_plots/svg/last_o2o.svg",
+                "multiqc/multiqc_plots/svg/train.svg",
+                "multiqc/multiqc_report.html",
+                "pipeline_info",
+                "pipeline_info/nf_core_pairgenomealign_software_mqc_versions.yml",
+                "targetgenome",
+                "targetgenome/MT192765.cuts.bed"
+            ],
+            [
+                "MT192765___contigs.o2o.maf.gz:md5,ff9255b020c829903a1e84d212646795",
+                "MT192765___contigs.o2o.matrix.txt:md5,96c37304d315d8aac2b41c2c8403d308",
+                "MT192765___contigs.o2o.tsv:md5,73bc56bc2207624c2d65b5ed86ca5937",
+                "MT192765___contigs.sam.gz:md5,948095ffac623612546e9bbfb63d7ada",
+                "MT192765___contigs.train:md5,36db66cf99bec90ced907761be4a9faf",
+                "MT192765___contigs.train.tsv:md5,5326a6811b6ab45adaf8d66635a85b11",
+                "MT192765___genome-OY074094.o2o.maf.gz:md5,874ea65d00fa2aa093153e424dfcea57",
+                "MT192765___genome-OY074094.o2o.matrix.txt:md5,485accb1b8f6fc2df6854039d2e252c3",
+                "MT192765___genome-OY074094.o2o.tsv:md5,8b358be91514c7d1b21d49eab8d3697c",
+                "MT192765___genome-OY074094.sam.gz:md5,8c267de42f530f026a00a775a4c0c490",
+                "MT192765___genome-OY074094.train:md5,430339c59fd9c1f5d3fde332888b0fa0",
+                "MT192765___genome-OY074094.train.tsv:md5,e64580fc87a3f539b54c072800eddac3",
+                "contigs.json:md5,3af6c8a55ed7c1cfeaa5bd8e8a336244",
+                "genome-OY074094.json:md5,8842b63d03a21bd4b2dd2c1ff41cd86a",
+                "contigs.bed:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "genome-OY074094.bed:md5,994e7adb9883af1980fb7d3fbe4db11a",
+                "contig_length_mqc.tsv:md5,4c1fb85988db7487dbf481215b12d4b5",
+                "gc_summary_mqc.tsv:md5,f1a386cc0205338caed9387869b78c38",
+                "multiqc_base_content_summary_plot.txt:md5,677480195978fb119cb1719fee7d1381",
+                "multiqc_citations.txt:md5,4c806e63a283ec1b7e78cdae3a923d4f",
+                "multiqc_contigs_length_statistics_plot.txt:md5,47ae2dc83d76ea6380b59f8bf0d75a80",
+                "multiqc_last_o2o.txt:md5,ef9b0686c73d09daeedd548a3194a4b6",
+                "multiqc_train.txt:md5,d785f7b0188b1239d0f1d40f0ef89871",
+                "MT192765.cuts.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+            ]
+        ],
+        "timestamp": "2026-07-16T18:46:45.470782477",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    }
+}

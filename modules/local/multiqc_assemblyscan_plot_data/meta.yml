@@ -1,0 +1,57 @@
+name: "multiqc_assemblyscan_plot_data"
+description: Generate MultiQC-compatible TSV files from assembly-scan JSON
+  outputs
+keywords:
+  - multiqc
+  - assemblyscan
+  - qc
+  - json
+  - jq
+tools:
+  - "jq":
+      description: "Command-line JSON processor"
+      homepage: "https://stedolan.github.io/jq/"
+      documentation: "https://stedolan.github.io/jq/manual/"
+      licence:
+        - "MIT"
+      identifier: ""
+input:
+  - json:
+      type: file
+      description: JSON files produced by assembly-scan
+      pattern: "*.json"
+      ontologies:
+        - edam: http://edamontology.org/format_3464
+output:
+  tsv:
+    - "*_mqc.tsv":
+        type: file
+        description: Summary statistics for MultiQC
+        pattern: "*_mqc.tsv"
+        ontologies:
+          - edam: http://edamontology.org/format_3475
+  versions_jq:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - jq:
+          type: string
+          description: The name of the tool
+      - jq --version 2>&1 | sed 's/jq-//':
+          type: eval
+          description: The expression to obtain the version of jq
+topics:
+  versions:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - jq:
+          type: string
+          description: The name of the tool
+      - jq --version 2>&1 | sed 's/jq-//':
+          type: eval
+          description: The expression to obtain the version of jq
+authors:
+  - "@charles-plessy"
+maintainers:
+  - "@charles-plessy"

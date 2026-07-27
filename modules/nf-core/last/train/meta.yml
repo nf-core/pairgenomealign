@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "last_train"
+description: Find suitable score parameters for sequence alignment
+keywords:
+  - LAST
+  - train
+  - fastq
+  - fasta
+tools:
+  - "last":
+      description: "LAST finds & aligns related regions of sequences."
+      homepage: "https://gitlab.com/mcfrith/last"
+      documentation: "https://gitlab.com/mcfrith/last/-/blob/main/doc/last-train.rst"
+      tool_dev_url: "https://gitlab.com/mcfrith/last"
+      licence: ["GPL v3-or-later"]
+      identifier: ""
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - fastx:
+        type: file
+        description: FASTA/FASTQ file
+        pattern: "*.{fasta,fastq}"
+        ontologies:
+          - edam: http://edamontology.org/format_1930 # FASTQ
+  - index:
+      type: directory
+      description: Directory containing the files of the LAST index
+      pattern: "lastdb/"
+output:
+  param_file:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*.train":
+          type: file
+          description: Trained parameter file
+          pattern: "*.train"
+          ontologies: []
+  multiqc:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*.tsv":
+          type: file
+          description: Alignment parameter summary for MultiQC
+          pattern: "*.tsv"
+          ontologies:
+            - edam: http://edamontology.org/format_3475 # TSV
+  versions_last:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - last:
+          type: string
+          description: The name of the tool
+      - "lastal --version | sed 's/lastal //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - last:
+          type: string
+          description: The name of the tool
+      - "lastal --version | sed 's/lastal //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+authors:
+  - "@aleksandrabliznina"
+  - "@charles-plessy"
+  - "@U13bs1125"
+maintainers:
+  - "@charles-plessy"

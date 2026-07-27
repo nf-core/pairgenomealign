@@ -22,14 +22,17 @@
             "@id": "./",
             "@type": "Dataset",
             "creativeWorkStatus": "Stable",
-            "datePublished": "2026-07-24T12:36:16+00:00",
-            "description": "<h1>\n  <picture>\n    <source media=\"(prefers-color-scheme: dark)\" srcset=\"docs/images/nf-core-pairgenomealign_logo_dark.png\">\n    <img alt=\"nf-core/pairgenomealign\" src=\"docs/images/nf-core-pairgenomealign_logo_light.png\">\n  </picture>\n</h1>\n\n[![Open in GitHub Codespaces](https://img.shields.io/badge/Open_In_GitHub_Codespaces-black?labelColor=grey&logo=github)](https://github.com/codespaces/new/nf-core/pairgenomealign)\n[![GitHub Actions CI Status](https://github.com/nf-core/pairgenomealign/actions/workflows/nf-test.yml/badge.svg)](https://github.com/nf-core/pairgenomealign/actions/workflows/nf-test.yml)\n[![GitHub Actions Linting Status](https://github.com/nf-core/pairgenomealign/actions/workflows/linting.yml/badge.svg)](https://github.com/nf-core/pairgenomealign/actions/workflows/linting.yml)[![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?labelColor=000000&logo=Amazon%20AWS)](https://nf-co.re/pairgenomealign/results)[![Cite with Zenodo](http://img.shields.io/badge/DOI-10.5281/zenodo.XXXXXXX-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.XXXXXXX)\n[![nf-test](https://img.shields.io/badge/unit_tests-nf--test-337ab7.svg)](https://www.nf-test.com)\n\n[![Nextflow](https://img.shields.io/badge/version-%E2%89%A525.10.4-green?style=flat&logo=nextflow&logoColor=white&color=%230DC09D&link=https%3A%2F%2Fnextflow.io)](https://www.nextflow.io/)\n[![nf-core template version](https://img.shields.io/badge/nf--core_template-4.0.3-green?style=flat&logo=nfcore&logoColor=white&color=%2324B064&link=https%3A%2F%2Fnf-co.re)](https://github.com/nf-core/tools/releases/tag/4.0.3)\n[![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)\n[![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)\n[![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg?labelColor=000000)](https://sylabs.io/docs/)\n[![Launch on Seqera Platform](https://img.shields.io/badge/Launch%20%F0%9F%9A%80-Seqera%20Platform-%234256e7)](https://cloud.seqera.io/launch?pipeline=https://github.com/nf-core/pairgenomealign)\n\n[![Get help on Slack](http://img.shields.io/badge/slack-nf--core%20%23pairgenomealign-4A154B?labelColor=000000&logo=slack)](https://nfcore.slack.com/channels/pairgenomealign)[![Follow on Bluesky](https://img.shields.io/badge/bluesky-%40nf__core-1185fe?labelColor=000000&logo=bluesky)](https://bsky.app/profile/nf-co.re)[![Follow on Mastodon](https://img.shields.io/badge/mastodon-nf__core-6364ff?labelColor=FFFFFF&logo=mastodon)](https://mstdn.science/@nf_core)[![Watch on YouTube](http://img.shields.io/badge/youtube-nf--core-FF0000?labelColor=000000&logo=youtube)](https://www.youtube.com/c/nf-core)\n\n## Introduction\n\n**nf-core/pairgenomealign** is a bioinformatics pipeline that ...\n\n<!-- TODO nf-core:\n   Complete this sentence with a 2-3 sentence summary of what types of data the pipeline ingests, a brief overview of the\n   major pipeline sections and the types of output it produces. You're giving an overview to someone new\n   to nf-core here, in 15-20 seconds. For an example, see https://github.com/nf-core/rnaseq/blob/master/README.md#introduction\n-->\n\n<!-- TODO nf-core: Include a figure that guides the user through the major workflow steps. Many nf-core\n     workflows use the \"tube map\" design for that. See https://nf-co.re/docs/community/brand/workflow-schematics#examples for examples.   -->\n<!-- TODO nf-core: Fill in short bullet-pointed list of the default steps in the pipeline -->1. Read QC ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))2. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))\n\n## Usage\n\n> [!NOTE]\n> If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/get_started/environment_setup/overview) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/get_started/run-your-first-pipeline) with `-profile test` before running the workflow on actual data.\n\n<!-- TODO nf-core: Describe the minimum required steps to execute the pipeline, e.g. how to prepare samplesheets.\n     Explain what rows and columns represent. For instance (please edit as appropriate):\n\nFirst, prepare a samplesheet with your input data that looks as follows:\n\n`samplesheet.csv`:\n\n```csv\nsample,fastq_1,fastq_2\nCONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz\n```\n\nEach row represents a fastq file (single-end) or a pair of fastq files (paired end).\n\n-->\n\nNow, you can run the pipeline using:\n\n<!-- TODO nf-core: update the following command to include all required parameters for a minimal example -->\n\n```bash\nnextflow run nf-core/pairgenomealign \\\n   -profile <docker/singularity/.../institute> \\\n   --input samplesheet.csv \\\n   --outdir <OUTDIR>\n```\n\n> [!WARNING]\n> Please provide pipeline parameters via the CLI or Nextflow `-params-file` option. Custom config files including those provided by the `-c` Nextflow option can be used to provide any configuration _**except for parameters**_; see [docs](https://nf-co.re/docs/running/run-pipelines#using-parameter-files).\n\nFor more details and further functionality, please refer to the [usage documentation](https://nf-co.re/pairgenomealign/usage) and the [parameter documentation](https://nf-co.re/pairgenomealign/parameters).\n\n## Pipeline output\n\nTo see the results of an example test run with a full size dataset refer to the [results](https://nf-co.re/pairgenomealign/results) tab on the nf-core website pipeline page.\nFor more details about the output files and reports, please refer to the\n[output documentation](https://nf-co.re/pairgenomealign/output).\n\n## Credits\n\nnf-core/pairgenomealign was originally written by charles-plessy.\n\nWe thank the following people for their extensive assistance in the development of this pipeline:\n\n<!-- TODO nf-core: If applicable, make list of people who have also contributed -->\n\n## Contributions and Support\n\nIf you would like to contribute to this pipeline, please see the [contributing guidelines](docs/CONTRIBUTING.md).\n\nFor further information or help, don't hesitate to get in touch on the [Slack `#pairgenomealign` channel](https://nfcore.slack.com/channels/pairgenomealign) (you can join with [this invite](https://nf-co.re/join/slack)).\n\n## Citations\n\n<!-- TODO nf-core: Add citation for pipeline after first release. Uncomment lines below and update Zenodo doi and badge at the top of this file. -->\n<!-- If you use nf-core/pairgenomealign for your analysis, please cite it using the following doi: [10.5281/zenodo.XXXXXX](https://doi.org/10.5281/zenodo.XXXXXX) -->\n\n<!-- TODO nf-core: Add bibliography of tools and data used in your pipeline -->\n\nAn extensive list of references for the tools used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md) file.\n\nYou can cite the `nf-core` publication as follows:\n\n> **The nf-core framework for community-curated bioinformatics pipelines.**\n>\n> Philip Ewels, Alexander Peltzer, Sven Fillinger, Harshil Patel, Johannes Alneberg, Andreas Wilm, Maxime Ulysse Garcia, Paolo Di Tommaso & Sven Nahnsen.\n>\n> _Nat Biotechnol._ 2020 Feb 13. doi: [10.1038/s41587-020-0439-x](https://dx.doi.org/10.1038/s41587-020-0439-x).\n",
+            "datePublished": "2026-07-16T09:44:42+00:00",
+            "description": "<h1>\n  <picture>\n    <source media=\"(prefers-color-scheme: dark)\" srcset=\"docs/images/nf-core-pairgenomealign_logo_dark.png\">\n    <img alt=\"nf-core/pairgenomealign\" src=\"docs/images/nf-core-pairgenomealign_logo_light.png\">\n  </picture>\n</h1>\n\n[![Open in GitHub Codespaces](https://img.shields.io/badge/Open_In_GitHub_Codespaces-black?labelColor=grey&logo=github)](https://github.com/codespaces/new/nf-core/pairgenomealign)\n[![GitHub Actions CI Status](https://github.com/nf-core/pairgenomealign/actions/workflows/nf-test.yml/badge.svg)](https://github.com/nf-core/pairgenomealign/actions/workflows/nf-test.yml)\n[![GitHub Actions Linting Status](https://github.com/nf-core/pairgenomealign/actions/workflows/linting.yml/badge.svg)](https://github.com/nf-core/pairgenomealign/actions/workflows/linting.yml)[![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?labelColor=000000&logo=Amazon%20AWS)](https://nf-co.re/pairgenomealign/results)[![Cite with Zenodo](http://img.shields.io/badge/DOI-10.5281/zenodo.13910535-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.13910535)\n[![nf-test](https://img.shields.io/badge/unit_tests-nf--test-337ab7.svg)](https://www.nf-test.com)\n\n[![Nextflow](https://img.shields.io/badge/version-%E2%89%A526.04.0-green?style=flat&logo=nextflow&logoColor=white&color=%230DC09D&link=https%3A%2F%2Fnextflow.io)](https://www.nextflow.io/)\n[![nf-core template version](https://img.shields.io/badge/nf--core_template-4.0.2-green?style=flat&logo=nfcore&logoColor=white&color=%2324B064&link=https%3A%2F%2Fnf-co.re)](https://github.com/nf-core/tools/releases/tag/4.0.2)\n[![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)\n[![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)\n[![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg?labelColor=000000)](https://sylabs.io/docs/)\n[![Launch on Seqera Platform](https://img.shields.io/badge/Launch%20%F0%9F%9A%80-Seqera%20Platform-%234256e7)](https://cloud.seqera.io/launch?pipeline=https://github.com/nf-core/pairgenomealign)\n\n[![Get help on Slack](http://img.shields.io/badge/slack-nf--core%20%23pairgenomealign-4A154B?labelColor=000000&logo=slack)](https://nfcore.slack.com/channels/pairgenomealign)[![Follow on Bluesky](https://img.shields.io/badge/bluesky-%40nf__core-1185fe?labelColor=000000&logo=bluesky)](https://bsky.app/profile/nf-co.re)[![Follow on Mastodon](https://img.shields.io/badge/mastodon-nf__core-6364ff?labelColor=FFFFFF&logo=mastodon)](https://mstdn.science/@nf_core)[![Watch on YouTube](http://img.shields.io/badge/youtube-nf--core-FF0000?labelColor=000000&logo=youtube)](https://www.youtube.com/c/nf-core)\n\n## Introduction\n\n**nf-core/pairgenomealign** is a reproducible pipeline for pairwise whole‑genome alignment built on the LAST toolchain. It aligns one or more _query_ genomes to a _target_ genome using adaptive seeding, trained scoring parameters, and global‑score optimisation (chaining).\n\nThe pipeline supports both closely and distantly related genomes by allowing users to tune the target index seeding to trade off speed and memory usage against alignment sensitivity and specificity. Other alignment parameters are automatically inferred by LAST, reducing the need for manual tuning.\n\nAlignments can be reported unfiltered (e.g. for self‑alignments, duplication analyses, or repeat exploration) or reduced to a best global one‑to‑one set (e.g. for synteny analyses). Output is provided in coordinate‑only formats (PSL, GFF) or full alignment formats (MAF, SAM/BAM/CRAM), together with pairwise dot‑plot-style visualisations for rapid inspection.\n\n![Tubemap workflow summary](docs/images/pairgenomealign-tubemap.png \"Tubemap workflow summary\")\n\nThe main steps of the pipeline are:\n\n1. Genome QC ([`assembly-scan`](https://github.com/rpetit3/assembly-scan)).\n2. Genome indexing ([`lastdb`](https://gitlab.com/mcfrith/last/-/blob/main/doc/lastdb.rst)).\n3. Alignment parameter discovery ([`last-train`](https://gitlab.com/mcfrith/last/-/blob/main/doc/last-train.rst)).\n4. Whole-genome pairwise alignments ([`lastal`](https://gitlab.com/mcfrith/last/-/blob/main/doc/lastal.rst)).\n5. Reduction to _one-to-one_ relations ([`last-split`](https://gitlab.com/mcfrith/last/-/blob/main/doc/last-split.rst))\n6. Alignment plotting ([`last-dotplot`](https://gitlab.com/mcfrith/last/-/blob/main/doc/last-dotplot.rst)).\n7. Alignment export to various formats with [`maf-convert`](https://gitlab.com/mcfrith/last/-/blob/main/doc/maf-convert.rst), plus [`Samtools`](https://www.htslib.org/) for SAM/BAM/CRAM.\n\n## Usage\n\n> [!NOTE]\n> If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/get_started/environment_setup/overview) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/get_started/run-your-first-pipeline) with `-profile test` before running the workflow on actual data.\n\nFirst, prepare a samplesheet with your input data that looks as follows:\n\n`samplesheet.csv`:\n\n```csv\nsample,fasta\nquery_1,path-to-query-genome-file-one.fasta\nquery_2,path-to-query-genome-file-two.fasta\n```\n\nEach row represents a fasta file, this can also contain multiple rows to accomodate multiple query genomes in fasta format.\n\nNow, you can run the pipeline using:\n\n```bash\nnextflow run nf-core/pairgenomealign \\\n   -profile <docker/singularity/.../institute> \\\n   --target sequencefile.fa \\\n   --input samplesheet.csv \\\n   --outdir <OUTDIR>\n```\n\n> [!WARNING]\n> Please provide pipeline parameters via the CLI or Nextflow `-params-file` option. Custom config files including those provided by the `-c` Nextflow option can be used to provide any configuration _**except for parameters**_; see [docs](https://nf-co.re/docs/running/run-pipelines#using-parameter-files).\n\nFor more details and further functionality, please refer to the [usage documentation](https://nf-co.re/pairgenomealign/usage) and the [parameter documentation](https://nf-co.re/pairgenomealign/parameters).\n\n## Pipeline output\n\nTo see the results of an example test run with a full size dataset refer to the [results](https://nf-co.re/pairgenomealign/results) tab on the nf-core website pipeline page.\nFor more details about the output files and reports, please refer to the\n[output documentation](https://nf-co.re/pairgenomealign/output).\n\n## Credits\n\n`nf-core/pairgenomealign` was originally written by [charles-plessy](https://github.com/charles-plessy); the original versions are available at <https://github.com/oist/plessy_pairwiseGenomeComparison>.\n\nWe thank the following people for their extensive assistance in the development of this pipeline:\n\n- [Mahdi Mohammed](https://github.com/U13bs1125) ported the original pipeline to _nf-core_ template 2.14.x.\n- [Martin Frith](https://github.com/mcfrith/), the author of LAST, gave us extensive feedback and advices.\n- [Michael Mansfield](https://github.com/mjmansfi) tested the pipeline and provided critical comments.\n- [Aleksandra Bliznina](https://github.com/aleksandrabliznina) contributed to the creation of the initial `last/*` modules.\n- [Jiashun Miao](https://github.com/miaojiashun) and [Huyen Pham](https://github.com/ngochuyenpham) tested the pipeline on vertebrate genomes.\n\n## Contributions and Support\n\nIf you would like to contribute to this pipeline, please see the [contributing guidelines](docs/CONTRIBUTING.md).\n\nFor further information or help, don't hesitate to get in touch on the [Slack `#pairgenomealign` channel](https://nfcore.slack.com/channels/pairgenomealign) (you can join with [this invite](https://nf-co.re/join/slack)).\n\n## Citations\n\nIf you use this pipeline, please cite:\n\n> **Extreme genome scrambling in marine planktonic Oikopleura dioica cryptic species.**\n> Charles Plessy, Michael J. Mansfield, Aleksandra Bliznina, Aki Masunaga, Charlotte West, Yongkai Tan, Andrew W. Liu, Jan Grašič, María Sara del Río Pisula, Gaspar Sánchez-Serna, Marc Fabrega-Torrus, Alfonso Ferrández-Roldán, Vittoria Roncalli, Pavla Navratilova, Eric M. Thompson, Takeshi Onuma, Hiroki Nishida, Cristian Cañestro, Nicholas M. Luscombe.\n> _Genome Res._ 2024. 34: 426-440; doi: [10.1101/2023.05.09.539028](https://doi.org/10.1101/gr.278295.123). PubMed ID: [38621828](https://pubmed.ncbi.nlm.nih.gov/38621828/)\n\n[OIST research news article](https://www.oist.jp/news-center/news/2024/4/25/oikopleura-who-species-identity-crisis-genome-community)\n\nAnd also please cite the [LAST papers](https://gitlab.com/mcfrith/last/-/blob/main/doc/last-papers.rst).\n\nAn extensive list of references for the tools used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md) file.\n\nYou can cite the `nf-core` publication as follows:\n\n> **The nf-core framework for community-curated bioinformatics pipelines.**\n>\n> Philip Ewels, Alexander Peltzer, Sven Fillinger, Harshil Patel, Johannes Alneberg, Andreas Wilm, Maxime Ulysse Garcia, Paolo Di Tommaso & Sven Nahnsen.\n>\n> _Nat Biotechnol._ 2020 Feb 13. doi: [10.1038/s41587-020-0439-x](https://dx.doi.org/10.1038/s41587-020-0439-x).\n",
             "hasPart": [
                 {
                     "@id": "main.nf"
                 },
                 {
                     "@id": "assets/"
+                },
+                {
+                    "@id": "bin/"
                 },
                 {
                     "@id": "conf/"
@@ -42,6 +45,9 @@
                 },
                 {
                     "@id": "modules/"
+                },
+                {
+                    "@id": "modules/local/"
                 },
                 {
                     "@id": "modules/nf-core/"
@@ -121,7 +127,16 @@
         },
         {
             "@id": "main.nf",
-            "@type": ["File", "SoftwareSourceCode", "ComputationalWorkflow"],
+            "@type": [
+                "File",
+                "SoftwareSourceCode",
+                "ComputationalWorkflow"
+            ],
+            "author": [
+                {
+                    "@id": "https://orcid.org/0000-0001-7410-6295"
+                }
+            ],
             "contributor": [
                 {
                     "@id": "#5f4c61e3-1958-4a39-bcb1-b3ec5c889b0d"
@@ -141,8 +156,12 @@
                 "synteny",
                 "whole-genome-alignment"
             ],
-            "license": ["MIT"],
-            "name": ["nf-core/pairgenomealign"],
+            "license": [
+                "MIT"
+            ],
+            "name": [
+                "nf-core/pairgenomealign"
+            ],
             "programmingLanguage": {
                 "@id": "https://w3id.org/workflowhub/workflow-ro-crate#nextflow"
             },
@@ -162,7 +181,7 @@
             "url": {
                 "@id": "https://www.nextflow.io/"
             },
-            "version": "!>=25.10.4"
+            "version": "!>=26.04.0"
         },
         {
             "@id": "#414a1b65-7bbc-4ff8-b149-c12e9fb723da",
@@ -201,6 +220,11 @@
             "description": "Additional files"
         },
         {
+            "@id": "bin/",
+            "@type": "Dataset",
+            "description": "Scripts that must be callable from a pipeline process"
+        },
+        {
             "@id": "conf/",
             "@type": "Dataset",
             "description": "Configuration files"
@@ -219,6 +243,11 @@
             "@id": "modules/",
             "@type": "Dataset",
             "description": "Modules used by the pipeline"
+        },
+        {
+            "@id": "modules/local/",
+            "@type": "Dataset",
+            "description": "Pipeline-specific modules"
         },
         {
             "@id": "modules/nf-core/",
@@ -307,9 +336,28 @@
             "url": "https://nf-co.re/"
         },
         {
-            "@id": "#5f4c61e3-1958-4a39-bcb1-b3ec5c889b0d",
+            "@id": "https://orcid.org/0000-0001-7410-6295",
             "@type": "Person",
-            "name": "charles-plessy"
+            "affiliation": "Okinawa Institute of Science and Technology Graduate University (OIST)",
+            "email": "charles.plessy@oist.jp",
+            "name": "Charles Plessy",
+            "url": "https://github.com/charles-plessy"
+        },
+        {
+            "@id": "#mohammed.mahdi@oist.jp",
+            "@type": "Person",
+            "affiliation": "Okinawa Institute of Science and Technology Graduate University (OIST)",
+            "email": "mohammed.mahdi@oist.jp",
+            "name": "Mohammed Mahdi",
+            "url": "https://github.com/U13bs1125"
+        },
+        {
+            "@id": "#takahiro-fujita@suntory.co.jp",
+            "@type": "Person",
+            "affiliation": "Suntory Global Innovation Center Limited",
+            "email": "takahiro-fujita@suntory.co.jp",
+            "name": "Takahiro Fujita",
+            "url": "https://github.com/takiifujita-ui"
         }
     ]
 }

@@ -54,6 +54,22 @@ workflow PIPELINE_INITIALISATION {
     // Validate parameters and generate parameter summary to stdout
     //
 
+    if (params.input && params.query) {
+        error """
+        ❌ Invalid parameter combination
+
+        You provided both:
+          --input  (sample sheet)
+          --query  (single genome)
+
+        These options are mutually exclusive.
+
+        👉 Use only one:
+           • --input : for multiple samples via a sample sheet
+           • --query : for a single query genome (no sample sheet required)
+        """
+    }
+
     def before_text = ""
     def after_text = ""
     before_text = """
@@ -107,28 +123,25 @@ workflow PIPELINE_INITIALISATION {
     // Create channel from input file provided through params.input
     //
 
-    channel
-        .fromList(samplesheetToList(input, "${projectDir}/assets/schema_input.json"))
-        .map {
-            meta, fastq_1, fastq_2 ->
-                if (!fastq_2) {
-                    return [ meta.id, meta + [ single_end:true ], [ fastq_1 ] ]
-                } else {
-                    return [ meta.id, meta + [ single_end:false ], [ fastq_1, fastq_2 ] ]
-                }
-        }
-        .groupTuple()
-        .map { samplesheet ->
-            validateInputSamplesheet(samplesheet)
-        }
-        .map {
-            meta, fastqs ->
-                return [ meta, fastqs.flatten() ]
-        }
-        .set { ch_samplesheet }
+    if ( params.query ) {
+        ch_samplesheet = channel
+            .value( params.query )
+            .map { filename -> file(filename, checkIfExists: true) }
+            .map { file_obj -> [ [id:params.queryName],  file_obj] }
+    } else {
+        ch_samplesheet = channel
+            .fromList(samplesheetToList(params.input, "${projectDir}/assets/schema_input.json"))
+    }
+
+    ch_validated_samplesheet = ch_samplesheet
+        .map { meta, query -> [
+            [id:meta.id, targetName:params.targetName],          // meta
+            query,                                               // query
+            file(params.target, checkIfExists: true)             // target
+        ] }
 
     emit:
-    samplesheet = ch_samplesheet
+    samplesheet = ch_validated_samplesheet
     versions    = ch_versions
 }
 
@@ -232,7 +245,6 @@ def genomeExistsError() {
 // Generate methods description for MultiQC
 //
 def toolCitationText() {
-    // TODO nf-core: Optionally add in-text citation tools to this list.
     // Can use ternary operators to dynamically construct based conditions, e.g. params["run_xyz"] ? "Tool (Foo et al. 2023)" : "",
     // Uncomment function in methodsDescriptionText to render in MultiQC report
     def citation_text = [
@@ -246,7 +258,6 @@ def toolCitationText() {
 }
 
 def toolBibliographyText() {
-    // TODO nf-core: Optionally add bibliographic entries to this list.
     // Can use ternary operators to dynamically construct based conditions, e.g. params["run_xyz"] ? "<li>Author (2023) Pub name, Journal, DOI</li>" : "",
     // Uncomment function in methodsDescriptionText to render in MultiQC report
     def reference_text = [
@@ -281,7 +292,6 @@ def methodsDescriptionText(mqc_methods_yaml) {
     meta["tool_citations"] = ""
     meta["tool_bibliography"] = ""
 
-    // TODO nf-core: Only uncomment below if logic in toolCitationText/toolBibliographyText has been filled!
     // meta["tool_citations"] = toolCitationText().replaceAll(", \\.", ".").replaceAll("\\. \\.", ".").replaceAll(", \\.", ".")
     // meta["tool_bibliography"] = toolBibliographyText()
 

@@ -7,10 +7,10 @@
 
 [![Open in GitHub Codespaces](https://img.shields.io/badge/Open_In_GitHub_Codespaces-black?labelColor=grey&logo=github)](https://github.com/codespaces/new/nf-core/pairgenomealign)
 [![GitHub Actions CI Status](https://github.com/nf-core/pairgenomealign/actions/workflows/nf-test.yml/badge.svg)](https://github.com/nf-core/pairgenomealign/actions/workflows/nf-test.yml)
-[![GitHub Actions Linting Status](https://github.com/nf-core/pairgenomealign/actions/workflows/linting.yml/badge.svg)](https://github.com/nf-core/pairgenomealign/actions/workflows/linting.yml)[![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?labelColor=000000&logo=Amazon%20AWS)](https://nf-co.re/pairgenomealign/results)[![Cite with Zenodo](http://img.shields.io/badge/DOI-10.5281/zenodo.XXXXXXX-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.XXXXXXX)
+[![GitHub Actions Linting Status](https://github.com/nf-core/pairgenomealign/actions/workflows/linting.yml/badge.svg)](https://github.com/nf-core/pairgenomealign/actions/workflows/linting.yml)[![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?labelColor=000000&logo=Amazon%20AWS)](https://nf-co.re/pairgenomealign/results)[![Cite with Zenodo](http://img.shields.io/badge/DOI-10.5281/zenodo.13910535-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.13910535)
 [![nf-test](https://img.shields.io/badge/unit_tests-nf--test-337ab7.svg)](https://www.nf-test.com)
 
-[![Nextflow](https://img.shields.io/badge/version-%E2%89%A525.10.4-green?style=flat&logo=nextflow&logoColor=white&color=%230DC09D&link=https%3A%2F%2Fnextflow.io)](https://www.nextflow.io/)
+[![Nextflow](https://img.shields.io/badge/version-%E2%89%A526.04.0-green?style=flat&logo=nextflow&logoColor=white&color=%230DC09D&link=https%3A%2F%2Fnextflow.io)](https://www.nextflow.io/)
 [![nf-core template version](https://img.shields.io/badge/nf--core_template-4.0.3-green?style=flat&logo=nfcore&logoColor=white&color=%2324B064&link=https%3A%2F%2Fnf-co.re)](https://github.com/nf-core/tools/releases/tag/4.0.3)
 [![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)
 [![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)
@@ -21,46 +21,47 @@
 
 ## Introduction
 
-**nf-core/pairgenomealign** is a bioinformatics pipeline that ...
+**nf-core/pairgenomealign** is a reproducible pipeline for pairwise whole‑genome alignment built on the LAST toolchain. It aligns one or more _query_ genomes to a _target_ genome using adaptive seeding, trained scoring parameters, and global‑score optimisation (chaining).
 
-<!-- TODO nf-core:
-   Complete this sentence with a 2-3 sentence summary of what types of data the pipeline ingests, a brief overview of the
-   major pipeline sections and the types of output it produces. You're giving an overview to someone new
-   to nf-core here, in 15-20 seconds. For an example, see https://github.com/nf-core/rnaseq/blob/master/README.md#introduction
--->
+The pipeline supports both closely and distantly related genomes by allowing users to tune the target index seeding to trade off speed and memory usage against alignment sensitivity and specificity. Other alignment parameters are automatically inferred by LAST, reducing the need for manual tuning.
 
-<!-- TODO nf-core: Include a figure that guides the user through the major workflow steps. Many nf-core
-     workflows use the "tube map" design for that. See https://nf-co.re/docs/community/brand/workflow-schematics#examples for examples.   -->
-<!-- TODO nf-core: Fill in short bullet-pointed list of the default steps in the pipeline -->1. Read QC ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))2. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
+Alignments can be reported unfiltered (e.g. for self‑alignments, duplication analyses, or repeat exploration) or reduced to a best global one‑to‑one set (e.g. for synteny analyses). Output is provided in coordinate‑only formats (PSL, GFF) or full alignment formats (MAF, SAM/BAM/CRAM), together with pairwise dot‑plot-style visualisations for rapid inspection.
+
+![Tubemap workflow summary](docs/images/pairgenomealign-tubemap.png "Tubemap workflow summary")
+
+The main steps of the pipeline are:
+
+1. Genome QC ([`assembly-scan`](https://github.com/rpetit3/assembly-scan)).
+2. Genome indexing ([`lastdb`](https://gitlab.com/mcfrith/last/-/blob/main/doc/lastdb.rst)).
+3. Alignment parameter discovery ([`last-train`](https://gitlab.com/mcfrith/last/-/blob/main/doc/last-train.rst)).
+4. Whole-genome pairwise alignments ([`lastal`](https://gitlab.com/mcfrith/last/-/blob/main/doc/lastal.rst)).
+5. Reduction to _one-to-one_ relations ([`last-split`](https://gitlab.com/mcfrith/last/-/blob/main/doc/last-split.rst))
+6. Alignment plotting ([`last-dotplot`](https://gitlab.com/mcfrith/last/-/blob/main/doc/last-dotplot.rst)).
+7. Alignment export to various formats with [`maf-convert`](https://gitlab.com/mcfrith/last/-/blob/main/doc/maf-convert.rst), plus [`Samtools`](https://www.htslib.org/) for SAM/BAM/CRAM.
 
 ## Usage
 
 > [!NOTE]
 > If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/get_started/environment_setup/overview) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/get_started/run-your-first-pipeline) with `-profile test` before running the workflow on actual data.
 
-<!-- TODO nf-core: Describe the minimum required steps to execute the pipeline, e.g. how to prepare samplesheets.
-     Explain what rows and columns represent. For instance (please edit as appropriate):
-
 First, prepare a samplesheet with your input data that looks as follows:
 
 `samplesheet.csv`:
 
 ```csv
-sample,fastq_1,fastq_2
-CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
+sample,fasta
+query_1,path-to-query-genome-file-one.fasta
+query_2,path-to-query-genome-file-two.fasta
 ```
 
-Each row represents a fastq file (single-end) or a pair of fastq files (paired end).
-
--->
+Each row represents a fasta file, this can also contain multiple rows to accomodate multiple query genomes in fasta format.
 
 Now, you can run the pipeline using:
-
-<!-- TODO nf-core: update the following command to include all required parameters for a minimal example -->
 
 ```bash
 nextflow run nf-core/pairgenomealign \
    -profile <docker/singularity/.../institute> \
+   --target sequencefile.fa \
    --input samplesheet.csv \
    --outdir <OUTDIR>
 ```
@@ -78,11 +79,15 @@ For more details about the output files and reports, please refer to the
 
 ## Credits
 
-nf-core/pairgenomealign was originally written by charles-plessy.
+`nf-core/pairgenomealign` was originally written by [charles-plessy](https://github.com/charles-plessy); the original versions are available at <https://github.com/oist/plessy_pairwiseGenomeComparison>.
 
 We thank the following people for their extensive assistance in the development of this pipeline:
 
-<!-- TODO nf-core: If applicable, make list of people who have also contributed -->
+- [Mahdi Mohammed](https://github.com/U13bs1125) ported the original pipeline to _nf-core_ template 2.14.x.
+- [Martin Frith](https://github.com/mcfrith/), the author of LAST, gave us extensive feedback and advices.
+- [Michael Mansfield](https://github.com/mjmansfi) tested the pipeline and provided critical comments.
+- [Aleksandra Bliznina](https://github.com/aleksandrabliznina) contributed to the creation of the initial `last/*` modules.
+- [Jiashun Miao](https://github.com/miaojiashun) and [Huyen Pham](https://github.com/ngochuyenpham) tested the pipeline on vertebrate genomes.
 
 ## Contributions and Support
 
@@ -92,10 +97,15 @@ For further information or help, don't hesitate to get in touch on the [Slack `#
 
 ## Citations
 
-<!-- TODO nf-core: Add citation for pipeline after first release. Uncomment lines below and update Zenodo doi and badge at the top of this file. -->
-<!-- If you use nf-core/pairgenomealign for your analysis, please cite it using the following doi: [10.5281/zenodo.XXXXXX](https://doi.org/10.5281/zenodo.XXXXXX) -->
+If you use this pipeline, please cite:
 
-<!-- TODO nf-core: Add bibliography of tools and data used in your pipeline -->
+> **Extreme genome scrambling in marine planktonic Oikopleura dioica cryptic species.**
+> Charles Plessy, Michael J. Mansfield, Aleksandra Bliznina, Aki Masunaga, Charlotte West, Yongkai Tan, Andrew W. Liu, Jan Grašič, María Sara del Río Pisula, Gaspar Sánchez-Serna, Marc Fabrega-Torrus, Alfonso Ferrández-Roldán, Vittoria Roncalli, Pavla Navratilova, Eric M. Thompson, Takeshi Onuma, Hiroki Nishida, Cristian Cañestro, Nicholas M. Luscombe.
+> _Genome Res._ 2024. 34: 426-440; doi: [10.1101/2023.05.09.539028](https://doi.org/10.1101/gr.278295.123). PubMed ID: [38621828](https://pubmed.ncbi.nlm.nih.gov/38621828/)
+
+[OIST research news article](https://www.oist.jp/news-center/news/2024/4/25/oikopleura-who-species-identity-crisis-genome-community)
+
+And also please cite the [LAST papers](https://gitlab.com/mcfrith/last/-/blob/main/doc/last-papers.rst).
 
 An extensive list of references for the tools used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md) file.
 
