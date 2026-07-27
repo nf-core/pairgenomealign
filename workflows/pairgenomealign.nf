@@ -69,17 +69,18 @@ workflow PAIRGENOMEALIGN {
         assemblyscan_sorted_json_files = ASSEMBLYSCAN.out.report
           .toSortedList { a, b -> a[0].id <=> b[0].id }
           .map { sorted_list -> sorted_list.collect { it[1] } }
-        // Sorted intput is needed for stable MD5 output
+        // Sorted input is needed for stable MD5 output
         MULTIQC_ASSEMBLYSCAN_PLOT_DATA ( assemblyscan_sorted_json_files )
         ch_multiqc_files = ch_multiqc_files.mix(MULTIQC_ASSEMBLYSCAN_PLOT_DATA.out.tsv)
     }
 
     // Prefix query ids with target genome name before producing alignment files
     //
+    def pair_id_prefix = "${params.targetName}___"
     ch_querygenome_pairnames = ch_querygenome
-        .map { row -> [ [id: params.targetName + '___' + row[0].id] , row.tail() ] }
+        .map { row -> [ [id: pair_id_prefix + row[0].id] , row.tail() ] }
     ch_seqtk_cutn_query = CUTN_QUERY.out.bed
-        .map { row -> [ [id: params.targetName + '___' + row[0].id] , row.tail() ] }
+        .map { row -> [ [id: pair_id_prefix + row[0].id] , row.tail() ] }
 
     // Align with either the many-to-many or the many-to-one subworkflow
     // and collect the output under a fixed name
