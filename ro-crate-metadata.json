@@ -105,7 +105,7 @@
             },
             "mentions": [
                 {
-                    "@id": "#974fa164-3651-4b44-ab3e-a8566bf61a73"
+                    "@id": "#414a1b65-7bbc-4ff8-b149-c12e9fb723da"
                 }
             ],
             "name": "nf-core/pairgenomealign"
@@ -139,14 +139,11 @@
             ],
             "contributor": [
                 {
-                    "@id": "#mohammed.mahdi@oist.jp"
-                },
-                {
-                    "@id": "#takahiro-fujita@suntory.co.jp"
+                    "@id": "#5f4c61e3-1958-4a39-bcb1-b3ec5c889b0d"
                 }
             ],
             "dateCreated": "",
-            "dateModified": "2026-07-16T18:44:42Z",
+            "dateModified": "2026-07-24T12:36:16Z",
             "dct:conformsTo": "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE/",
             "keywords": [
                 "nf-core",
@@ -171,13 +168,8 @@
             "sdPublisher": {
                 "@id": "https://nf-co.re/"
             },
-            "url": [
-                "https://github.com/nf-core/pairgenomealign",
-                "https://nf-co.re/pairgenomealign/3.0.2/"
-            ],
-            "version": [
-                "3.0.2"
-            ]
+            "url": ["https://github.com/nf-core/pairgenomealign", "https://nf-co.re/pairgenomealign/3.0.2/"],
+            "version": ["3.0.2"]
         },
         {
             "@id": "https://w3id.org/workflowhub/workflow-ro-crate#nextflow",
@@ -192,11 +184,11 @@
             "version": "!>=26.04.0"
         },
         {
-            "@id": "#974fa164-3651-4b44-ab3e-a8566bf61a73",
+            "@id": "#414a1b65-7bbc-4ff8-b149-c12e9fb723da",
             "@type": "TestSuite",
             "instance": [
                 {
-                    "@id": "#b9cb0c29-82b3-49ca-8eb2-04ec2d70487c"
+                    "@id": "#f9052f56-1176-4785-be72-3e3022061eb0"
                 }
             ],
             "mainEntity": {
@@ -205,7 +197,7 @@
             "name": "Test suite for nf-core/pairgenomealign"
         },
         {
-            "@id": "#b9cb0c29-82b3-49ca-8eb2-04ec2d70487c",
+            "@id": "#f9052f56-1176-4785-be72-3e3022061eb0",
             "@type": "TestInstance",
             "name": "GitHub Actions workflow for testing nf-core/pairgenomealign",
             "resource": "repos/nf-core/pairgenomealign/actions/workflows/nf-test.yml",

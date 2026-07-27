@@ -1,7 +1,7 @@
 lint:
   files_unchanged:
     - assets/nf-core-pairgenomealign_logo_light.png
-nf_core_version: 4.0.2
+nf_core_version: 4.0.3
 repository_type: pipeline
 template:
   author: charles-plessy
