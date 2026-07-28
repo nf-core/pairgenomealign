@@ -5,7 +5,7 @@ lint:
     - .github/workflows/linting.yml
   files_exist:
     - .github/workflows/linting_comment.yml
-nf_core_version: 4.0.2
+nf_core_version: 4.0.3
 repository_type: pipeline
 template:
   author: charles-plessy
@@ -15,4 +15,4 @@ template:
   name: pairgenomealign
   org: nf-core
   outdir: .
-  version: 3.0.2
+  version: 3.0.3

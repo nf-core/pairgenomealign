@@ -3,6 +3,14 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v3.0.3](https://github.com/nf-core/pairgenomealign/releases/tag/3.0.3) "Kanten" - [July 29th 2026]
+
+### `Fixed`
+
+- Remove vulnerable PR-comment artifact pattern – no change in the pipeline computations ([#145](https://github.com/nf-core/pairgenomealign/pull/145)).
+- Conforms to [nf-core template version `4.0.3`](https://github.com/nf-core/tools/releases/tag/4.0.3) ([#144](https://github.com/nf-core/pairgenomealign/pull/144)).
+- In the `full` test suite on primate genomes, revert aligment seed from `RY4` to `RY128` to match the AWS resources that we are given ([#148](https://github.com/nf-core/pairgenomealign/pull/148)).
+
 ## [v3.0.2](https://github.com/nf-core/pairgenomealign/releases/tag/3.0.2) "Tokoroten shiki" - [July 16th 2026]
 
 ### `Fixed`
