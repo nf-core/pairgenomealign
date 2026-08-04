@@ -98,13 +98,20 @@ process LAST_SPLIT {
     }
 
     # The MAF files can be really big, so we stream them in the awk functions and gzip instead of reading them each time.
+    # Make sure maf_to_matrix.py has time to complete.  It only writes its output after the whole stream is read.
+    mkfifo matrix.pipe
+    maf_to_matrix.py < matrix.pipe > ${prefix}.matrix.txt &
+    matrix_pid=\$!
+
     zcat < $maf |
         last-split $args |
         tee >(get_genome_stats > ${prefix}.genomestats.txt) |
         tee >(gzip --no-name   > ${prefix}.maf.gz) |
-        tee >(maf_to_matrix.py > ${prefix}.matrix.txt) |
+        tee matrix.pipe |
         maf-convert psl |
         calculate_psl_metrics  > ${prefix}.alignmentstats.txt
+
+    wait \$matrix_pid
 
     # Combine the two stats file into one for MultiQC.
     paste ${prefix}.alignmentstats.txt ${prefix}.genomestats.txt > ${prefix}.tsv
