@@ -3,6 +3,11 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v3.0.4](https://github.com/nf-core/pairgenomealign/releases/tag/3.0.4) "Kuro mitsu" - [August 21st 2026]
+
+- Fix a race condition in the collection of alignment statistics ([#94](https://github.com/nf-core/pairgenomealign/pull/94)).
+- In the full-size test suite, exchange the roles of the two human genomes, and add two non-primate outgroups to better compare with [the benchmark of Myers et al., 2025](https://doi.org/10.1093/bioadv/vbaf238) (test-datasets PR[#2224](https://github.com/nf-core/test-datasets/pull/2224/changes))
+
 ## [v3.0.3](https://github.com/nf-core/pairgenomealign/releases/tag/3.0.3) "Kanten" - [July 29th 2026]
 
 ### `Fixed`
