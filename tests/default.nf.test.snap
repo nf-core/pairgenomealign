@@ -36,7 +36,7 @@
                     "seqtk": "1.4-r122"
                 },
                 "Workflow": {
-                    "nf-core/pairgenomealign": "v3.0.3"
+                    "nf-core/pairgenomealign": "v3.0.4"
                 }
             },
             [

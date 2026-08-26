@@ -21,14 +21,27 @@ Changes in 'last/split/main.nf':
      // last-dotplot has no --version option so let's use lastal from the same suite
      tuple val("${task.process}"), val('last'), eval("lastal --version | sed 's/lastal //'"), emit: versions_last, topic: versions
  
-@@ -101,6 +102,7 @@
+@@ -97,12 +98,20 @@
+     }
+ 
+     # The MAF files can be really big, so we stream them in the awk functions and gzip instead of reading them each time.
++    # Make sure maf_to_matrix.py has time to complete.  It only writes its output after the whole stream is read.
++    mkfifo matrix.pipe
++    maf_to_matrix.py < matrix.pipe > ${prefix}.matrix.txt &
++    matrix_pid=\$!
++
+     zcat < $maf |
          last-split $args |
          tee >(get_genome_stats > ${prefix}.genomestats.txt) |
          tee >(gzip --no-name   > ${prefix}.maf.gz) |
-+        tee >(maf_to_matrix.py > ${prefix}.matrix.txt) |
++        tee matrix.pipe |
          maf-convert psl |
          calculate_psl_metrics  > ${prefix}.alignmentstats.txt
++
++    wait \$matrix_pid
  
+     # Combine the two stats file into one for MultiQC.
+     paste ${prefix}.alignmentstats.txt ${prefix}.genomestats.txt > ${prefix}.tsv
 
 'modules/nf-core/last/split/meta.yml' is unchanged
 'modules/nf-core/last/split/environment.yml' is unchanged
