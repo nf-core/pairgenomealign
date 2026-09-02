@@ -32,6 +32,9 @@
                     "@id": "assets/"
                 },
                 {
+                    "@id": "bin/"
+                },
+                {
                     "@id": "conf/"
                 },
                 {
@@ -42,6 +45,9 @@
                 },
                 {
                     "@id": "modules/"
+                },
+                {
+                    "@id": "modules/local/"
                 },
                 {
                     "@id": "modules/nf-core/"
@@ -121,14 +127,26 @@
         },
         {
             "@id": "main.nf",
-            "@type": ["File", "SoftwareSourceCode", "ComputationalWorkflow"],
+            "@type": [
+                "File",
+                "SoftwareSourceCode",
+                "ComputationalWorkflow"
+            ],
+            "author": [
+                {
+                    "@id": "https://orcid.org/0000-0001-7410-6295"
+                }
+            ],
             "contributor": [
                 {
-                    "@id": "#325ed72b-5423-438f-a686-20016893b0c9"
+                    "@id": "#mohammed.mahdi@oist.jp"
+                },
+                {
+                    "@id": "#takahiro-fujita@suntory.co.jp"
                 }
             ],
             "dateCreated": "",
-            "dateModified": "2026-09-01T12:58:37Z",
+            "dateModified": "2026-08-21T18:21:41Z",
             "dct:conformsTo": "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE/",
             "keywords": [
                 "nf-core",
@@ -141,8 +159,12 @@
                 "synteny",
                 "whole-genome-alignment"
             ],
-            "license": ["MIT"],
-            "name": ["nf-core/pairgenomealign"],
+            "license": [
+                "MIT"
+            ],
+            "name": [
+                "nf-core/pairgenomealign"
+            ],
             "programmingLanguage": {
                 "@id": "https://w3id.org/workflowhub/workflow-ro-crate#nextflow"
             },
@@ -162,7 +184,7 @@
             "url": {
                 "@id": "https://www.nextflow.io/"
             },
-            "version": "!>=25.10.4"
+            "version": "!>=26.04.0"
         },
         {
             "@id": "#84447481-ab80-42cc-a381-34504d49a2ee",
@@ -178,7 +200,7 @@
             "name": "Test suite for nf-core/pairgenomealign"
         },
         {
-            "@id": "#16773ab1-b454-4798-adb2-ba4df0a3ce8e",
+            "@id": "#5c0261fa-ed40-4436-9167-5bc824d33afd",
             "@type": "TestInstance",
             "name": "GitHub Actions workflow for testing nf-core/pairgenomealign",
             "resource": "repos/nf-core/pairgenomealign/actions/workflows/nf-test.yml",
@@ -201,6 +223,11 @@
             "description": "Additional files"
         },
         {
+            "@id": "bin/",
+            "@type": "Dataset",
+            "description": "Scripts that must be callable from a pipeline process"
+        },
+        {
             "@id": "conf/",
             "@type": "Dataset",
             "description": "Configuration files"
@@ -219,6 +246,11 @@
             "@id": "modules/",
             "@type": "Dataset",
             "description": "Modules used by the pipeline"
+        },
+        {
+            "@id": "modules/local/",
+            "@type": "Dataset",
+            "description": "Pipeline-specific modules"
         },
         {
             "@id": "modules/nf-core/",
@@ -307,9 +339,28 @@
             "url": "https://nf-co.re/"
         },
         {
-            "@id": "#325ed72b-5423-438f-a686-20016893b0c9",
+            "@id": "https://orcid.org/0000-0001-7410-6295",
             "@type": "Person",
-            "name": "charles-plessy"
+            "affiliation": "Okinawa Institute of Science and Technology Graduate University (OIST)",
+            "email": "charles.plessy@oist.jp",
+            "name": "Charles Plessy",
+            "url": "https://github.com/charles-plessy"
+        },
+        {
+            "@id": "#mohammed.mahdi@oist.jp",
+            "@type": "Person",
+            "affiliation": "Okinawa Institute of Science and Technology Graduate University (OIST)",
+            "email": "mohammed.mahdi@oist.jp",
+            "name": "Mohammed Mahdi",
+            "url": "https://github.com/U13bs1125"
+        },
+        {
+            "@id": "#takahiro-fujita@suntory.co.jp",
+            "@type": "Person",
+            "affiliation": "Suntory Global Innovation Center Limited",
+            "email": "takahiro-fujita@suntory.co.jp",
+            "name": "Takahiro Fujita",
+            "url": "https://github.com/takiifujita-ui"
         }
     ]
 }
