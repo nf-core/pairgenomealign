@@ -3,6 +3,14 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v3.0.5dev](https://github.com/nf-core/pairgenomealign/releases/tag/3.0.5) "TBD" - [TBD]
+
+### `Fixed`
+
+- Conforms to [nf-core template version `4.1.0`](https://github.com/nf-core/tools/releases/tag/4.1.0) ([#154](https://github.com/nf-core/pairgenomealign/pull/154)).
+- Added metro map information to the pipeline's manifest (@ewels, [#156](https://github.com/nf-core/pairgenomealign/pull/156)).
+- Updated metro map with a simpler left-to-right direction ([#157](https://github.com/nf-core/pairgenomealign/pull/157)).
+
 ## [v3.0.4](https://github.com/nf-core/pairgenomealign/releases/tag/3.0.4) "Kuro mitsu" - [August 21st 2026]
 
 - Fix a race condition in the collection of alignment statistics ([#94](https://github.com/nf-core/pairgenomealign/pull/94)).
