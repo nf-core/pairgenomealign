@@ -1,0 +1,22 @@
+Changes in component 'nf-core/last/lastdb'
+Changes in 'last/lastdb/main.nf':
+--- modules/nf-core/last/lastdb/main.nf
++++ modules/nf-core/last/lastdb/main.nf
+@@ -4,8 +4,8 @@
+ 
+     conda "${moduleDir}/environment.yml"
+     container "${workflow.containerEngine in ['singularity', 'apptainer'] && !task.ext.singularity_pull_docker_container
+-        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/05/05ff1dba1dcf86a28dd9d911ffcbc925175b370e77b5ea699ae421b8481556bc/data'
+-        : 'community.wave.seqera.io/library/last_gzip:40e65bc1d7d8624e'}"
++        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/62/62292ffa3ecc9230d6ad20b2537a2f4434a08908864c4c2c66f2d8667f031924/data'
++        : 'community.wave.seqera.io/library/bcftools_last_samtools_bzip2_pruned:562cda40b12e94c1'}"
+ 
+     input:
+     tuple val(meta), path(fastx)
+
+'modules/nf-core/last/lastdb/meta.yml' is unchanged
+'modules/nf-core/last/lastdb/environment.yml' is unchanged
+'modules/nf-core/last/lastdb/tests/nextflow.config' is unchanged
+'modules/nf-core/last/lastdb/tests/main.nf.test' is unchanged
+'modules/nf-core/last/lastdb/tests/main.nf.test.snap' is unchanged
+************************************************************

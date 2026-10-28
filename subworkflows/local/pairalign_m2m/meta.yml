@@ -1,0 +1,70 @@
+name: pairalign_m2m
+description: |
+  Performs many-to-many pairwise genome alignment using LAST and generates multiple alignment views (M2M, M2O, O2M, O2O).
+  This subworkflow indexes the target genome, trains alignment parameters, performs many-to-many alignment,
+  and derives many-to-one, one-to-many, and one-to-one alignments through split operations.
+  Optionally generates dotplots for each alignment type with filtering options.
+keywords:
+  - alignment
+  - genomics
+  - LAST
+  - pairwise alignment
+  - many-to-many
+  - dotplot
+components:
+  - last/lastdb
+  - last/train
+  - last/lastal
+  - last/split
+  - last/dotplot
+input:
+  - ch_target:
+      type: channel
+      description: |
+        The target genome file
+        Structure: [meta, fasta]
+  - ch_queries:
+      type: channel
+      description: |
+        Query genome sequences from samplesheet
+        Structure: [meta, fasta]
+  - ch_target_bed:
+      type: channel
+      description: |
+        BED file with positions of poly-N stretches in target genome
+        Structure: [meta, bed]
+  - ch_queries_bed:
+      type: channel
+      description: |
+        BED files with positions of poly-N stretches in query genomes
+        Structure: [meta, bed]
+output:
+  - multiqc:
+      type: channel
+      description: |
+        MultiQC compatible files from training and split operations
+        Structure: [file]
+  - m2m:
+      type: channel
+      description: |
+        Many-to-many alignment in MAF format
+        Structure: [meta, maf]
+  - m2o:
+      type: channel
+      description: |
+        Many-to-one alignment in MAF format
+        Structure: [meta, maf]
+  - o2m:
+      type: channel
+      description: |
+        One-to-many alignment in MAF format
+        Structure: [meta, maf]
+  - o2o:
+      type: channel
+      description: |
+        One-to-one alignment in MAF format
+        Structure: [meta, maf]
+authors:
+  - "@charles-plessy"
+maintainers:
+  - "@charles-plessy"
