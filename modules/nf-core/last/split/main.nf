@@ -1,0 +1,127 @@
+process LAST_SPLIT {
+    tag "$meta.id"
+    label 'process_medium'
+
+    conda "${moduleDir}/environment.yml"
+    container "${workflow.containerEngine in ['singularity', 'apptainer'] && !task.ext.singularity_pull_docker_container
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/62/62292ffa3ecc9230d6ad20b2537a2f4434a08908864c4c2c66f2d8667f031924/data'
+        : 'community.wave.seqera.io/library/bcftools_last_samtools_bzip2_pruned:562cda40b12e94c1'}"
+
+    input:
+    tuple val(meta), path(maf)
+
+    output:
+    tuple val(meta), path("*.maf.gz"), emit: maf
+    tuple val(meta), path("*.tsv")   , emit: multiqc
+    tuple val(meta), path("*.matrix.txt"), emit: matrix
+    // last-dotplot has no --version option so let's use lastal from the same suite
+    tuple val("${task.process}"), val('last'), eval("lastal --version | sed 's/lastal //'"), emit: versions_last, topic: versions
+
+    when:
+    task.ext.when == null || task.ext.when
+
+    script:
+    def args = task.ext.args ?: ''
+    def prefix = task.ext.prefix ?: "${meta.id}"
+    if( "$maf" == "${prefix}.maf.gz" ) error "Input and output names are the same, use \"task.ext.prefix\" to disambiguate!"
+    """
+    set -o pipefail
+
+    # LAST reports genome sizes and sequence number at the beginning and end of the MAF files it outputs.
+    function get_genome_stats() { awk '
+        BEGIN {
+            OFS = "\\t"
+            in_params = 1
+        }
+
+        function extract(line, regex,   s) {
+            if (match(line, regex)) {
+                s = substr(line, RSTART, RLENGTH)
+                sub(/^[^=]*=/, "", s)   # strip up to "="
+                return s
+            }
+            return ""
+        }
+
+        # Stop parsing parameters at the start of result section
+        /^# Reference sequences=/ {
+            in_params = 0
+            ref_seq     = extract(\$0, "^# Reference sequences=[0-9]+")
+            ref_letters = extract(\$0,                "letters=[0-9]+")
+        }
+
+        # Parse parameter lines only before Reference sequences
+        /^#/ {
+            if (in_params && gsub(/=/, "&") >= 5) {
+                if (match(\$0, /s=([0-9]+)/)) {
+                    strand_mode = substr(\$0, RSTART+2, RLENGTH-2)
+                }
+            }
+        }
+
+        /^# Query sequences=/ {
+            qry_seq     = extract(\$0, "^# Query sequences=[0-9]+")
+            qry_letters = extract(\$0,            "letters=[0-9]+")
+        }
+
+        END {
+        if (strand_mode == 1) {
+            ref_seq     /= 2
+            ref_letters /= 2
+        }
+
+            print "TargetSequences", "TargetLength", "QuerySequences", "QueryLength"    # Header for MultiQC
+            print ref_seq+0,         ref_letters+0,  qry_seq+0,         qry_letters+0   # Data in TSV format
+        }'
+    }
+
+    # The MAF files do not report number of matches directly, but we can compute it easily via conversion to PSL format and then extract them.
+    function calculate_psl_metrics() {
+        awk 'BEGIN {
+            OFS="\\t";
+            FS="\\t";  # Set field separator as tab
+            totalMatches = 0;
+            totalAlignmentLength = 0;
+            totalAlignedBases = 0;
+        }
+        {
+            totalMatches         += \$1 +       \$3            ;  # Sum matches          and repMatches
+            totalAlignmentLength += \$1 + \$2 + \$3 + \$6 + \$8;  # Sum matches, misMatches, repMatches, qBaseInsert, and tBaseInsert
+            totalAlignedBases    += \$1 + \$2 + \$3            ;  # Sum matches, misMatches, repMatches
+        }
+        END {
+            percentIdentity       = (totalAlignmentLength > 0) ? (totalMatches / totalAlignmentLength * 100) : 0;
+            percentIdentityNoGaps = (totalAlignmentLength > 0) ? (totalMatches / totalAlignedBases    * 100) : 0;
+            print "Sample",  "TotalAlignmentLength", "PercentIdentity", "PercentIdentityNoGaps";  # Header for MultiQC
+            print "$meta.id", totalAlignmentLength,   percentIdentity,   percentIdentityNoGaps;   # Data in TSV format
+        }'
+    }
+
+    # The MAF files can be really big, so we stream them in the awk functions and gzip instead of reading them each time.
+    # Make sure maf_to_matrix.py has time to complete.  It only writes its output after the whole stream is read.
+    mkfifo matrix.pipe
+    maf_to_matrix.py < matrix.pipe > ${prefix}.matrix.txt &
+    matrix_pid=\$!
+
+    zcat < $maf |
+        last-split $args |
+        tee >(get_genome_stats > ${prefix}.genomestats.txt) |
+        tee >(gzip --no-name   > ${prefix}.maf.gz) |
+        tee matrix.pipe |
+        maf-convert psl |
+        calculate_psl_metrics  > ${prefix}.alignmentstats.txt
+
+    wait \$matrix_pid
+
+    # Combine the two stats file into one for MultiQC.
+    paste ${prefix}.alignmentstats.txt ${prefix}.genomestats.txt > ${prefix}.tsv
+    """
+
+    stub:
+    def prefix = task.ext.prefix ?: "${meta.id}"
+    if( "$maf" == "${prefix}.maf.gz" ) error "Input and output names are the same, use \"task.ext.prefix\" to disambiguate!"
+    """
+    echo "" | gzip > ${prefix}.maf.gz
+    touch ${prefix}.tsv
+    """
+}

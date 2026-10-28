@@ -1,0 +1,50 @@
+Changes in component 'nf-core/last/split'
+Changes in 'last/split/main.nf':
+--- modules/nf-core/last/split/main.nf
++++ modules/nf-core/last/split/main.nf
+@@ -4,8 +4,8 @@
+ 
+     conda "${moduleDir}/environment.yml"
+     container "${workflow.containerEngine in ['singularity', 'apptainer'] && !task.ext.singularity_pull_docker_container
+-        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/05/05ff1dba1dcf86a28dd9d911ffcbc925175b370e77b5ea699ae421b8481556bc/data'
+-        : 'community.wave.seqera.io/library/last_gzip:40e65bc1d7d8624e'}"
++        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/62/62292ffa3ecc9230d6ad20b2537a2f4434a08908864c4c2c66f2d8667f031924/data'
++        : 'community.wave.seqera.io/library/bcftools_last_samtools_bzip2_pruned:562cda40b12e94c1'}"
+ 
+     input:
+     tuple val(meta), path(maf)
+@@ -13,6 +13,7 @@
+     output:
+     tuple val(meta), path("*.maf.gz"), emit: maf
+     tuple val(meta), path("*.tsv")   , emit: multiqc
++    tuple val(meta), path("*.matrix.txt"), emit: matrix
+     // last-dotplot has no --version option so let's use lastal from the same suite
+     tuple val("${task.process}"), val('last'), eval("lastal --version | sed 's/lastal //'"), emit: versions_last, topic: versions
+ 
+@@ -97,12 +98,20 @@
+     }
+ 
+     # The MAF files can be really big, so we stream them in the awk functions and gzip instead of reading them each time.
++    # Make sure maf_to_matrix.py has time to complete.  It only writes its output after the whole stream is read.
++    mkfifo matrix.pipe
++    maf_to_matrix.py < matrix.pipe > ${prefix}.matrix.txt &
++    matrix_pid=\$!
++
+     zcat < $maf |
+         last-split $args |
+         tee >(get_genome_stats > ${prefix}.genomestats.txt) |
+         tee >(gzip --no-name   > ${prefix}.maf.gz) |
++        tee matrix.pipe |
+         maf-convert psl |
+         calculate_psl_metrics  > ${prefix}.alignmentstats.txt
++
++    wait \$matrix_pid
+ 
+     # Combine the two stats file into one for MultiQC.
+     paste ${prefix}.alignmentstats.txt ${prefix}.genomestats.txt > ${prefix}.tsv
+
+'modules/nf-core/last/split/meta.yml' is unchanged
+'modules/nf-core/last/split/environment.yml' is unchanged
+'modules/nf-core/last/split/tests/main.nf.test' is unchanged
+'modules/nf-core/last/split/tests/main.nf.test.snap' is unchanged
+************************************************************

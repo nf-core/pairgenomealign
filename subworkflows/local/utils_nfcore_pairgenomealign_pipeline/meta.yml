@@ -1,0 +1,101 @@
+name: utils_nfcore_pairgenomealign_pipeline
+description: |
+  Pipeline-specific utility workflows for nf-core/pairgenomealign.
+  Provides initialization and completion functionality including parameter validation,
+  input samplesheet parsing, version management, email notifications, and MultiQC report handling.
+keywords:
+  - utility
+  - pipeline
+  - initialization
+  - completion
+  - validation
+  - notifications
+components:
+  - utils_nfschema_plugin
+  - utils_nfcore_pipeline
+  - utils_nextflow_pipeline
+workflows:
+  - PIPELINE_INITIALISATION:
+      description: |
+        Initializes the pipeline by validating parameters, checking configuration,
+        printing help/version information, and parsing the input samplesheet.
+      input:
+        - version:
+            type: boolean
+            description: Display version and exit
+        - validate_params:
+            type: boolean
+            description: Validate parameters against schema at runtime
+        - monochrome_logs:
+            type: boolean
+            description: Do not use colored log outputs
+        - nextflow_cli_args:
+            type: array
+            description: List of positional Nextflow CLI arguments
+        - outdir:
+            type: string
+            description: Output directory where results will be saved
+        - input:
+            type: string
+            description: Path to input samplesheet
+        - help:
+            type: boolean
+            description: Display help message and exit
+        - help_full:
+            type: boolean
+            description: Show full help message
+        - show_hidden:
+            type: boolean
+            description: Show hidden parameters in help message
+      output:
+        - samplesheet:
+            type: channel
+            description: Parsed samplesheet channel
+        - versions:
+            type: channel
+            description: Software versions channel
+  - PIPELINE_COMPLETION:
+      description: |
+        Handles pipeline completion tasks including sending email notifications,
+        generating completion summaries, and handling pipeline errors.
+      input:
+        - email:
+            type: string
+            description: Email address for notifications
+        - email_on_fail:
+            type: string
+            description: Email address for failure notifications
+        - plaintext_email:
+            type: boolean
+            description: Send plain-text email instead of HTML
+        - outdir:
+            type: path
+            description: Output directory where results are published
+        - monochrome_logs:
+            type: boolean
+            description: Disable ANSI color codes in log output
+        - hook_url:
+            type: string
+            description: Hook URL for notifications (e.g., Slack)
+        - multiqc_report:
+            type: string
+            description: Path to MultiQC report
+functions:
+  - validateInputParameters:
+      description: Check and validate pipeline parameters
+  - validateInputSamplesheet:
+      description: Validate channels from input samplesheet
+  - getGenomeAttribute:
+      description: Get attribute from genome config file
+  - genomeExistsError:
+      description: Exit pipeline if incorrect genome key provided
+  - toolCitationText:
+      description: Generate tool citations text for MultiQC
+  - toolBibliographyText:
+      description: Generate tool bibliography text for MultiQC
+  - methodsDescriptionText:
+      description: Generate methods description text for MultiQC report
+authors:
+  - "@charles-plessy"
+maintainers:
+  - "@charles-plessy"
