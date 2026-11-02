@@ -77,12 +77,12 @@ Dot plots are representing the pairwise genome alignments and produced with the 
 <summary>Output files</summary>
 
 - `cutn/`
-  - `targetGenome.bed`
+  - `<target>.cuts.bed`
   - `<sample>.bed`
 
 </details>
 
-The poly-N regions longer than 9 bases in each genome sequence often indicate contig boundaries in scaffolds. Therefore, we marked them in pale red in the dot-plots. They are detected with the`seqtk cutN` command and its output (in 3-column BED format) is provided in the `cutn` directory. Sample IDs are constructed to generate file names, except for the _target_ genome which is always called `targetGenome` to avoid filename collisions.
+The poly-N regions longer than 9 bases in each genome sequence often indicate contig boundaries in scaffolds. Therefore, we marked them in pale red in the dot-plots. They are detected with the`seqtk cutN` command and its output (in 3-column BED format) is provided in the `cutn` directory. Sample IDs are constructed to generate file names, except for the _target_ genome which is always called `<target>.cuts.bed` to avoid filename collisions.
 
 ### MultiQC
 

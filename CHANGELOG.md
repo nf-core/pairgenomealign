@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated metro map with a simpler left-to-right direction ([#157](https://github.com/nf-core/pairgenomealign/pull/157)).
 - Reduce differences with the TEMPLATE branch ([#153](https://github.com/nf-core/pairgenomealign/issues/153)).
 - Document issues and limitations in `docs/output.md` ([#167](https://github.com/nf-core/pairgenomealign/issues/167)).
+- Fix file cuten file name for the _target_ genome in `docs/output.md` ([#155](https://github.com/nf-core/pairgenomealign/issues/155)).
 
 ## [v3.0.4](https://github.com/nf-core/pairgenomealign/releases/tag/3.0.4) "Kuro mitsu" - [August 21st 2026]
 
