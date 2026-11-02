@@ -39,8 +39,8 @@ Basic statistics on nucleotide content and contig length are collected for align
   - `*.train` is the alignment parameters computed by `last-train` (optional)
   - `*.train.tsv` reports some of the parameters computed by `last-train` for MultiQC (optional)
   - `*.m2m.maf.gz` is the _**many-to-many**_ alignment between _target_ and _query_ genomes. (optional through the `--m2m` option)
-  - `*.m2o.maf.gz` is the _**many-to-one**_ alignment regions of the _target_ genome are matched at most once by the _query_ genome. (optional through the `--m2m` option)
-  - `*.o2m.maf.gz` is the _**one-to-many**_ alignment between the _target_ and _query_ genomes. (optional through the `--m2m` option)
+  - `*.m2o.maf.gz` is the _**many-to-one**_ alignment: each region of the _query_ genome is aligned at most once, while regions of the _target_ genome can be aligned several times. (optional through the `--m2m` option)
+  - `*.o2m.maf.gz` is the _**one-to-many**_ alignment: each region of the _target_ genome is aligned at most once, while regions of the _query_ genome can be aligned several times. (optional through the `--m2m` option)
   - `*.o2o.maf.gz` is the _**one-to-one**_ alignment between the _target_ and _query_ genomes.
   - `*.o2o.tsv` reports nucleotide percent identity of the _**one-to-one**_ alignment for MultiQC.
   - `*.o2o.matrix.txt` reports the substitution matrix and some evolutionary distance indices computed from the _**one-to-one**_ alignment for MultiQC.
