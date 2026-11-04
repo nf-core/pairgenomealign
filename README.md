@@ -88,6 +88,7 @@ We thank the following people for their extensive assistance in the development 
 - [Michael Mansfield](https://github.com/mjmansfi) tested the pipeline and provided critical comments.
 - [Aleksandra Bliznina](https://github.com/aleksandrabliznina) contributed to the creation of the initial `last/*` modules.
 - [Jiashun Miao](https://github.com/miaojiashun) and [Huyen Pham](https://github.com/ngochuyenpham) tested the pipeline on vertebrate genomes.
+- [Takahiro Fujita](https://github.com/takiifujita-ui) released version [2.2.2](https://github.com/nf-core/pairgenomealign/releases/tag/2.2.2).
 
 ## Contributions and Support
 

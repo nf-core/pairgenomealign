@@ -27,8 +27,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="1.4142136"
-     inkscape:cx="565.33187"
-     inkscape:cy="233.34524"
+     inkscape:cx="565.33186"
+     inkscape:cy="233.34523"
      inkscape:window-width="2560"
      inkscape:window-height="1403"
      inkscape:window-x="0"
@@ -156,9 +156,9 @@
          style="stroke:#24b064;stroke-width:2.97415;stroke-dasharray:none;stroke-opacity:1;fill:#24b064;fill-opacity:1">
         <path
            style="fill:#24b064;fill-opacity:1;stroke:#24b064;stroke-width:2.97415;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           d="m 46.404836,55.310006 54.019664,6.2e-4 h 75.29046"
+           d="m 105.52776,55.310626 h 70.1872"
            id="path86"
-           sodipodi:nodetypes="ccc" />
+           sodipodi:nodetypes="cc" />
       </g>
       <g
          id="g79"
@@ -459,15 +459,15 @@
          transform="matrix(1.2135653,0,0,1.2135653,-6.9581682,-115.34345)"><tspan
            x="194.647"
            y="129.12462"
-           id="tspan80"><tspan
+           id="tspan2"><tspan
    style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-   id="tspan79">last/</tspan>
+   id="tspan1">last/</tspan>
 </tspan><tspan
            x="194.647"
            y="132.94825"
-           id="tspan82"><tspan
+           id="tspan6"><tspan
              style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-             id="tspan81">dotplot</tspan></tspan></text>
+             id="tspan5">dotplot</tspan></tspan></text>
       <rect
          style="fill:#ffffff;stroke:#000000;stroke-width:0.931504;stroke-linecap:round;paint-order:stroke markers fill;stop-color:#000000"
          id="rect918-0"
@@ -486,15 +486,15 @@
          transform="matrix(1.2135653,0,0,1.2135653,-21.246521,-63.089994)"><tspan
            x="100.31182"
            y="86.349396"
-           id="tspan84"><tspan
+           id="tspan8"><tspan
    style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-   id="tspan83">last/</tspan>
+   id="tspan7">last/</tspan>
 </tspan><tspan
            x="100.31182"
            y="90.173028"
-           id="tspan86"><tspan
+           id="tspan10"><tspan
              style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-             id="tspan85">lastdb</tspan></tspan></text>
+             id="tspan9">lastdb</tspan></tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.91544px;font-family:'Maven Pro';-inkscape-font-specification:'Maven Pro';text-align:center;text-anchor:middle;white-space:pre;inline-size:12.0192;display:inline;opacity:0.99;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.780923;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.717647"
@@ -504,15 +504,15 @@
          transform="matrix(1.2135644,-0.00150835,0.00150835,1.2135644,-18.145843,-52.711728)"><tspan
            x="76.481003"
            y="77.884949"
-           id="tspan88"><tspan
+           id="tspan14"><tspan
    style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-   id="tspan87">seqtk/</tspan>
+   id="tspan11">seqtk/</tspan>
 </tspan><tspan
            x="76.481003"
            y="81.708581"
-           id="tspan90"><tspan
+           id="tspan16"><tspan
              style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-             id="tspan89">cutn</tspan></tspan></text>
+             id="tspan15">cutn</tspan></tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.53808px;font-family:'Maven Pro';-inkscape-font-specification:'Maven Pro';opacity:0.99;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.947701;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.717647"
@@ -536,15 +536,15 @@
          transform="matrix(1.2135653,0,0,1.2135653,-16.218301,-52.39893)"><tspan
            x="117.15866"
            y="77.539764"
-           id="tspan92"><tspan
+           id="tspan18"><tspan
    style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-   id="tspan91">last/</tspan>
+   id="tspan17">last/</tspan>
 </tspan><tspan
            x="117.15866"
            y="81.363396"
-           id="tspan94"><tspan
+           id="tspan20"><tspan
              style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-             id="tspan93">train</tspan></tspan></text>
+             id="tspan19">train</tspan></tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.53808px;font-family:'Maven Pro';-inkscape-font-specification:'Maven Pro';opacity:0.99;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.947701;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.717647"
@@ -573,15 +573,15 @@
          transform="matrix(1.2135653,0,0,1.2135653,-2.0031846,-90.377304)"><tspan
            x="169.12553"
            y="108.55206"
-           id="tspan98"><tspan
+           id="tspan22"><tspan
    style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-   id="tspan97">last/</tspan>
+   id="tspan21">last/</tspan>
 </tspan><tspan
            x="169.12553"
            y="112.3757"
-           id="tspan102"><tspan
+           id="tspan26"><tspan
              style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-             id="tspan99">split</tspan></tspan></text>
+             id="tspan25">split</tspan></tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.91544px;font-family:'Maven Pro';-inkscape-font-specification:'Maven Pro';text-align:center;text-anchor:middle;white-space:pre;inline-size:19.5433;display:inline;opacity:0.99;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.780923;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.717647"
@@ -591,15 +591,15 @@
          transform="matrix(1.2135653,0,0,1.2135653,11.924088,-90.004059)"><tspan
            x="200.36678"
            y="108.52708"
-           id="tspan106"><tspan
+           id="tspan28"><tspan
    style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-   id="tspan103">last/</tspan>
+   id="tspan27">last/</tspan>
 </tspan><tspan
            x="200.36678"
            y="112.35071"
-           id="tspan108"><tspan
+           id="tspan30"><tspan
              style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-             id="tspan107">mafconvert</tspan></tspan></text>
+             id="tspan29">mafconvert</tspan></tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.91544px;font-family:'Maven Pro';-inkscape-font-specification:'Maven Pro';text-align:center;text-anchor:middle;white-space:pre;inline-size:12.2655;display:inline;opacity:0.99;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.780923;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.717647"
@@ -609,15 +609,15 @@
          transform="matrix(1.2135653,0,0,1.2135653,-37.520165,-87.442907)"><tspan
            x="155.99557"
            y="106.41664"
-           id="tspan110"><tspan
+           id="tspan32"><tspan
    style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-   id="tspan109">last/</tspan>
+   id="tspan31">last/</tspan>
 </tspan><tspan
            x="155.99557"
            y="110.24027"
-           id="tspan114"><tspan
+           id="tspan35"><tspan
              style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-             id="tspan113">lastal</tspan></tspan></text>
+             id="tspan33">lastal</tspan></tspan></text>
       <g
          id="g2"
          transform="matrix(0.05068587,0,0,0.05068587,1.953243,-0.79907899)">
@@ -900,15 +900,15 @@
          transform="matrix(1.2135653,0,0,1.2135653,37.472052,-90.359075)"><tspan
            x="200.36678"
            y="108.52708"
-           id="tspan116"><tspan
+           id="tspan37"><tspan
    style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-   id="tspan115">samtools/</tspan>
+   id="tspan36">samtools/</tspan>
 </tspan><tspan
            x="200.36678"
            y="112.35071"
-           id="tspan118"><tspan
+           id="tspan39"><tspan
              style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-             id="tspan117">merge</tspan></tspan></text>
+             id="tspan38">merge</tspan></tspan></text>
       <g
          id="g68"
          transform="matrix(0.54412524,0,0,0.71563875,144.73584,-7.014311)"
@@ -1175,15 +1175,15 @@
          transform="matrix(1.2135644,-0.00150835,0.00150835,1.2135644,-43.63017,-52.701725)"><tspan
            x="76.481003"
            y="77.884949"
-           id="tspan120"><tspan
+           id="tspan41"><tspan
              style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-             id="tspan119">assembly-
+             id="tspan40">assembly-
 </tspan></tspan><tspan
            x="76.481003"
            y="81.708581"
-           id="tspan122"><tspan
+           id="tspan43"><tspan
              style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-             id="tspan121">scan</tspan></tspan></text>
+             id="tspan42">scan</tspan></tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.91544px;font-family:'Maven Pro';-inkscape-font-specification:'Maven Pro';text-align:center;text-anchor:middle;white-space:pre;inline-size:13.0064;display:inline;opacity:0.99;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.780923;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.717647"
@@ -1193,15 +1193,15 @@
          transform="matrix(1.2135653,0,0,1.2135653,-27.814616,-90.377304)"><tspan
            x="169.12553"
            y="108.55206"
-           id="tspan124"><tspan
+           id="tspan45"><tspan
    style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-   id="tspan123">last/</tspan>
+   id="tspan44">last/</tspan>
 </tspan><tspan
            x="169.12553"
            y="112.3757"
-           id="tspan126"><tspan
+           id="tspan47"><tspan
              style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-             id="tspan125">split</tspan></tspan></text>
+             id="tspan46">split</tspan></tspan></text>
       <path
          id="path129"
          style="fill:#ffffff;stroke:#000000;stroke-width:2.42713;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke markers fill;stop-color:#000000"
@@ -1518,11 +1518,11 @@
          transform="matrix(0.33799079,1.1655484,-1.1655484,0.33799079,189.85807,-85.03671)"><tspan
            x="117.15866"
            y="77.539764"
-           id="tspan129"><tspan
+           id="tspan50"><tspan
              style="font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans'"
-             id="tspan127">Optional route: </tspan><tspan
+             id="tspan48">Optional route: </tspan><tspan
              style="font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono'"
-             id="tspan128">--m2m</tspan></tspan></text>
+             id="tspan49">--m2m</tspan></tspan></text>
       <rect
          x="45.71249"
          y="61.38279"
@@ -1745,14 +1745,14 @@
            y="0"><tspan
              x="160.33008"
              y="710.89126"
-             id="tspan131"><tspan
+             id="tspan52"><tspan
                style="text-align:center;text-anchor:middle;stroke:#ffffff"
-               id="tspan130">subworkflow: </tspan></tspan><tspan
+               id="tspan51">subworkflow: </tspan></tspan><tspan
              x="68.818359"
              y="724.22457"
-             id="tspan135"><tspan
+             id="tspan54"><tspan
                style="text-align:center;text-anchor:middle;stroke:#ffffff"
-               id="tspan132">fasta_bgzip_index_dict_samtools
+               id="tspan53">fasta_bgzip_index_dict_samtools
 </tspan></tspan></text>
         <text
            xml:space="preserve"
@@ -1763,21 +1763,21 @@
            y="0"><tspan
              x="59.416016"
              y="710.89126"
-             id="tspan137"><tspan
+             id="tspan57"><tspan
                style="text-align:center;text-anchor:middle"
-               id="tspan136">samtools
+               id="tspan56">samtools
 </tspan></tspan><tspan
              x="93.130859"
              y="724.22457"
-             id="tspan139"><tspan
+             id="tspan59"><tspan
                style="text-align:center;text-anchor:middle"
-               id="tspan138">/
+               id="tspan58">/
 </tspan></tspan><tspan
              x="73.865234"
              y="737.55789"
-             id="tspan142"><tspan
+             id="tspan62"><tspan
                style="text-align:center;text-anchor:middle"
-               id="tspan141">faidx</tspan></tspan></text>
+               id="tspan60">faidx</tspan></tspan></text>
         <text
            xml:space="preserve"
            transform="matrix(0.18953965,0,0,0.18953965,191.96222,-13.739997)"
@@ -1787,21 +1787,21 @@
            y="0"><tspan
              x="59.416016"
              y="710.89126"
-             id="tspan145"><tspan
+             id="tspan64"><tspan
                style="text-align:center;text-anchor:middle"
-               id="tspan143">samtools
+               id="tspan63">samtools
 </tspan></tspan><tspan
              x="93.130859"
              y="724.22457"
-             id="tspan147"><tspan
+             id="tspan66"><tspan
                style="text-align:center;text-anchor:middle"
-               id="tspan146">/
+               id="tspan65">/
 </tspan></tspan><tspan
              x="78.681641"
              y="737.55789"
-             id="tspan150"><tspan
+             id="tspan68"><tspan
                style="text-align:center;text-anchor:middle"
-               id="tspan149">dict</tspan></tspan></text>
+               id="tspan67">dict</tspan></tspan></text>
         <text
            xml:space="preserve"
            transform="matrix(0.18953965,0,0,0.18953965,153.68457,-14.044297)"
@@ -1811,21 +1811,21 @@
            y="0"><tspan
              x="69.048828"
              y="710.89126"
-             id="tspan153"><tspan
+             id="tspan70"><tspan
                style="text-align:center;text-anchor:middle"
-               id="tspan151">htslib
+               id="tspan69">htslib
 </tspan></tspan><tspan
              x="93.130859"
              y="724.22457"
-             id="tspan155"><tspan
+             id="tspan74"><tspan
                style="text-align:center;text-anchor:middle"
-               id="tspan154">/
+               id="tspan72">/
 </tspan></tspan><tspan
              x="49.783203"
              y="737.55789"
-             id="tspan158"><tspan
+             id="tspan76"><tspan
                style="text-align:center;text-anchor:middle"
-               id="tspan157">bgziptabix</tspan></tspan></text>
+               id="tspan75">bgziptabix</tspan></tspan></text>
       </g>
       <g
          id="g37"

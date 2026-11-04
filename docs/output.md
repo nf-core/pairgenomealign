@@ -39,8 +39,8 @@ Basic statistics on nucleotide content and contig length are collected for align
   - `*.train` is the alignment parameters computed by `last-train` (optional)
   - `*.train.tsv` reports some of the parameters computed by `last-train` for MultiQC (optional)
   - `*.m2m.maf.gz` is the _**many-to-many**_ alignment between _target_ and _query_ genomes. (optional through the `--m2m` option)
-  - `*.m2o.maf.gz` is the _**many-to-one**_ alignment regions of the _target_ genome are matched at most once by the _query_ genome. (optional through the `--m2m` option)
-  - `*.o2m.maf.gz` is the _**one-to-many**_ alignment between the _target_ and _query_ genomes. (optional through the `--m2m` option)
+  - `*.m2o.maf.gz` is the _**many-to-one**_ alignment: each region of the _query_ genome is aligned at most once, while regions of the _target_ genome can be aligned several times. (optional through the `--m2m` option)
+  - `*.o2m.maf.gz` is the _**one-to-many**_ alignment: each region of the _target_ genome is aligned at most once, while regions of the _query_ genome can be aligned several times. (optional through the `--m2m` option)
   - `*.o2o.maf.gz` is the _**one-to-one**_ alignment between the _target_ and _query_ genomes.
   - `*.o2o.tsv` reports nucleotide percent identity of the _**one-to-one**_ alignment for MultiQC.
   - `*.o2o.matrix.txt` reports the substitution matrix and some evolutionary distance indices computed from the _**one-to-one**_ alignment for MultiQC.
@@ -77,12 +77,12 @@ Dot plots are representing the pairwise genome alignments and produced with the 
 <summary>Output files</summary>
 
 - `cutn/`
-  - `targetGenome.bed`
+  - `<target>.cuts.bed`
   - `<sample>.bed`
 
 </details>
 
-The poly-N regions longer than 9 bases in each genome sequence often indicate contig boundaries in scaffolds. Therefore, we marked them in pale red in the dot-plots. They are detected with the`seqtk cutN` command and its output (in 3-column BED format) is provided in the `cutn` directory. Sample IDs are constructed to generate file names, except for the _target_ genome which is always called `targetGenome` to avoid filename collisions.
+The poly-N regions longer than 9 bases in each genome sequence often indicate contig boundaries in scaffolds. Therefore, we marked them in pale red in the dot-plots. They are detected with the`seqtk cutN` command and its output (in 3-column BED format) is provided in the `cutn` directory. Sample IDs are constructed to generate file names, except for the _target_ genome which is always called `<target>.cuts.bed` to avoid filename collisions.
 
 ### MultiQC
 
@@ -143,3 +143,38 @@ Alignment statistics can be displayed by MultiQC as violin plots. There is no st
 </details>
 
 [Nextflow](https://docs.seqera.io/platform-cloud/reports/overview) provides excellent functionality for generating various reports relevant to the running and execution of the pipeline. This will allow you to troubleshoot errors with the running of the pipeline, and also provide you with other information such as launch commands, run times and resource usage.
+
+## Known limitations and troubleshooting
+
+### Fragmented assemblies
+
+The pipeline indexes and aligns assemblies with millions of scaffolds, but:
+
+- Dot plots show only the 100 largest sequences of each genome (`last-dotplot --maxseqs`, adjustable with `--dotplot_options`).
+- Downstream software that loads every sequence name can run out of memory or fail. Keeping the chromosome-level sequences, or the few hundred longest ones, before alignment avoids this and makes plots and statistics easier to interpret.
+
+### A query has no output
+
+If `last-train` finds no alignment between the _target_ and a _query_, for instance because they are too divergent for the selected seed, the `ALIGNMENT_TRAIN` process fails with exit status
+
+The pipeline ignores this failure and skips the _query_ instead of stopping. Try a denser seed (`--seed YASS` or `--seed MAM8`), or provide alignment parameters with `--lastal_params`.
+
+### Memory
+
+With a human-sized _target_ and 12 threads, peak memory is about 40, 65 and 220 GiB with the `RY128`, `RY4` and `YASS` seeds. Indexing both strands (`--strand both`, the default) roughly doubles the memory of the index; `--strand forward` reduces it, but slows down alignment.
+
+### Alignments to the reverse strand of the target
+
+With `--strand both`, some alignments are reported between the reverse strand of the _target_ and the forward strand of the _query_. Software that assumes the _target_ is always on the forward strand will mishandle them; use `--strand forward` in that case.
+
+### Reproducibility and number of CPUs
+
+The number of threads does not change the alignments, but it can change the order in which they are written. Outputs are therefore bitwise identical only between runs that give LAST processes the same number of CPUs.
+
+### Many-to-many alignments
+
+`--m2m` adds computation time and can take much disk space. Dot plots of many-to-many alignments of repetitive genomes are slow to draw and hard to read; skip them with `--skip_dotplot_m2m`.
+
+### CRAM version
+
+CRAM files are written in version 3.1, the default of samtools. Some older software reads only version 3.0; see the "Export" section of the Methods of the article, or set the `--output-fmt-option version=3.0` argument through `ext.args2` of `ALIGNMENT_EXP` and `ext.args` of `ALIGNMENT_MERGE`.
