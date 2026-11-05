@@ -1,4 +1,5 @@
 Changes in component 'nf-core/last/split'
+'modules/nf-core/last/split/environment.yml' is unchanged
 Changes in 'last/split/main.nf':
 --- modules/nf-core/last/split/main.nf
 +++ modules/nf-core/last/split/main.nf
@@ -42,9 +43,15 @@ Changes in 'last/split/main.nf':
  
      # Combine the two stats file into one for MultiQC.
      paste ${prefix}.alignmentstats.txt ${prefix}.genomestats.txt > ${prefix}.tsv
+@@ -114,5 +123,6 @@
+     """
+     echo "" | gzip > ${prefix}.maf.gz
+     touch ${prefix}.tsv
++    touch ${prefix}.matrix.txt
+     """
+ }
 
 'modules/nf-core/last/split/meta.yml' is unchanged
-'modules/nf-core/last/split/environment.yml' is unchanged
-'modules/nf-core/last/split/tests/main.nf.test' is unchanged
 'modules/nf-core/last/split/tests/main.nf.test.snap' is unchanged
+'modules/nf-core/last/split/tests/main.nf.test' is unchanged
 ************************************************************
