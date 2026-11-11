@@ -5,7 +5,7 @@ lint:
     - assets/nf-core-pairgenomealign_logo_light.png
     - .github/workflows/branch.yml
     - .github/workflows/linting.yml
-nf_core_version: 4.2.1
+nf_core_version: 4.2.2
 repository_type: pipeline
 template:
   author: charles-plessy
@@ -15,4 +15,4 @@ template:
   name: pairgenomealign
   org: nf-core
   outdir: .
-  version: 3.0.5dev
+  version: 3.0.5
