@@ -123,5 +123,6 @@ process LAST_SPLIT {
     """
     echo "" | gzip > ${prefix}.maf.gz
     touch ${prefix}.tsv
+    touch ${prefix}.matrix.txt
     """
 }
