@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Added`
 
+- Require Nextflow version `26.04.0` or later ([#165](https://github.com/nf-core/pairgenomealign/pull/165)).
 - Added metro map information to the pipeline's manifest (@ewels, [#156](https://github.com/nf-core/pairgenomealign/pull/156)).
 - Document issues and limitations in `docs/output.md` ([#167](https://github.com/nf-core/pairgenomealign/issues/167)).
 
