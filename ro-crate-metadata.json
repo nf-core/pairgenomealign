@@ -1,5 +1,8 @@
 {
-    "@context": ["https://w3id.org/ro/crate/1.3/context", "https://w3id.org/ro/terms/test"],
+    "@context": [
+        "https://w3id.org/ro/crate/1.3/context",
+        "https://w3id.org/ro/terms/test"
+    ],
     "@graph": [
         {
             "@id": "./",
@@ -23,6 +26,9 @@
                     "@id": "assets/"
                 },
                 {
+                    "@id": "bin/"
+                },
+                {
                     "@id": "conf/"
                 },
                 {
@@ -33,6 +39,9 @@
                 },
                 {
                     "@id": "modules/"
+                },
+                {
+                    "@id": "modules/local/"
                 },
                 {
                     "@id": "modules/nf-core/"
@@ -107,14 +116,26 @@
         },
         {
             "@id": "main.nf",
-            "@type": ["File", "SoftwareSourceCode", "ComputationalWorkflow"],
+            "@type": [
+                "File",
+                "SoftwareSourceCode",
+                "ComputationalWorkflow"
+            ],
+            "author": [
+                {
+                    "@id": "https://orcid.org/0000-0001-7410-6295"
+                }
+            ],
             "contributor": [
                 {
-                    "@id": "#3f5261fd-ea30-46a7-9414-132340e70214"
+                    "@id": "#mohammed.mahdi@oist.jp"
+                },
+                {
+                    "@id": "#takahiro-fujita@suntory.co.jp"
                 }
             ],
             "dateCreated": "",
-            "dateModified": "2026-11-11T13:41:56Z",
+            "dateModified": "2026-11-04T15:51:59Z",
             "dct:conformsTo": "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE/",
             "keywords": [
                 "nf-core",
@@ -127,8 +148,12 @@
                 "synteny",
                 "whole-genome-alignment"
             ],
-            "license": ["MIT"],
-            "name": ["nf-core/pairgenomealign"],
+            "license": [
+                "MIT"
+            ],
+            "name": [
+                "nf-core/pairgenomealign"
+            ],
             "programmingLanguage": {
                 "@id": "https://w3id.org/workflowhub/workflow-ro-crate#nextflow"
             },
@@ -148,11 +173,14 @@
             "url": {
                 "@id": "https://www.nextflow.io/"
             },
-            "version": "!>=25.10.4"
+            "version": "!>=26.04.0"
         },
         {
             "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.1",
-            "@type": ["CreativeWork", "Profile"],
+            "@type": [
+                "CreativeWork",
+                "Profile"
+            ],
             "name": "Workflow RO-Crate",
             "version": "1.1"
         },
@@ -171,7 +199,10 @@
         },
         {
             "@id": "https://w3id.org/ro/wftest/0.2",
-            "@type": ["CreativeWork", "Profile"],
+            "@type": [
+                "CreativeWork",
+                "Profile"
+            ],
             "name": "Workflow Testing RO-Crate",
             "version": "0.2"
         },
@@ -199,6 +230,11 @@
             "description": "Additional files"
         },
         {
+            "@id": "bin/",
+            "@type": "Dataset",
+            "description": "Scripts that must be callable from a pipeline process"
+        },
+        {
             "@id": "conf/",
             "@type": "Dataset",
             "description": "Configuration files"
@@ -217,6 +253,11 @@
             "@id": "modules/",
             "@type": "Dataset",
             "description": "Modules used by the pipeline"
+        },
+        {
+            "@id": "modules/local/",
+            "@type": "Dataset",
+            "description": "Pipeline-specific modules"
         },
         {
             "@id": "modules/nf-core/",
@@ -305,9 +346,28 @@
             "url": "https://nf-co.re/"
         },
         {
-            "@id": "#3f5261fd-ea30-46a7-9414-132340e70214",
+            "@id": "https://orcid.org/0000-0001-7410-6295",
             "@type": "Person",
-            "name": "charles-plessy"
+            "affiliation": "Okinawa Institute of Science and Technology Graduate University (OIST)",
+            "email": "charles.plessy@oist.jp",
+            "name": "Charles Plessy",
+            "url": "https://github.com/charles-plessy"
+        },
+        {
+            "@id": "#mohammed.mahdi@oist.jp",
+            "@type": "Person",
+            "affiliation": "Okinawa Institute of Science and Technology Graduate University (OIST)",
+            "email": "mohammed.mahdi@oist.jp",
+            "name": "Mohammed Mahdi",
+            "url": "https://github.com/U13bs1125"
+        },
+        {
+            "@id": "#takahiro-fujita@suntory.co.jp",
+            "@type": "Person",
+            "affiliation": "Suntory Global Innovation Center Limited",
+            "email": "takahiro-fujita@suntory.co.jp",
+            "name": "Takahiro Fujita",
+            "url": "https://github.com/takiifujita-ui"
         }
     ]
 }

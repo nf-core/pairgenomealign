@@ -180,6 +180,6 @@ nf-core pipelines bump-version --nextflow . <min_nf_version>
 
 If you update images or graphics, follow the nf-core [style guidelines](https://nf-co.re/docs/community/brand/workflow-schematics).
 
-## Pipeline specific contribution guidelines
+<!-- ## Pipeline specific contribution guidelines -->
 
-<!-- TODO nf-core: Add any pipeline specific contribution guidelines here, such as coding styles, procedures, checklists etc. -->
+<!-- nf-core: Add any pipeline specific contribution guidelines here, such as coding styles, procedures, checklists etc. -->
